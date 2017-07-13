@@ -1,7 +1,8 @@
 |논문명|Faster R-CNN: Towards Real-Time Object Detection with Region Proposal Networks|
 |-|-|
-|학회/년도|NIPS 2015, [논문](https://arxiv.org/pdf/1506.01497.pdf),[코드](https://github.com/rbgirshick/py-faster-rcnn)|
-|참고|[PR-012](https://www.youtube.com/watch?v=kcPAGIgBGRs&feature=youtu.be&list=PLlMkM4tgfjnJhhd4wn5aj8fVTYJwIpWkS)|
+|학회/년도|NIPS 2015, [논문](https://arxiv.org/pdf/1506.01497.pdf)|
+|참고|[PR-012동영상](https://www.youtube.com/watch?v=kcPAGIgBGRs&feature=youtu.be&list=PLlMkM4tgfjnJhhd4wn5aj8fVTYJwIpWkS), [코드](https://github.com/rbgirshick/py-faster-rcnn)|
+
 
 
 # Faster R-CNN: Towards Real-Time Object Detection with Region Proposal Networks
@@ -50,3 +51,40 @@ To unify RPNs with Fast R-CNN [2] object detection networks, we propose a traini
 We comprehensively evaluate our method on thePASCAL VOC detection benchmarks [11] where RPNswith Fast R-CNNs produce detection accuracy better than the strong baseline of Selective Search withFast R-CNNs. Meanwhile, our method waives nearlyall computational burdens of Selective Search attest-time—the effective running time for proposalsis just 10 milliseconds. Using the expensive verydeep models of [3], our detection method still hasa frame rate of 5fps (including all steps) on a GPU,and thus is a practical object detection system interms of both speed and accuracy. We also reportresults on the MS COCO dataset [12] and investigate the improvements on PASCAL VOC using theCOCO data. Code has been made publicly availableat https://github.com/shaoqingren/faster_rcnn (in MATLAB) and https://github.com/rbgirshick/py-faster-rcnn (in Python).
 > 성능 평가 결과도 좋다. 코드는 MATLAB과  Python으로 작성되어 공개 하였다. 
 
+A preliminary version of this manuscript was published previously [10]. Since then, the frameworks of RPN and Faster R-CNN have been adopted and generalized to other methods, such as 3D object detection[13], part-based detection [14], instance segmentation[15], and image captioning [16]. Our fast and effective object detection system has also been built in commercial systems such as at Pinterests [17], with user engagement improvements reported. In ILSVRC and COCO 2015 competitions, FasterR-CNN and RPN are the basis of several 1st-place entries [18] in the tracks of ImageNet detection, ImageNet localization, COCO detection, and COCO segmentation. RPNs completely learn to propose regions from data, and thus can easily benefit from deeper and more expressive features (such as the 101-layer residual nets adopted in [18]). Faster R-CNN and RPN are also used by several other leading entries in these competitions. These results suggest that our method is not only a cost-efficient solution for practical usage,but also an effective way of improving object detection accuracy.
+> 제안 방식은 여러 버젼으로 확대 되었으며 사용 프로그램에도 적용 되었다. 
+
+## 2. Related Work
+### 2.1 Object Proposal 
+
+There is a large literature on object proposal methods. Comprehensive surveys and comparisons of object proposal methods can be found in[19], [20], [21]. Widely used object proposal methods include those based on grouping super-pixels (e.g.,Selective Search [4], CPMC [22], MCG [23]) and those based on sliding windows (e.g., objectness in windows[24], EdgeBoxes [6]). Object proposal methods were adopted as external modules independent of the detectors (e.g., Selective Search [4] object detectors, RCNN [5], and Fast R-CNN [2]).
+> object proposal methods들은 grouping super-pixels기반(eg. Selective Search) sliding windows기반(eg. EdgeBoxes) 방식들이 있다. 
+> object proposal methods은 다른 외부 모듈에 적용(eg. RCNN)  되기도 한다. 
+
+### 2.2 Deep Networks for Object Detection. 
+The R-CNN method [5] trains CNNs end-to-end to classify the proposal regions into object categories or background.R-CNN mainly plays as a classifier, and it does not predict object bounds (except for refining by bounding box regression). Its accuracy depends on the performance of the region proposal module (see comparisons in [20]). 
+> R-CNN방법들은 CNN을 학습 시켜서 proposal regions을 분류 하는데 사용한다. R-CNN은 Classifier역할을 수행 하며 object bounds를 예측 하지는 않는다. 정확도는 [region proposal module]의 성능에 달려 있다. 
+
+Several papers have proposed ways of using deep networks for predicting object bounding boxes [25], [9], [26], [27]. 
+- In the OverFeat method [9],a fully-connected layer is trained to predict the box coordinates for the localization task that assumes a single object. The fully-connected layer is then turned into a convolutional layer for detecting multiple class specific objects. 
+- The MultiBox methods [26], [27] generate region proposals from a network whose last fully-connected layer simultaneously predicts multiple class-agnostic boxes, generalizing the “singlebox” fashion of OverFeat. 
+
+> 여러 논문들이 deep networks를 이용해서 object bounding boxes를 예측 하는 방법을 제안하였다. 
+> - OverFeat method: 
+> - MultiBox methods 
+
+These class-agnostic boxes are used as proposals for R-CNN [5]. The MultiBox proposal network is applied on a single image crop or multiple large image crops (e.g., 224×224), in contrast to our fully convolutional scheme. MultiBox does not share features between the proposal and detection networks. We discuss OverFeat and MultiBox in more depth later in context with our method. Concurrent with our work, the DeepMask method [28] is developed for learning segmentation proposals.
+> R-CNN도 proposals할때 class-agnostic boxes를 이용한다. MultiBox도 하나의 이미지 조각이나 여러 큰 이미지 조각을 활용한다. 우리와 다른점은 MultiBox는 features 를 공유 하지 않는 점이다.  
+
+Shared computation of convolutions [9], [1], [29],[7], [2] has been attracting increasing attention for efficient, yet accurate, visual recognition.
+- The OverFeat paper [9] computes convolutional features from an image pyramid for classification, localization, and detection.
+- Adaptively-sized pooling (SPP) [1] on shared convolutional feature maps is developed for efficient region-based object detection [1], [30] and semantic segmentation [29]. 
+- Fast R-CNN [2] enables end-to-end detector training on shared convolutional features and shows compelling accuracy and speed.
+
+> Shared computation of convolutions는 성능향상 측면에서 많은 관심을 끌어 왔다. 
+> - OverFeat는 classification, localization, and detection문제 해결을 위해 image pyramid를 이용해서 convolutional features를 계산 하였다. 
+> - SPP shared convolutional feature maps은 efficient region-based object detection과 semantic segmentation를 위해 개발 되었다. 
+> - Fast R-CNN은 shared convolutional features을 End-to-end학습 하여 좋은 정확도와 속도를 보여 주었다. 
+
+## 3. Faster R-CNN
+Our object detection system, called Faster R-CNN, iscomposed of two modules. The first module is a deepfully convolutional network that proposes regions,and the second module is the Fast R-CNN detector [2]that uses the proposed regions. The entire system is a single, unified network for object detection (Figure 2).Using the recently popular terminology of neuralnetworks with ‘attention’ [31] mechanisms, the RPNmodule tells the Fast R-CNN module where to look.In Section 3.1 we introduce the designs and propertiesof the network for region proposal. In Section 3.2 wedevelop algorithms for training both modules withfeatures shared.
