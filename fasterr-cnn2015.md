@@ -1,6 +1,6 @@
 |논문명|Faster R-CNN: Towards Real-Time Object Detection with Region Proposal Networks|
 |-|-|
-|학회/년도|NIPS 2015, [다운로드](https://arxiv.org/pdf/1506.01497.pdf)|
+|학회/년도|NIPS 2015, [논문](https://arxiv.org/pdf/1506.01497.pdf),[코드](https://github.com/rbgirshick/py-faster-rcnn)|
 |참고|[PR-012](https://www.youtube.com/watch?v=kcPAGIgBGRs&feature=youtu.be&list=PLlMkM4tgfjnJhhd4wn5aj8fVTYJwIpWkS)|
 
 
@@ -44,4 +44,9 @@ RPNs are designed to efficiently predict region proposals with a wide range of s
 
 > 우리 방식은 pyramid of regression references로 볼수 있으며, 많은 수/크기의 이미지나 필터들이 불필요 하다. 한 크기(single-scale)의 이미지만 사용하여서 속도가 빠른 것이다. 
 
+To unify RPNs with Fast R-CNN [2] object detection networks, we propose a training scheme that alternates between fine-tuning for the region proposal task and then fine-tuning for object detection, while keeping the proposals fixed. This scheme converges quickly and produces a unified network with convolutional features that are shared between both tasks.
+> RPNs과  Fast R-CNN object detection networks를 하나로 합치기 위해서 region proposal을 위한 파인 튜닝과 object detection를 위한 파인튜닝을 번갈아 가면서 수행하는 방법을 제안 한다. 이 방법을 통해 convolutional features(CF)로 된 통일된 네트워크가 만들어 진다. CF는 위 두 튜닝과정이 벌갈아 수행될떄 서로 공유 된다. 
+
+We comprehensively evaluate our method on thePASCAL VOC detection benchmarks [11] where RPNswith Fast R-CNNs produce detection accuracy better than the strong baseline of Selective Search withFast R-CNNs. Meanwhile, our method waives nearlyall computational burdens of Selective Search attest-time—the effective running time for proposalsis just 10 milliseconds. Using the expensive verydeep models of [3], our detection method still hasa frame rate of 5fps (including all steps) on a GPU,and thus is a practical object detection system interms of both speed and accuracy. We also reportresults on the MS COCO dataset [12] and investigate the improvements on PASCAL VOC using theCOCO data. Code has been made publicly availableat https://github.com/shaoqingren/faster_rcnn (in MATLAB) and https://github.com/rbgirshick/py-faster-rcnn (in Python).
+> 성능 평가 결과도 좋다. 코드는 MATLAB과  Python으로 작성되어 공개 하였다. 
 
