@@ -87,4 +87,34 @@ Shared computation of convolutions [9], [1], [29],[7], [2] has been attracting i
 > - Fast R-CNN은 shared convolutional features을 End-to-end학습 하여 좋은 정확도와 속도를 보여 주었다. 
 
 ## 3. Faster R-CNN
-Our object detection system, called Faster R-CNN, iscomposed of two modules. The first module is a deepfully convolutional network that proposes regions,and the second module is the Fast R-CNN detector [2]that uses the proposed regions. The entire system is a single, unified network for object detection (Figure 2).Using the recently popular terminology of neuralnetworks with ‘attention’ [31] mechanisms, the RPNmodule tells the Fast R-CNN module where to look.In Section 3.1 we introduce the designs and propertiesof the network for region proposal. In Section 3.2 wedevelop algorithms for training both modules withfeatures shared.
+Our object detection system, called Faster R-CNN, is composed of two modules. 
+- The first module is a deep fully convolutional network that proposes regions,and 
+- the second module is the Fast R-CNN detector [2]that uses the proposed regions. 
+> 제안하는 Faster R-CNN는 두개의 모듈로 구성 되어 있다. 
+> - deep fully convolutional network : 영역(regions)을 제안하는 모듈 
+> - Fast R-CNN detector : 제안된 영역을 활용하는 모율
+
+
+The entire system is a single, unified network for object detection (Figure 2). Using the recently popular terminology of neural networks with ‘attention’ [31] mechanisms, the RPN module tells the Fast R-CNN module where to look.
+> 전체 시스템은 하나의 네트워크로 이루어져 있다. 최근 유행하는 `attention`메커니즘을 이용하여 RPN모듈은 Fast R-CNN모듈에게 어디를 살펴 보아야 할지 알려 준다. 
+
+In Section 3.1 we introduce the designs and properties of the network for region proposal. In Section 3.2 we develop algorithms for training both modules with features shared.
+> 3.1장에서는 영역을 제한 하는 네트워크의 설계 및 특징을 이야기 하고 
+> 3.2장에서는 features 공유를 통해서 두 모듈을 동시에 학습하는 알고리즘을 개발 하겠다. 
+
+### 3.1 Region Proposal Networks
+
+#### A. Anchors
+
+##### 가. Translation-Invariant Anchors
+
+##### 나. Multi-Scale Anchors as Regression References
+
+#### B. Loss Function
+
+#### C. Training RPNs
+
+### 3.2 Sharing Features for RPN and Fast R-CNN
+
+
+
