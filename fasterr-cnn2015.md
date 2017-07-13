@@ -111,8 +111,10 @@ Because our ultimate goal is to share computation with a Fast R-CNN object detec
 > - Zeiler and Fergus model : 5 shareable convolutional layer
 > - Simonyan and Zisserman model : 13 shareable convolutional layers
 
+![](http://i.imgur.com/UgXl7bV.png)
+
 To generate region proposals, we slide a small network over the convolutional feature map output by the last shared convolutional layer. This small network takes as input an n × n spatial window of the input convolutional feature map. Each sliding window is mapped to a lower-dimensional feature(256-d for ZF and 512-d for VGG, with ReLU [33]following). This feature is fed into two sibling fully connected layers—a box-regression layer (reg) and a box-classification layer (cls). 
-> region proposals생성을 위해서 작은 네트워크를 convolutional feature map상에 Slinde하였다. by the last shared convolutional layer(??)
+> region proposals생성을 위해서 작은 네트워크를 convolutional feature map상에 Slind하였다. by the last shared convolutional layer(??)
 > 이 작은 네트워크는 입력으로 an n × n spatial window of the input convolutional feature map를 취하고 
 > 각 sliding window는 lower-dimensional feature와 맵핑된다. 
 > - Feature는 두개의 sibling fully connected layers(a box-regression layer+a box-classification layer) 에 입력으로 주어 진다. 
@@ -120,7 +122,7 @@ To generate region proposals, we slide a small network over the convolutional fe
 We use n = 3 in this paper, noting that the effective receptive field on the input image is large (171 and 228 pixels for ZF and VGG, respectively). This mini-network is illustrated at a single position in Figure 3 (left). Note that because the mini-network operates in a sliding-window fashion, the fully-connected layers are shared across all spatial locations. This architecture is naturally implemented with an n×n convolutional layer followed by two sibling 1 × 1 convolutional layers (for reg and cls, respectively).
 > 본논문에서는 N값을 3으로 잡았다. 작은 네트워크가 sliding-window처럼 동작하기 때문에 fully-connected layers는 spatial locations전반에 공유 된다. 
 
-![](http://i.imgur.com/UgXl7bV.png)
+
 
 #### A. Anchors
 
