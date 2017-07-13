@@ -1,14 +1,7 @@
-# TFKR 논문 읽기
+# PR12: TFKR 논문 읽기
 
-- Attention is All You Need : [동영상](), [논문](), [PyTorch 구현](https://github.com/jadore801120/attention-is-all-you-need-pytorch)
 
-- One Model to Learn Them All : [소개글](https://www.facebook.com/groups/modulabs/permalink/1391014227630423/), [동영상](), [논문](https://arxiv.org/pdf/1706.05137.pdf), [구현]()
-
--  : [소개글](), [동영상](), [논문](), [구현]()
-
--  : [소개글](), [동영상](), [논문](), [구현]()
-
--  : [소개글](), [동영상](), [논문](), [구현]()
+# 모두의연구소 
 
 
 
