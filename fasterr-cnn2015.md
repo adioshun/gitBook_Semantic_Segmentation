@@ -99,10 +99,28 @@ The entire system is a single, unified network for object detection (Figure 2). 
 > 전체 시스템은 하나의 네트워크로 이루어져 있다. 최근 유행하는 `attention`메커니즘을 이용하여 RPN모듈은 Fast R-CNN모듈에게 어디를 살펴 보아야 할지 알려 준다. 
 
 In Section 3.1 we introduce the designs and properties of the network for region proposal. In Section 3.2 we develop algorithms for training both modules with features shared.
-> 3.1장에서는 영역을 제한 하는 네트워크의 설계 및 특징을 이야기 하고 
+> 3.1장에서는 영역을 제안(region proposal) 하는 네트워크의 설계 및 특징을 이야기 하고 
 > 3.2장에서는 features 공유를 통해서 두 모듈을 동시에 학습하는 알고리즘을 개발 하겠다. 
 
 ### 3.1 Region Proposal Networks
+A Region Proposal Network (RPN) takes an image(of any size) as input and outputs a set of rectangular object proposals, each with an objectness score. We model this process with a fully convolutional network[7], which we describe in this section. 
+> RPN은 이미지를 입력 받아 여러 사각형의 object proposals 박스셋 + objectness점수를  출력 한다. FCN(fully convolutional network)을 이용하여 이를 모델링 하였다. 
+
+Because our ultimate goal is to share computation with a Fast R-CNN object detection network [2], we assume that both nets share a common set of convolutional layers. In our experiments, we investigate the Zeiler and Fergus model[32] (ZF), which has 5 shareable convolutional layers and the Simonyan and Zisserman model [3] (VGG-16),which has 13 shareable convolutional layers.
+> 우리의 궁극적인 목적은 연산 결과를 Fast R-CNN과 공유 하는 것이므로 두 모듈들은 일련의 convolutional layers을 공유 하고 있다고 가정 하였다. 
+> - Zeiler and Fergus model : 5 shareable convolutional layer
+> - Simonyan and Zisserman model : 13 shareable convolutional layers
+
+To generate region proposals, we slide a small network over the convolutional feature map output by the last shared convolutional layer. This small network takes as input an n × n spatial window of the input convolutional feature map. Each sliding window is mapped to a lower-dimensional feature(256-d for ZF and 512-d for VGG, with ReLU [33]following). This feature is fed into two sibling fully connected layers—a box-regression layer (reg) and a box-classification layer (cls). 
+> region proposals생성을 위해서 작은 네트워크를 convolutional feature map상에 Slinde하였다. by the last shared convolutional layer(??)
+> 이 작은 네트워크는 입력으로 an n × n spatial window of the input convolutional feature map를 취하고 
+> 각 sliding window는 lower-dimensional feature와 맵핑된다. 
+> - Feature는 두개의 sibling fully connected layers(a box-regression layer+a box-classification layer) 에 입력으로 주어 진다. 
+
+We use n = 3 in this paper, noting that the effective receptive field on the input image is large (171 and 228 pixels for ZF and VGG, respectively). This mini-network is illustrated at a single position in Figure 3 (left). Note that because the mini-network operates in a sliding-window fashion, the fully-connected layers are shared across all spatial locations. This architecture is naturally implemented with an n×n convolutional layer followed by two sibling 1 × 1 convolutional layers (for reg and cls, respectively).
+> 본논문에서는 N값을 3으로 잡았다. 작은 네트워크가 sliding-window처럼 동작하기 때문에 fully-connected layers는 spatial locations전반에 공유 된다. 
+
+![](http://i.imgur.com/UgXl7bV.png)
 
 #### A. Anchors
 
