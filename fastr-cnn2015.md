@@ -119,6 +119,22 @@ Fig. 1 illustrates the Fast R-CNN architecture.
   - outputs four real-valued numbers
 
 ```
+### 2.1 The RoI pooling layer
+The RoI pooling layer uses max pooling to convert the features inside any valid region of interest into a small feature map with a fixed spatial extent of H × W (e.g., 7 × 7), where H and W are layer hyper-parameters that are independent of any particular RoI. 
+
+> RoI pooling layer는 max pooling을 사용하며, 유요한 RoI내 Features를 small feature map으로 변환 하는 일을 진행 한다. 
+
+In this paper, an RoI is a rectangular window into a conv feature map. Each RoI is defined by a four-tuple (r, c, h, w) that specifies its top-left corner (r, c) and its height and width (h, w).
+> 본논문에서 RoI는 사각형 창이며 위치정보를 가지고 있다. 
+
+RoI max pooling works by dividing the h × w RoI window into an H × W grid of sub-windows of approximatesize h=H × w=W and then max-pooling the values in eachsub-window into the corresponding output grid cell. 
+
+Pooling is applied independently to each feature map channel,as in standard max pooling. 
+
+The RoI layer is simply the special-case of the spatial pyramid pooling layer used in SPPnets [11] in which there is only one pyramid level. 
+
+We use the pooling sub-window calculation given in [11].
+
 
 
 ---
