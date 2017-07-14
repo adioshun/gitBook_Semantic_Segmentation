@@ -1,5 +1,6 @@
 |논문명|Faster R-CNN: Towards Real-Time Object Detection with Region Proposal Networks|
 |-|-|
+|저자(소속)|Shaoqing Ren, Kaiming He, Ross Girshick, and Jian Sun (MS)|
 |학회/년도|NIPS 2015, [논문](https://arxiv.org/pdf/1506.01497.pdf)|
 |키워드||
 |참고|[PR-012동영상](https://www.youtube.com/watch?v=kcPAGIgBGRs&feature=youtu.be&list=PLlMkM4tgfjnJhhd4wn5aj8fVTYJwIpWkS), [코드](https://github.com/rbgirshick/py-faster-rcnn)|
