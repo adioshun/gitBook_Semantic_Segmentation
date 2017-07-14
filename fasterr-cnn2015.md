@@ -150,7 +150,13 @@ So the `reg layer` has 4k outputs encoding the coordinates of k boxes, and the `
 
 >  
 
-The translation-invariant property also reduces themodel size. MultiBox has a (4 + 1) × 800-dimensionalfully-connected output layer, whereas our method hasa (4 + 2) × 9-dimensional convolutional output layerin the case of k = 9 anchors. As a result, our outputlayer has 2:8 × 104 parameters (512 × (4 + 2) × 9for VGG-16), two orders of magnitude fewer thanMultiBox’s output layer that has 6:1 × 106 parameters(1536 × (4 + 1) × 800 for GoogleNet [34] in MultiBox[27]). If considering the feature projection layers, ourproposal layers still have an order of magnitude fewerparameters than MultiBox6. We expect our methodto have less risk of overfitting on small datasets, likePASCAL VOC.
+- The translation-invariant property also reduces the model size. 
+
+- MultiBox has a (4 + 1) × 800-dimensional fully-connected output layer, whereas our method has a (4 + 2) × 9-dimensional convolutional output layer in the case of k = 9 anchors. 
+
+- As a result, our output layer has 2:8 × 104 parameters (512 × (4 + 2) × 9 for VGG-16), two orders of magnitude fewer than MultiBox’s output layer that has 6:1 × 106 parameters(1536 × (4 + 1) × 800 for GoogleNet [34] in MultiBox[27]). 
+
+- If considering the feature projection layers, our proposal layers still have an order of magnitude fewer parameters than MultiBox. We expect our method to have less risk of overfitting on small datasets, like PASCAL VOC.
 
 ##### 나. Multi-Scale Anchors as Regression References
 
