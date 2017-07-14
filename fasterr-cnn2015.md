@@ -1,6 +1,7 @@
 |논문명|Faster R-CNN: Towards Real-Time Object Detection with Region Proposal Networks|
 |-|-|
 |학회/년도|NIPS 2015, [논문](https://arxiv.org/pdf/1506.01497.pdf)|
+|키워드||
 |참고|[PR-012동영상](https://www.youtube.com/watch?v=kcPAGIgBGRs&feature=youtu.be&list=PLlMkM4tgfjnJhhd4wn5aj8fVTYJwIpWkS), [코드](https://github.com/rbgirshick/py-faster-rcnn)|
 
 
@@ -123,6 +124,7 @@ We use n = 3 in this paper, noting that the effective receptive field on the inp
 > 본논문에서는 N값을 3으로 잡았다. 작은 네트워크가 sliding-window처럼 동작하기 때문에 fully-connected layers는 spatial locations전반에 공유 된다. 
 
 
+![](http://i.imgur.com/mw78GgX.png)
 
 #### A. Anchors
 
@@ -142,27 +144,153 @@ So the `reg layer` has 4k outputs encoding the coordinates of k boxes, and the `
 
 ##### 가. Translation-Invariant Anchors
 
-- An important property of our approach is that it is translation invariant, both in terms of the anchors and the functions that compute proposals relative to the anchors. 
+- An important property of our approach is that it is `translation invariant`, both in terms of the anchors and the functions that compute proposals relative to the anchors. 
 
-- If one translates an object in an image, the proposal should translate and the same function should be able to predict the proposal in either location. 
+  - If one translates an object in an image, the proposal should translate and the same function should be able to predict the proposal in either location. 
 
 - This translation-invariant property is guaranteed by our method. As a comparison, the MultiBox method [27] uses k-means to generate 800 anchors,which are not translation invariant. So MultiBox does not guarantee that the same proposal is generated if an object is translated.
 
->  
+>  우리의 제안 방식은 translation invariant적 접근법을 사용한다. Multibox의 경우 k-mean을 사용하여 800 anchors를 생성한다.Multibox는 object가 translated되었을때 같은수의 Proposal이 생성되었다는것을 보장 하지 않는다. 
 
 - The translation-invariant property also reduces the model size. 
 
-- MultiBox has a (4 + 1) × 800-dimensional fully-connected output layer, whereas our method has a (4 + 2) × 9-dimensional convolutional output layer in the case of k = 9 anchors. 
+  - MultiBox has a (4 + 1) × 800-dimensional fully-connected output layer, whereas our method has a (4 + 2) × 9-dimensional convolutional output layer in the case of k = 9 anchors. 
 
-- As a result, our output layer has 2:8 × 104 parameters (512 × (4 + 2) × 9 for VGG-16), two orders of magnitude fewer than MultiBox’s output layer that has 6:1 × 106 parameters(1536 × (4 + 1) × 800 for GoogleNet [34] in MultiBox[27]). 
+  - As a result, our output layer has 2:8 × 104 parameters (512 × (4 + 2) × 9 for VGG-16), two orders of magnitude fewer than MultiBox’s output layer that has 6:1 × 106 parameters(1536 × (4 + 1) × 800 for GoogleNet [34] in MultiBox[27]). 
 
 - If considering the feature projection layers, our proposal layers still have an order of magnitude fewer parameters than MultiBox. We expect our method to have less risk of overfitting on small datasets, like PASCAL VOC.
 
+> translation-invariant의 다른 징은 모델 크기를 줄여 준다. feature projection layers를 고려 한다면 MultiBox보다 파라미터수가 적은 장점도 가진다. 오버피팅 문제도 적을것이라고 예상된다. 
+
 ##### 나. Multi-Scale Anchors as Regression References
+
+- Our design of anchors presents a novel scheme for addressing multiple scales (and aspect ratios). 
+
+- As shown in Figure 1, there have been two popular ways for multi-scale predictions. 
+  - 기존 방법 1 : The first way is based on image/feature pyramids, e.g., in DPM [8] and CNN based methods [9], [1], [2]. The images are resized at multiple scales, and feature maps (HOG [8] or deep convolutional features [9], [1], [2]) are computed for each scale (Figure 1(a)). 
+    - 기존 방법 문제점 : This way is often useful but is time-consuming.     
+  - 기존 방법 2 : The second way is to use sliding windows of multiple scales (and/or aspect ratios) on the feature maps. 
+    - For example, in DPM [8], models of different aspect ratios are trained separately using different filter sizes (such as 5×7 and 7×5). 
+    - If this way is used to address multiple scales, it can be thought of as a “pyramid of filters” (Figure 1(b)). 
+
+- The second way is usually adopted jointly with the first way [8].
+
+> - addressing multiple scales문제를 위한 기존 방법들 : (1)based on image/feature pyramids, (2) sliding windows of multiple scales
+> - 제안 방식에서는 Anchors를 사용함으로써 multi-scale predictions 문제 해결 
+
+- As a comparison, our anchor-based method is built on a pyramid of anchors, which is more cost-efficient.
+
+- Our method classifies and regresses bounding boxes with reference to anchor boxes of multiple scales and aspect ratios. 
+
+- It only relies on images and feature maps of a single scale, and uses filters (sliding windows on the feature map) of a single size. 
+
+- We show by experiments the effects of this scheme for addressing multiple scales and sizes (Table 8).
+
+- Because of this multi-scale design based on anchors, we can simply use the convolutional features computed on a single-scale image, as is also done by the Fast R-CNN detector [2]. The design of multiscale anchors is a key component for sharing features without extra cost for addressing scales
+
+> - anchor-based방법은 pyramid of anchors방식 위에 만들어 진것이다. anchor boxe에 관하여 bounding boxe를 분류(classifies )하고 리그레션(regresses ) 한다.  제안 방식은 단일 크기의 이미지와 featuremap에 동작하며 단일 크기의 필터를 사용한다. 
+> - multi-scale design based on anchors덕분에 Fast R-CNN detector와 같이 간단하게 단일크기 이미즈를 convolutional features를 이용하여 계산 할수 있다. 
+- multiscale anchors는 다양한 크기의 문제에 구속 받지 않고 features 를 공유 할수 있게 하는 중요 요소 이다. 
+
 
 #### B. Loss Function
 
+- For training RPNs, we assign a binary class label(of being an object or not) to each anchor. 
+
+- We assign a positive label to two kinds of anchors: 
+  - (i) the anchor/anchors with the highest Intersection-over Union (IoU) overlap with a ground-truth box, or 
+  - (ii) an anchor that has an IoU overlap higher than 0.7 with any ground-truth box. 
+  
+  - Note that a single ground-truth box may assign positive labels to multiple anchors. Usually the second condition is sufficient to determine the positive samples; but we still adopt the first condition for the reason that in some rare cases the second condition may find no positive sample. 
+
+- We assign a negative label to a non-positive anchor if its IoU ratio is lower than 0.3 for all ground-truth boxes.
+
+Anchors that are neither positive nor negative do not contribute to the training objective.
+
+> RPN학습을 위해 각 anchor에 Object인지 아닌지에 대한 label을 할당 하였다.  IOU overlab이 0.7이상이거나 가장 높은 Anchor에는 양수의 값을 0.3이하이면 음수 값을 지정하였다. 양수/음수 값이 없으면 학습에 사용되지 않는다. 
+
+With these definitions, we minimize an objective function following the multi-task loss in Fast R-CNN[2]. 
+
+Our loss function for an image is defined as:
+
+![](http://i.imgur.com/txOQ5tx.png)
+Here, 
+- $$i$$ is the index of an anchor in a mini-batch and 
+- $$p_i$$ is the predicted probability of anchor $$i$$ being an object. 
+- The ground-truth label $$p^∗_i$$ is 1 if the anchor is positive, and is 0 if the anchor is negative. 
+- $$t_i$$ is a vector representing the 4 parameterized coordinates of the predicted bounding box, and 
+  - $$t^∗_i$$ is that of the ground-truth box associated with a positive anchor.
+- The classification loss $$L_cls$$ is log loss over two classes(object vs. not object). 
+
+For the regression loss, 
+- we use $$L_{reg}(t_i, t^∗_i) = R(t_i − t^∗_i)$$ where $$R$$ is the robust loss function (smooth $$L_1$$) defined in [2]. 
+- The term $$p^∗_i$$ $$L_{reg}$$ means the regression loss is activated only for positivean chors ($$p^∗_i = 1$$) and is disabled otherwise ($$p^∗_i = 0$$).
+
+The outputs of the cls and reg layers consist of $$\{p_i\}$$ and $$\{t_i\}$$ respectively
+
+The two terms are normalized by $$N_{cls}$$ and $$N_{reg}$$ and weighted by a balancing parameter $$\lambda$$. 
+
+###### [공개된 코드에서의 설정 값 예시] 
+In our current implementation (as in the released code), the cls term in Eqn.(1) is normalized by the mini-batchsize (i.e., $$N_{cls}$$ = 256) and the reg term is normalized by the number of anchor locations (i.e., $$N_{reg}$$ ∼ 2,400).
+
+By default we set $$\lambda$$ = 10, and thus both cls and reg terms are roughly equally weighted. 
+We show by experiments that the results are insensitive to the values of $$\lambda$$ in a wide range (Table 9). 
+We also note that the normalization as above is not required and could be simplified.
+> 기본으로 $$\lambda$$ = 10으로 하였는데 크게 영향을 미치지는 않는것 같다. normalization도 필요 없는것 같다. 
+
+For bounding box regression, we adopt the parameterizations of the 4 coordinates following [5]:
+![](http://i.imgur.com/gBr80kL.png)
+
+- where x, y, w, and h denote the box’s center coordinates and its width and height. 
+
+- Variables x, $$x_a$$, and $$x^∗$$ are for the predicted box, anchor box, and ground truth box respectively (likewise for y; w; h). 
+
+This can be thought of as bounding-box regression from an anchor box to a nearby ground-truth box.
+
+> ???
+
+Nevertheless, our method achieves bounding-box regression by a different manner from previous RoI based (Region of Interest) methods [1], [2]. 
+> 그럼에도 불구 하고 제안 방식은 RoI based 방식하고는 다른 방법으로 bounding-box regression을 달성 하였다. 
+
+
+- 기존 방식 : In [1],[2], bounding-box regression is performed on features pooled from arbitrarily sized RoIs, and the regression weights are shared by all region sizes. 
+- 제안 방식 : In our formulation, the features used for regression are of the same spatial size (3 × 3) on the feature maps. 
+
+To account for varying sizes, a set of k bounding-box regressors are learned. 
+
+- Each regressor is responsible for one scale and one aspect ratio, and the k regressors do not share weights. 
+
+As such, it is still possible to predict boxes of various sizes even though the features are of a fixed size/scale, thanks to the design of anchors.
+
+
+
 #### C. Training RPNs
+
+The RPN can be trained end-to-end by backpropagation and stochastic gradient descent (SGD)[35]. 
+
+We follow the “image-centric” sampling strategy from [2] to train this network. 
+
+Each mini-batch arises from a single image that contains many positive and negative example anchors. 
+
+It is possible to optimize for the loss functions of all anchors, but this will bias towards negative samples as they are dominate.
+
+Instead, we randomly sample 256 anchors in an image to compute the loss function of a mini-batch, where the sampled positive and negative anchors have a ratio of up to 1:1. 
+
+If there are fewer than 128 positive samples in an image, we pad the mini-batch with negative ones.
+
+> RPN은 backpropagation와 SGD를 이용해서 학습된다. image-centric 샘플링 방법이 적용 되었따. 
+
+We randomly initialize all new layers by drawing weights from a zero-mean Gaussian distribution with standard deviation 0.01. 
+
+All other layers (i.e., the shared convolutional layers) are initialized by pretraining a model for ImageNet classification [36], as is standard practice [5]. 
+
+We tune all layers of the ZF net, and conv3_1 and up for the VGG net to conserve memory [2]. 
+
+We use a learning rate of 0.001 for 60k mini-batches, and 0.0001 for the next 20 kmini-batches on the PASCAL VOC dataset. 
+
+We use amomentum of 0.9 and a weight decay of 0.0005 [37].Our implementation uses Caffe [38].
+
+> 학습을 위해 사용된 여러 파라미터들 
 
 ### 3.2 Sharing Features for RPN and Fast R-CNN
 
