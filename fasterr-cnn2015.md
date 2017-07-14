@@ -134,13 +134,18 @@ So the `reg layer` has 4k outputs encoding the coordinates of k boxes, and the `
 > - `cls layer`는 2k scores 출력을 가진다. (Score = 예측 정확도 확률)
 
 
-  The k proposals are parameterized _relative_ to k reference boxes, which we call anchors. An anchor is centered at the sliding window in question, and is associated with a scale and aspect ratio (Figure 3, left). By default we use 3 scales and 3 aspect ratios, yielding k = 9 anchors at each sliding position. For a convolutional feature map of a size W × H (typically ∼2,400), there are W H k anchors in total.
+- The k proposals are parameterized _relative_ to k reference boxes, which we call anchors. An anchor is centered at the sliding window in question, and is associated with a scale and aspect ratio (Figure 3, left). 
+  
+- By default we use 3 scales and 3 aspect ratios, yielding k = 9 anchors at each sliding position. For a convolutional feature map of a size W × H (typically ∼2,400), there are W H k anchors in total.
+
 > k proposals들은 `anchors`라고 불리는 k reference boxe들과 연결되어 파라미터로 사용된다(??). anchor는 해당 윈도우(in question??)의 중안에 위치하며 scale과 aspect ratio와 연관되어 있다. 기본적으로 각 sliding position k = 9 anchors가 되는  3 scales와 3 aspect ratios를 사용한다(3이기 때문에 9인가??). WxH크기인 convolutional feature map에는 W H k Archor가 있다. 
 
 ##### 가. Translation-Invariant Anchors
 
 - An important property of our approach is that it is translation invariant, both in terms of the anchors and the functions that compute proposals relative to the anchors. 
+
 - If one translates an object in an image, the proposal should translate and the same function should be able to predict the proposal in either location. 
+
 - This translation-invariant property is guaranteed by our method. As a comparison, the MultiBox method [27] uses k-means to generate 800 anchors,which are not translation invariant. So MultiBox does not guarantee that the same proposal is generated if an object is translated.
 
 >  
