@@ -193,7 +193,37 @@ The components of this procedure are described below.
 - back-propagation through RoI pooling layers, and 
 - SGD hyper-parameters
 
-#### A. 
+#### A. Multi-task loss. 
+A Fast R-CNN network has two sibling output layers. 
+- The first outputs a discrete probability distribution (per RoI),
+  - $$p = (p_0, ..., p_K)$$, over K + 1 categories.
+  - As usual, p is computed by a softmax over the K+1 outputs of a fully connected layer. 
+- The second sibling layer outputs bounding-box regression offsets, 
+  - $$t^k = \left( t^k_x,t^k_y,t^k_w,t^k_h \right)$$, for each of the K object classes, indexed by k. 
+
+
+We use the parameterization for $$t^k$$ given in [9], in which $$t^k$$ specifies a scale-invariant translation and log-space height/width shift relative to an object proposal.
+> $$t^k$$는 
+
+Each training RoI is labeled with a ground-truth class $$u$$ and a ground-truth bounding-box regression target $$v$$. 
+> RoI는 u와 v 로 labeled된다. 
+
+We use a multi-task loss L on each labeled RoI to jointly train for classification and bounding-box regression:
+$$
+L(p,u,t^u,v) = L_{cls}(p,u) + \lambda \left[ u \geq 1 \right] L_{loc}(t^u,v)
+$$
+
+in which $$L_{cls}(p,u) = − \log p_u$$ is log loss for true class u.
+
+The second task loss, $$L_{loc}$$, is defined over a tuple of true bounding-box regression targets for class u, v = $$(v_x, v_y, v_w, v_h)$$, and a predicted tuple $$t^u = \left( t^u_x,t^u_y,t^u_w,t^u_h \right)$$, again for class u. 
+
+The Iverson bracket indicator function [u ≥ 1] evaluates to 1 when u ≥ 1 and 0 otherwise. 
+
+By convention the catch-all background class is labeled u = 0.
+
+For background RoIs there is no notion of a ground-truth bounding box and hence $$L_{loc}$$ is ignored
+
+
 
 ---
 [ref_mAP]:http://homepages.inf.ed.ac.uk/ckiw/postscript/ijcv_voc09.pdf
