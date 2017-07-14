@@ -83,14 +83,46 @@ Unsurprisingly, this limitation (fixed convolutional layers) limits the accuracy
 We propose a new training algorithm that fixes the disadvantages of R-CNN and SPPnet, while improving on their speed and accuracy. We call this method Fast R-CNN because it’s comparatively fast to train and test. 
 
 The Fast RCNN method has several advantages:
-- 1. Higher detection quality ([mAP][ref_mAP]) than R-CNN, SPPnet
-- 2. Training is single-stage, using a multi-task loss
-- 3. Training can update all network layers
-- 4. No disk storage is required for feature caching 
+- Higher detection quality ([mAP][ref_mAP]) than R-CNN, SPPnet
+- Training is single-stage, using a multi-task loss
+- Training can update all network layers
+- No disk storage is required for feature caching 
 
 Fast R-CNN is written in Python and C++ (Caffe[13]) and is available under the open-source MIT License at https://github.com/rbgirshick/fast-rcnn.
 
 
+## 2. Fast R-CNN architecture and training
+
+![](http://i.imgur.com/dx4kWU1.png)
+
+Fig. 1 illustrates the Fast R-CNN architecture. 
+
+- 입력 : A FastR-CNN network takes as input an entire image and a set of object proposals. 
+
+- The network first processes the whole image with several convolutional (conv) and max pooling layers to produce a conv feature map. 
+
+- Then, for each object proposal a region of interest (RoI) pooling layer extracts a fixed-length feature vector from the feature map.
+
+- Each feature vector is fed into a sequence of fully connected(fc) layers that finally branch into two sibling output layers: 
+  - one that produces softmax probability estimates over $$K$$ object classes plus a catch-all “background” class and 
+  - another layer that outputs four real-valued numbers for each of the K object classes. 
+    - Each set of 4 values encodes refined bounding-box positions for one of the K classes.
+
+```
+그림 1은 Fast R-CNN의 구조도이다. 
+
+1. 입력으로 [전체 이미지] + [set of object proposal]을 받는다. 
+2. 이미지를 conv feature map으로 만든다. (convolutional and max pooling Layer 이용)
+3. each object proposal의 conv feature map에서 feature vector를 추출 한다. (RoI pooling layer이용)
+4. Each feature vector는 sequence of fully connected(fc) layers로 전달된다. FC는 다시 2개의 레이어로 분리 된다. 
+  - outputs softmax probability estimates
+  - outputs four real-valued numbers
+
+```
+
+
 ---
-[ref_mAP]: Mean Average Precision, [[The PASCAL Visual Object Classes (VOC) Challenge]](http://homepages.inf.ed.ac.uk/ckiw/postscript/ijcv_voc09.pdf)
+[ref_mAP]:http://homepages.inf.ed.ac.uk/ckiw/postscript/ijcv_voc09.pdf
+
+  Mean Average Precision, [[The PASCAL Visual Object Classes (VOC) Challenge]](http://homepages.inf.ed.ac.uk/ckiw/postscript/ijcv_voc09.pdf)
 - To calculate it for Object Detection, you calculate the average precision for each class in your data based on your model predictions. Average precision is related to the area under the precision-recall curve for a class. Then Taking the mean of these average individual-class-precision gives you the Mean Average Precision.
