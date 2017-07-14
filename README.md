@@ -5,6 +5,13 @@
 
 ---
 # [정리할 자료] 
+
+## Object Detection 
+
+- [논문_2009] Recognition_using_regions
+
+
+
 ## PR12: TFKR 논문 읽기
 
 
