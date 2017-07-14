@@ -8,8 +8,8 @@
 
 ## Object Detection 
 
-- [논문_2009] Recognition_using_regions
-
+- C. Gu,  Recognition using regions. In CVPR, 2009
+- J. Uijlings, Selective search for object recognition. IJCV, 2013
 
 
 ## PR12: TFKR 논문 읽기

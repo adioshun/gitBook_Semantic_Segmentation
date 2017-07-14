@@ -135,7 +135,65 @@ The RoI layer is simply the special-case of the spatial pyramid pooling layer us
 
 We use the pooling sub-window calculation given in [11].
 
+### 2.2. Initializing from pre-trained networks
 
+We experiment with three pre-trained ImageNet [4] networks, each with five max pooling layers and between five and thirteen conv layers (see Section 4.1 for network details). 
+> ImageNet 네트워크로 실험 하였다. 
+
+When a pre-trained network initializes a Fast R-CNN network, it undergoes three transformations.
+- First, the last max pooling layer is replaced by a RoI pooling layer that is configured by setting H and W to be compatible with the net’s first fully connected layer (e.g.,H = W = 7 for VGG16).
+- Second, the network’s last fully connected layer and softmax (which were trained for 1000-way ImageNet classification) are replaced with the two sibling layers described earlier (a fully connected layer and softmax over K + 1 categories and category-specific bounding-box regressors).
+- Third, the network is modified to take two data inputs: a list of images and a list of RoIs in those images
+
+변경 내용 
+
+|ImageNet |Fast R-CNN network|
+|-|-|
+|last max pooling layer|RoI pooling layer|
+|last fully connected layer + softmax  |two sibling layers|
+||take two data inputs<br>- a list of images<br>- list of RoIs |
+
+### 2.3. Fine-tuning for detection
+Training all network weights with back-propagation is an important capability of Fast R-CNN. 
+> 모든 가중치를 back-propagation로 학습하는것도 중요 기능 중의 하나이다. 
+
+###### 기존 학습 알고리즘의 문제점 
+First, let’s elucidate(설명) why SPPnet is unable to update weights below the spatial pyramid pooling layer.(먼저 SPPnet이 왜 가중치 학습이 안되는지 알아 보자)
+- The root cause is that back-propagation through the SPP layer is highly inefficient when each training sample (i.e.RoI) comes from a different image, which is exactly how R-CNN and SPPnet networks are trained. 
+- The inefficiency stems from the fact that each RoI may have a very large receptive field, often spanning the entire input image. 
+- Since the forward pass must process the entire receptive field, the training inputs are large (often the entire image).
+
+> SPPnet은 가중치 학습이 안된다. 가장 큰 이유는 각 학습 샘플들이 서로 다른 이미지에서 들어 오면 백프로파게이션은 매우 비 효율적이게 된다. 이것은 SPPnet이나 이전 R-CNN이 학습했던 방법들이다.  (?????????????)
+
+###### 제안하는 학습 알고리즘 : sampled hierarchically
+
+We propose a more efficient training method that takes advantage of feature sharing during training. 
+> feature sharing의 장점을 이용한 효율적인 학습 방법을 제안 한다. 
+
+In Fast RCNN training, stochastic gradient descent (SGD) mini-batches are sampled hierarchically, 
+- first by sampling N images and then 
+- by sampling R/N RoIs from each image.
+Critically, RoIs from the same image share computation and memory in the forward and backward passes. 
+Making N small decreases mini-batch computation. 
+
+For example, when using N = 2 and R = 128, the proposed training scheme is roughly 64× faster than sampling one RoI from 128 different images (i.e., the R-CNN and SPPnet strategy).
+> 예를 들어 N = 2 and R = 128일때 제안하는 학습 알고르짐은 기존 대비 64배 빠르다. 
+
+One concern over this strategy is it may cause slow training convergence because RoIs from the same image are correlated. This concern does not appear to be a practical issue and we achieve good results with N = 2 and R = 128 using fewer SGD iterations than R-CNN.
+> 걱정되는 문제는 동일 이미지상의RoI는 연관되어 있으므로 학습시 convergence 될수 있을까 하는 걱정이 있다. 하지만, 실제로는 발생 하지 않았고 좋은 결과를 보였따. 
+
+###### 제안하는 학습 알고리즘 : streamlined training process
+
+In addition to hierarchical sampling, Fast R-CNN uses a streamlined training process with one fine-tuning stage that jointly optimizes a softmax classifier and bounding-box regressors, rather than training a softmax classifier, SVMs,and regressors in three separate stages [9, 11]. 
+> R-CNN은 한번에 fine-tuning stage 를 하는 streamlined training process를 이용한다. 기존은 3-stage
+
+The components of this procedure are described below.
+- the loss, 
+- mini-batch sampling strategy, 
+- back-propagation through RoI pooling layers, and 
+- SGD hyper-parameters
+
+#### A. 
 
 ---
 [ref_mAP]:http://homepages.inf.ed.ac.uk/ckiw/postscript/ijcv_voc09.pdf
