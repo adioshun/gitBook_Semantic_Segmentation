@@ -195,18 +195,19 @@ The components of this procedure are described below.
 
 #### A. Multi-task loss. 
 A Fast R-CNN network has two sibling output layers. 
-- The first outputs a discrete probability distribution (per RoI),
-  - $$p = (p_0, ..., p_K)$$, over K + 1 categories.
+- The first outputs a discrete probability distribution (per RoI),$$p = (p_0, ..., p_K)$$, over K + 1 categories.
   - As usual, p is computed by a softmax over the K+1 outputs of a fully connected layer. 
-- The second sibling layer outputs bounding-box regression offsets, 
-  - $$t^k = \left( t^k_x,t^k_y,t^k_w,t^k_h \right)$$, for each of the K object classes, indexed by k. 
+- The second sibling layer outputs bounding-box regression offsets, $$t^k = \left( t^k_x,t^k_y,t^k_w,t^k_h \right)$$, for each of the K object classes, indexed by k. 
 
 
 We use the parameterization for $$t^k$$ given in [9], in which $$t^k$$ specifies a scale-invariant translation and log-space height/width shift relative to an object proposal.
-> $$t^k$$는 
+> $$t^k$$값은 크기변화에 강건한 변환(scale-invariant translation)과 log-space height/width shift에 관련된 파라미터이다. 
+
+
+
 
 Each training RoI is labeled with a ground-truth class $$u$$ and a ground-truth bounding-box regression target $$v$$. 
-> RoI는 u와 v 로 labeled된다. 
+> 학습된 RoI는 u(ground-truth class)와 v(ground-truth bounding-box regression target) 로 labeled된다. 
 
 We use a multi-task loss L on each labeled RoI to jointly train for classification and bounding-box regression:
 $$
@@ -222,6 +223,26 @@ The Iverson bracket indicator function [u ≥ 1] evaluates to 1 when u ≥ 1 and
 By convention the catch-all background class is labeled u = 0.
 
 For background RoIs there is no notion of a ground-truth bounding box and hence $$L_{loc}$$ is ignored
+
+For bounding-box regression, we use the loss
+
+![](http://i.imgur.com/fKxxIz5.png)
+
+is a robust $$L_1$$ loss that is less sensitive to outliers than the $$L_2$$ loss used in R-CNN and SPPnet. 
+
+When the regression targets are unbounded, training with $$L_2$$ loss can require careful tuning of learning rates in order to prevent exploding gradients. 
+
+Eq. 3 eliminates this sensitivity.
+
+The hyper-parameter λ in Eq. 1 controls the balance between the two task losses. 
+
+We normalize the ground-truth regression targets $$v_i$$ to have zero mean and unit variance. 
+
+All experiments use λ = 1. We note that [6] uses a related loss to train a classagnostic object proposal network. 
+
+Different from our approach, [6] advocates for a two-network system that separates localization and classification. 
+
+OverFeat [19], R-CNN[9], and SPPnet [11] also train classifiers and bounding-box localizers, however these methods use stage-wise training,which we show is sub optimal for Fast R-CNN (Section 5.1).
 
 
 
