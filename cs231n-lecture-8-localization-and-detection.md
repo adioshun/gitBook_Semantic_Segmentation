@@ -56,3 +56,29 @@ OverfeatL Alexnet기반, Winner of ILSVRC 2013 localization challenge
 
 
 ## 2 . (Object) Detection 
+
+> Detection as Regression이 가능한가? : 이미지에 여러(variabl) 객체가 있으면 Output도 다양해(1개의 위치 정보, n개의 위치정보) 지므로 어려움 
+> - 해결책?? : Detection as Classification (0 , 1로 Output이 고정됨)
+
+### 2.1 Detection as Classification #1
+- Problem: Need to test many positions and scales
+- Solution: If your classifier is fast enough, just do it
+
+#### A. Histogram of Oriented Gradients
+
+![](http://i.imgur.com/qG5ZuCW.png)
+Dalal and Triggs, “Histograms of Oriented Gradients for Human Detection”, CVPR 2005
+
+#### B. Deformable Parts Model (DPM)
+
+![](http://i.imgur.com/BmiN0sP.png)
+
+Felzenszwalb et al, “Object Detection with Discriminatively 
+
+
+### 2.2 Detection as Classification #2
+
+- Problem: Need to test many positions and scales,
+and use a computationally demanding classifier (CNN)
+- Solution: Only look at a tiny subset of possible positions
+
