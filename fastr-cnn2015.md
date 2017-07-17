@@ -247,7 +247,3 @@ OverFeat [19], R-CNN[9], and SPPnet [11] also train classifiers and bounding-box
 
 
 ---
-[ref_mAP]:http://homepages.inf.ed.ac.uk/ckiw/postscript/ijcv_voc09.pdf
-
-  Mean Average Precision, [[The PASCAL Visual Object Classes (VOC) Challenge]](http://homepages.inf.ed.ac.uk/ckiw/postscript/ijcv_voc09.pdf)
-- To calculate it for Object Detection, you calculate the average precision for each class in your data based on your model predictions. Average precision is related to the area under the precision-recall curve for a class. Then Taking the mean of these average individual-class-precision gives you the Mean Average Precision.

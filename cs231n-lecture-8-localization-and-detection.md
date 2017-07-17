@@ -19,6 +19,8 @@
 
 ![](http://i.imgur.com/lVcAT2z.png)
 
+
+
 ## 1 .  Localization
 
 ### 1.1   Localization as Regression
@@ -84,7 +86,7 @@ Felzenszwalb et al, “Object Detection with Discriminatively
 + and use a computationally demanding classifier (CNN)
 - Solution: Only look at a tiny subset of possible positions (CNN은 Cost가 높기 때문에 일부영역만 선택적으로 탐색)
 
-###### Region Porposal 
+###### Region Proposal 
 
 - Find “blobby” image regions that are likely to contain objects
 - “Class-agnostic” object detector
@@ -112,6 +114,12 @@ Felzenszwalb et al, “Object Detection with Discriminatively
 - CNN과 Region Proposal을 합친 아이디어 . 
 
 ![](http://i.imgur.com/ZnruDOn.png)
+
+단점 
+- Slow at test-time: need to run full forward pass of CNN for each region proposal
+- SVMs and regressors are post-hoc: CNN features
+not updated in response to SVMs and regressors
+- Complex multistage training pipeline
 
 ###### Step 1. Train (or download) a classification model for ImageNet (AlexNet)
 
@@ -141,4 +149,17 @@ For each class, train a linear regression model to map from cached features to o
 
 ![](http://i.imgur.com/EcvTNYv.png)
 
-###### Step
+#### C. Region Proposal : Fast R-CNN
+
+R-CNN의 속도 단점 해결 : Extract Region과 CNN의 위치 바꿈 (cf. 슬라이딩 위도우의 아이디어 유사)
+
+> [CS231n Lecture 8의 Fast R-CNN부분](https://youtu.be/_GfPYLNQank?t=42m4s0)
+
+||![](http://i.imgur.com/1xYICdA.png)|![](http://i.imgur.com/eJdUJfn.png)|
+|-|-|-|
+|Problem|#1 Slow at test-time due to independent forward passes of the CNN|#2 Post-hoc training: CNN not updated in response to final classifiers and regressors <br><br> #3: Complex training pipeline|
+|Solution|Share computation of convolutional layers between proposals for an image|Just train the whole system end-to-end all at once!|
+
+
+
+
