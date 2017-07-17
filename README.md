@@ -1,15 +1,5 @@
-# [정리된 자료] 
 ## Object Detection 
 
-
-
----
-# [정리할 자료] 
-
-## Object Detection 
-
-- C. Gu,  Recognition using regions. In CVPR, 2009
-- J. Uijlings, Selective search for object recognition. IJCV, 2013
 
 
 ## PR12: TFKR 논문 읽기
