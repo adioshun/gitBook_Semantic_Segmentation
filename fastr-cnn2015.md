@@ -285,7 +285,7 @@ For bounding-box regression,
   
   - All experiments use $$\lambda=1$$. We note that [6] uses a related loss to train a classagnostic object proposal network. 
 
-Different from our approach, [6] advocates for a two-network system that separates localization and classification. 
+Different from our approach, [6] advocates(지지하다) for a two-network system that separates localization and classification. 
 
 OverFeat [19], R-CNN[9], and SPPnet [11] also train classifiers and bounding-box localizers, however these methods use stage-wise training,which we show is sub optimal for Fast R-CNN (Section 5.1).
 
