@@ -16,3 +16,10 @@
 - To calculate it for Object Detection, you calculate the average precision for each class in your data based on your model predictions. Average precision is related to the area under the precision-recall curve for a class. Then Taking the mean of these average individual-class-precision gives you the Mean Average Precision.
 
 [[The PASCAL Visual Object Classes (VOC) Challenge]](http://homepages.inf.ed.ac.uk/ckiw/postscript/ijcv_voc09.pdf)
+
+
+# IoU 
+
+|![](http://i.imgur.com/HXXb6WX.png)|![](http://i.imgur.com/LjtA6h8.png)|
+|-|-|
+

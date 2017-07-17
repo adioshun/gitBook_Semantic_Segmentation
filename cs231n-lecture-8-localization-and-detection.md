@@ -162,6 +162,27 @@ R-CNN의 속도 단점 해결 : Extract Region과 CNN의 위치 바꿈 (cf. 슬�
 |Problem|#1 Slow at test-time due to independent forward passes of the CNN|#2 Post-hoc training: CNN not updated in response to final classifiers and regressors <br><br> #3: Complex training pipeline|
 |Solution|Share computation of convolutional layers between proposals for an image|Just train the whole system end-to-end all at once!|
 
+###### Step 1.
+
+![](http://i.imgur.com/t60O2iN.png)
+
+###### Step 2. 
+
+![](http://i.imgur.com/q9VMaWu.png)
+
+###### Step 3.
+
+![](http://i.imgur.com/pAl3V7Q.png)
+
+###### Step 4.
+
+![](http://i.imgur.com/5QXYx02.png)
+
+###### Step 5.
+
+![](http://i.imgur.com/wkYNq5v.png)
+
+
 
 #### D. Region Proposal : Faster R-CNN
 
