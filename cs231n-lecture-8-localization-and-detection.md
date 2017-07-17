@@ -1,5 +1,7 @@
 <div style="text-align: center"><iframe width="560" height="315" src="https://youtu.be/_GfPYLNQank" frameborder="0" allowfullscreen></iframe> </div>
 
+http://cs231n.stanford.edu/slides/2016/winter1516_lecture8.pdf
+
 
 # Localization and Detection 
 
@@ -160,6 +162,11 @@ R-CNN의 속도 단점 해결 : Extract Region과 CNN의 위치 바꿈 (cf. 슬�
 |Problem|#1 Slow at test-time due to independent forward passes of the CNN|#2 Post-hoc training: CNN not updated in response to final classifiers and regressors <br><br> #3: Complex training pipeline|
 |Solution|Share computation of convolutional layers between proposals for an image|Just train the whole system end-to-end all at once!|
 
+
+#### D. Region Proposal : Faster R-CNN
+
+
+#### E. Region Proposal : YOLO
 
 
 
