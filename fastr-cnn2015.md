@@ -289,6 +289,115 @@ Different from our approach, [6] advocates(지지하다) for a two-network syste
 
 OverFeat [19], R-CNN[9], and SPPnet [11] also train classifiers and bounding-box localizers, however these methods use stage-wise training,which we show is sub optimal for Fast R-CNN (Section 5.1).
 
+#### B. Mini-batch sampling.
+During fine-tuning, each SGD mini-batch is constructed from N = 2 images, chosen uniformly at random (as is common practice, we actually iterate over permutations of the dataset).
+
+We use mini-batches of size R = 128, sampling 64 RoIs from each image.
+
+As in [9], we take 25% of the RoIs from object proposals that have intersection over union (IoU) overlap with a ground truth bounding box of at least 0:5.
+
+These RoIs comprise the examples labeled with a foreground object class, i.e.u ≥ 1.
+
+The remaining RoIs are sampled from object proposals that have a maximum IoU with ground truth in the interval [0:1; 0:5), following [11].
+
+These are the background examples and are labeled with u = 0.
+
+The lower threshold of 0:1 appears to act as a heuristic for hard example mining[8].
+
+During training, images are horizontally flipped with probability 0:5.
+
+No other data augmentation is used.
+
+#### C. Back-propagation through RoI pooling layers. 
+
+Backpropagation routes derivatives through the RoI pooling layer. 
+
+For clarity, we assume only one image per mini-batch (N = 1), though the extension to N > 1 is straightforward because the forward pass treats all images independently.
+
+Let $$x_i \in  R$$ be the i-th activation input into the RoI pooling layer and let $$y_{rj}$$ be the layer’s j-th output from the r-th RoI. 
+
+The RoI pooling layer computes $$y_{ri} = x_i*(r,j)$$, in which $$i*(r,j) = argmax_{i\prime\in R(r,j} x_{i\prime}$$
+
+R(r,j) is the index set of inputs in the sub-window over which the output unit $$y_{rj}$$ max pools. 
+
+A single $$x_i$$ may be assigned to several different outputs $$y_{rj}$$.
+
+The RoI pooling layer’s backwards function computes partial derivative of the loss function with respect to each input variable $$x_i$$ by following the argmax switches:
+
+ $$
+ 
+ \frac{\partial L}{\partial x_i}=\sum_r\sum_j [i= i^*(r,j)]\frac{\partial L}{\partial y_{rj}} 
+ $$ 
+ 
+In words, for each mini-batch RoI r and for each pooling output unit $$y_{rj}$$, the partial derivative $$\frac{\partial L}{\partial y_{rj}$$ is accumulated if i is the argmax selected for $$y_{rj}$$ by max pooling.
+
+In back-propagation, the partial derivatives $$frac{\partial L}{\partial y_{rj}$$ are already computed by the backwards function of the layer on top of the RoI pooling layer.
+
+#### D. SGD hyper-parameters. 
+The fully connected layers used for softmax classification and bounding-box regression are initialized from zero-mean Gaussian distributions with standard deviations 0:01 and 0:001, respectively. 
+
+Biases are initialized to 0. 
+
+All layers use a per-layer learning rate of 1 for weights and 2 for biases and a global learning rate of 0:001.
+
+When training on VOC07 or VOC12 train val we run SGD for 30k mini-batch iterations, and then lower the learning rate to 0:0001 and train for another 10k iterations. 
+
+When we train on larger datasets, we run SGD for more iterations,as described later. 
+
+A momentum of 0:9 and parameter decay of 0:0005 (on weights and biases) are used.
+
+### 2.4. Scale invariance
+We explore two ways of achieving scale invariant object detection: 
+- (1) via “brute force” learning and 
+- (2) by using image pyramids. 
+
+> Scale invariance문제 해결은 brute force나 image pyramids를 이용하여 해결 할수 있따. 
+
+These strategies follow the two approaches in [11]. 
+
+In the brute-force approach, 
+- each image is processed at a pre-defined pixel size during both training and testing. 
+- The network must directly learn scale-invariant object detection from the training data.
+
+The multi-scale approach, in contrast, 
+- provides approximate scale-invariance to the network through an image pyramid. 
+- At test-time, the image pyramid is used to approximately scale-normalize each object proposal. 
+- During multi-scale training, we randomly sample a pyramid scale each time an image is sampled, following [11], as a form of data augmentation. 
+
+We experiment with multi-scale training for smaller networks only, due to GPU memory limits.
+
+## 3. Fast R-CNN detection 
+Once a Fast R-CNN network is fine-tuned, detection amounts to little more than running a forward pass (assuming object proposals are pre-computed). 
+
+The network takes as input an image (or an image pyramid, encoded as a list of images) and a list of R object proposals to score. 
+
+At test-time, R is typically around 2000, although we will consider cases in which it is larger (≈ 45k). 
+
+When using an image pyramid, each RoI is assigned to the scale such that the scaled RoI is closest to 2242 pixels in area [11].
+
+For each test RoI r, the forward pass outputs a class posterior probability distribution p and a set of predicted bounding-box offsets relative to r (each of the K classes gets its own refined bounding-box prediction). 
+
+We assign a detection confidence to r for each object class k using the estimated probability $$Pr(class = k \mid r) =^\triangle p_k $$.
+
+We then perform non-maximum suppression independently for each class using the algorithm and settings from R-CNN [9].
+
+### 3.1. Truncated SVD for faster detection
+
+For whole-image classification, the time spent computing the fully connected layers is small compared to the conv layers. 
+
+On the contrary, for detection the number of RoIs to process is large and nearly half of the forward pass time is spent computing the fully connected layers (see Fig. 2).
+
+Large fully connected layers are easily accelerated by compressing them with truncated SVD [5, 23].
+
+In this technique, a layer parameterized by the u × v weight matrix W is approximately factorized as $$W \approx U\sum_tV^T$$ using SVD. 
+
+In this factorization, U is a u × t matrix comprising the first t left-singular vectors of W , $$\sum_t$$ is a t × t diagonal matrix containing the top t singular values of W ,and V is v × t matrix comprising the first t right-singular vectors of W . 
+
+Truncated SVD reduces the parameter count from uv to t(u + v), which can be significant if t is much smaller than min(u; v). 
 
 
----
+To compress a network, the singlefully connected layer corresponding to W is replaced bytwo fully connected layers, without a non-linearity between them. 
+
+The first of these layers uses the weight matrix $$\sum_tV^T$$(and no biases) and the second uses U (with the original biases associated with W ). 
+
+This simple compression method gives good speedups when the number of RoIs is large.
