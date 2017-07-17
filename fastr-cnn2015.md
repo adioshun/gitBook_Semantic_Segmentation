@@ -40,7 +40,7 @@ In this paper, we streamline the training process for state of-the-art ConvNet-b
 #### A. R-CNN
 
 The Region-based Convolutional Network method (RCNN) [9] achieves excellent object detection accuracy by using a deep ConvNet to classify object proposals. 
-> R-CNN은 ConvNet을 이용하여 object proposals 분류 하는 방법ㅇ르 사용하여 좋은 성능을 보였다. 
+> R-CNN은 ConvNet을 이용하여 object proposals 분류 하는 방법을 사용하여 좋은 성능을 보였다. 
 
 하지만 큰 단점을 가지고 있다. R-CNN,however, has notable drawbacks:
 
@@ -112,6 +112,7 @@ Fig. 1 illustrates the Fast R-CNN architecture.
 그림 1은 Fast R-CNN의 구조도이다. 
 
 1. 입력으로 [전체 이미지] + [set of object proposal]을 받는다. 
+  - object proposal는 다른 알고리즘(eg. Selective Search)등을 통해 획득한다. 
 2. 이미지를 conv feature map으로 만든다. (convolutional and max pooling Layer 이용)
 3. each object proposal의 conv feature map에서 feature vector를 추출 한다. (RoI pooling layer이용)
 4. Each feature vector는 sequence of fully connected(fc) layers로 전달된다. FC는 다시 2개의 레이어로 분리 된다. 
@@ -122,12 +123,12 @@ Fig. 1 illustrates the Fast R-CNN architecture.
 ### 2.1 The RoI pooling layer
 The RoI pooling layer uses max pooling to convert the features inside any valid region of interest into a small feature map with a fixed spatial extent of H × W (e.g., 7 × 7), where H and W are layer hyper-parameters that are independent of any particular RoI. 
 
-> RoI pooling layer는 max pooling을 사용하며, 유요한 RoI내 Features를 small feature map으로 변환 하는 일을 진행 한다. 
+> RoI pooling layer: RoI내 Features -> small feature map(H × W)으로 변환(max pooling을 사용) 
 
 In this paper, an RoI is a rectangular window into a conv feature map. Each RoI is defined by a four-tuple (r, c, h, w) that specifies its top-left corner (r, c) and its height and width (h, w).
 > 본논문에서 RoI는 사각형 창이며 위치정보를 가지고 있다. 
 
-RoI max pooling works by dividing the h × w RoI window into an H × W grid of sub-windows of approximatesize h=H × w=W and then max-pooling the values in eachsub-window into the corresponding output grid cell. 
+RoI max pooling works by dividing the h × w RoI window into an H × W grid of sub-windows of approximate size h/H × w/W and then max-pooling the values in each sub-window into the corresponding output grid cell. 
 
 Pooling is applied independently to each feature map channel,as in standard max pooling. 
 
@@ -173,6 +174,7 @@ We propose a more efficient training method that takes advantage of feature shar
 In Fast RCNN training, stochastic gradient descent (SGD) mini-batches are sampled hierarchically, 
 - first by sampling N images and then 
 - by sampling R/N RoIs from each image.
+
 Critically, RoIs from the same image share computation and memory in the forward and backward passes. 
 Making N small decreases mini-batch computation. 
 
@@ -214,15 +216,12 @@ $$
 L(p,u,t^u,v) = L_{cls}(p,u) + \lambda \left[ u \geq 1 \right] L_{loc}(t^u,v)
 $$
 
-in which $$L_{cls}(p,u) = − \log p_u$$ is log loss for true class u.
+- $$L_{cls}(p,u) = − \log p_u$$ : log loss for true class u.
 
-The second task loss, $$L_{loc}$$, is defined over a tuple of true bounding-box regression targets for class u, v = $$(v_x, v_y, v_w, v_h)$$, and a predicted tuple $$t^u = \left( t^u_x,t^u_y,t^u_w,t^u_h \right)$$, again for class u. 
+- $$L_{loc}$$ : is defined over a tuple of true bounding-box regression targets for class u, v = $$(v_x, v_y, v_w, v_h)$$, and a predicted tuple $$t^u = \left( t^u_x,t^u_y,t^u_w,t^u_h \right)$$, again for class u. 
 
-The Iverson bracket indicator function [u ≥ 1] evaluates to 1 when u ≥ 1 and 0 otherwise. 
-
-By convention the catch-all background class is labeled u = 0.
-
-For background RoIs there is no notion of a ground-truth bounding box and hence $$L_{loc}$$ is ignored
+The Iverson bracket indicator function [u ≥ 1] evaluates to 1 when u ≥ 1 and 0 otherwise. By convention the catch-all background class is labeled u = 0.For background RoIs there is no notion of a ground-truth bounding box and hence $$L_{loc}$$ is ignored
+> u는 라벨을 이야기 하며 0이면 배경을 의미하며 아무 Object도 없기에 Bbox값은 없다. 즉, $$L_{loc}$$는 고려 되지 않는다. 
 
 For bounding-box regression, we use the loss
 
