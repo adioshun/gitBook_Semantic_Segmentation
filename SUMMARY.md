@@ -9,4 +9,6 @@
 * [ref01\_Evaluation\_mAP](ref01evaluation-map.md)
 * [Transfer Learning](transfer-learning.md)
   * [Paper\_2010\_A Survey on Transfer Learning](transfer-learning/paper2010-a-survey-on-transfer-learning.md)
+* [Bayesian Deep Learning](bayesian-deep-learning.md)
+  * [post\_2017\_Bayesian Deep Learning for Safe AI](bayesian-deep-learning/post2017-bayesian-deep-learning-for-safe-ai.md)
 
