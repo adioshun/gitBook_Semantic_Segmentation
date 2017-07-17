@@ -15,7 +15,9 @@
 |Output|Class label|Box in the image (x, y, w, h)|
 |Evaluation metric|Accuracy|Intersection over Union|
 
- > 활용가능한 테스트 데이터 : ImageNet
+###### [참고] 활용가능한 데이터셋
+
+![](http://i.imgur.com/lVcAT2z.png)
 
 ## 1 .  Localization
 
@@ -79,6 +81,64 @@ Felzenszwalb et al, “Object Detection with Discriminatively
 ### 2.2 Detection as Classification #2
 
 - Problem: Need to test many positions and scales,
-and use a computationally demanding classifier (CNN)
-- Solution: Only look at a tiny subset of possible positions
++ and use a computationally demanding classifier (CNN)
+- Solution: Only look at a tiny subset of possible positions (CNN은 Cost가 높기 때문에 일부영역만 선택적으로 탐색)
 
+###### Region Porposal 
+
+- Find “blobby” image regions that are likely to contain objects
+- “Class-agnostic” object detector
+- Look for “blob-like” regions
+
+![](http://i.imgur.com/5gwoExY.png)
+
+> 정확도가 높지 않고, 분류 기능이 없는 Object Detector를 이용하여서 물체가 있을듯한 위치 미리 찾아서 이후 작업 수행 
+
+#### A. Region Proposal : Selective Search 
+
+- 픽셀들간의 유사성을 중심으로 비슷한 색깔, 질감을 중심으로 영역 선정 
+
+- Bottom-up segmentation, merging regions at multiple scales
+
+![](http://i.imgur.com/5xw9kcl.png)
+
+###### [참고] 기타 Detection Proposals 
+
+![](http://i.imgur.com/IggJTP6.png)
+ Hosang et al, “What makes for effective detection proposals?”, PAMI 2015
+ 
+#### B. Region Proposal : R-CNN
+
+- CNN과 Region Proposal을 합친 아이디어 . 
+
+![](http://i.imgur.com/ZnruDOn.png)
+
+###### Step 1. Train (or download) a classification model for ImageNet (AlexNet)
+
+![](http://i.imgur.com/DHG7VX6.png)
+
+###### Step 2. Fine-tune model for detection
+- Instead of 1000 ImageNet classes, want 20 object classes + background
+- Throw away final fully-connected layer, reinitialize from scratch
+- Keep training model using positive / negative regions from detection images
+
+![](http://i.imgur.com/PZPgswk.png)
+
+###### Step 3. Extract features
+- Extract region proposals for all images
+- For each region: warp to CNN input size, run forward through CNN, save pool5
+features to disk
+- Have a big hard drive: features are ~200GB for PASCAL dataset!
+
+![](http://i.imgur.com/thhaBMk.png)
+
+###### Step 4. Train one binary SVM per class to classify region features
+
+![](http://i.imgur.com/8ttvHoY.png)
+
+###### Step 5. bbox regression 
+For each class, train a linear regression model to map from cached features to offsets to GT boxes to make up for “slightly wrong” proposals
+
+![](http://i.imgur.com/EcvTNYv.png)
+
+###### Step
