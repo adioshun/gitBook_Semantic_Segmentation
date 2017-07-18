@@ -70,3 +70,5 @@ Faster R-CNN introduces a Region Proposal Network (RPN) that shares full-image c
 - [Selective Search for Object Recognition](https://www.koen.me/research/pub/uijlings-ijcv2013-draft.pdf)
 
 - [Recognition using Regions]
+
+- J. Long, E. Shelhamer, and T. Darrell, “Fully convolutional networks for semantic segmentation,” in IEEE CVPR, 2015. :[Github](https://github.com/shelhamer/fcn.berkeleyvision.org), [한글분석](http://www.whydsp.org/317), [Arxiv](https://arxiv.org/abs/1605.06211)
