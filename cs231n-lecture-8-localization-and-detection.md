@@ -1,11 +1,9 @@
 <div style="text-align: center"><iframe width="560" height="315" src="https://youtu.be/_GfPYLNQank" frameborder="0" allowfullscreen></iframe> </div>
 
-http://cs231n.stanford.edu/slides/2016/winter1516_lecture8.pdf
-
-
 # Localization and Detection 
+> [동영상](https://youtu.be/_GfPYLNQank), [강의자료](http://cs231n.stanford.edu/slides/2016/winter1516_lecture8.pdf)
 
- 기존 VGG, GoogLeNet, ResNet등이 좋은 성과를 보이고 있으나 이들은 주로 Classification용이다. 
+기존 VGG, GoogLeNet, ResNet등이 좋은 성과를 보이고 있으나 이들은 주로 Classification용이다. 
 
 새로운 연구 분야 중에 Localization and Detection 이 있다. (일부 Classification Network도 가능)
 
@@ -154,6 +152,7 @@ For each class, train a linear regression model to map from cached features to o
 #### C. Region Proposal : Fast R-CNN
 
 R-CNN의 속도 단점 해결 : Extract Region과 CNN의 위치 바꿈 (cf. 슬라이딩 위도우의 아이디어 유사)
+Region of Interest pooling 이 중심 아이디어 
 
 > [CS231n Lecture 8의 Fast R-CNN부분](https://youtu.be/_GfPYLNQank?t=42m4s0)
 
@@ -185,9 +184,77 @@ R-CNN의 속도 단점 해결 : Extract Region과 CNN의 위치 바꿈 (cf. 슬�
 
 
 #### D. Region Proposal : Faster R-CNN
+- Fast R-CNN문제 : Test-time speeds don’t include region proposals
+- Faster R-CNN 해결책 : Just make the CNN do region proposals too!
 
+##### 가. 기존과 다른점 
+
+![](http://i.imgur.com/ewg7Oxw.png)
+- Insert a Region Proposal Network (RPN) after the last convolutional layer
+
+- RPN trained to produce region proposals directly; no need for external region proposals!
+
+- After RPN, use RoI Pooling and an upstream classifier and bbox regressor just like Fast R-CNN
+
+##### 나. Region Proposal Network (RPN)
+
+![](http://i.imgur.com/Jw5cuHl.png)
+
+Slide a small window on the feature map
+
+Build a small network for:
+- classifying object or not-object, and
+- regressing bbox locations
+
+Position of the sliding window provides localization information with reference to the image
+
+Box regression provides finer localization information with reference to this sliding window
+
+![](http://i.imgur.com/t7k2zSC.png)
+
+Use N anchor boxes at each location
+
+Anchors are **translation invariant**: use the same ones at every location
+
+Regression gives offsets from anchor boxes 
+
+Classification gives the probability that each (regressed) anchor shows an object
+
+##### 다. Training
+
+![](http://i.imgur.com/cgpFgpj.png)
+
+In the paper: Ugly pipeline
+- Use alternating optimization to train RPN, then Fast R-CNN with RPN proposals, etc.
+- More complex than it has to be
+
+Since publication: Joint training! One network, four losses
+- RPN classification (anchor good / bad)
+- RPN regression (anchor -> proposal)
+- Fast R-CNN classification (over classes)
+- Fast R-CNN regression (proposal -> box)
+
+![](http://i.imgur.com/ugTk83C.png)
+
+>2016년 현재 최고의 성능은 ResNet 101 + Faster R-CNN + some extras 합친것 
+> - He et. al, “Deep Residual Learning for Image Recognition”, arXiv 2015
 
 #### E. Region Proposal : YOLO
+
+> 정확도는 R-CNN보다 느리나, 속도가 빠름(Real-time)
+
+![](http://i.imgur.com/4OK8i7N.png)
+
+Divide image into S x S grid
+
+Within each grid cell predict:
+- B Boxes: 4 coordinates + confidence
+- Class scores: C numbers
+
+Regression from image to 7 x 7 x (5 * B + C) tensor
+
+Direct prediction using a CNN
+
 
 
 
