@@ -67,3 +67,4 @@ Faster R-CNN introduces a Region Proposal Network (RPN) that shares full-image c
 
 # 참고 자료 
 
+- [Selective Search for Object Recognition](https://www.koen.me/research/pub/uijlings-ijcv2013-draft.pdf)
