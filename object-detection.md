@@ -27,7 +27,7 @@ Approaches using RCNN-trained models in multi-stage pipelines (first detecting o
 The drawback of this approach is mainly its __speed__, both during the training and during the actual testing while object detection was performed. 
     - eg. VGG16, the training process for a standard RCNN takes 2.5 GPU-days for the 5k images and requires hundreds of GB of storage. Detecting objects at test-time takes 47s/image using a GPU. This is mainly caused by performing a forward pass on the convolutional network for each object proposal, without sharing the computation.
 
-# Fast R-CBB
+# Fast R-CNN
 
 Fast R-CNN improved RCNN by introducing a single-stage training algorithm which classifies objects and their spatial locations in a single processing stage. The improvements introduced in Fast R-CNN are:
 - Higher detection quality
