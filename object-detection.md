@@ -71,4 +71,8 @@ Faster R-CNN introduces a Region Proposal Network (RPN) that shares full-image c
 
 - [Recognition using Regions]
 
-- J. Long, E. Shelhamer, and T. Darrell, “Fully convolutional networks for semantic segmentation,” in IEEE CVPR, 2015. :[Github](https://github.com/shelhamer/fcn.berkeleyvision.org), [한글분석](http://www.whydsp.org/317), [Arxiv](https://arxiv.org/abs/1605.06211)
+- [Regression Methods for Localization](https://bfeba431-a-62cb3a1a-s-sites.googlegroups.com/site/deeplearningcvpr2014/RegressionMethodsforLocalization.pdf?attachauth=ANoY7cpf41j03XW6YUpHg5L5_LgNhz6C05lpU58CkgQixIXesT0WOK6HU3CVi5x8t83aWcvYkvrUIpZ80rXYI8Hnlfk-wFdcay_DWW4c9ww5KXDADhcyhMiCDOv3AnNkhmuQDLFWCxyjY--VParh1WCIVUIOvtj4NW_UPc2zz0I_b9ovWkK-_qEio3oAY29Z6cyzK4Co60biKGRrc_3WfXxJgdq0Zq7pPnopAAHdEFpU9bv360H-EeW88n-h--8fyCQhJsG7-Pm-&attredirects=0): ppt, 
+
+- J. Long, E. Shelhamer, and T. Darrell, “Fully convolutional networks for semantic segmentation,” in IEEE CVPR, 2015. :[Github](https://github.com/shelhamer/fcn.berkeleyvision.org), [한글분석](http://www.whydsp.org/317), [Arxiv](https://arxiv.org/abs/1605.06211), [ppt](http://tutorial.caffe.berkeleyvision.org/caffe-cvpr15-pixels.pdf)
+
+- 
