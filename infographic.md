@@ -74,6 +74,8 @@ This creates the spatial invariance properties of a ConvNet.
 
 A set of feature maps, each map searches for a particular feature at a fixed set of locations on the input map.
 
+> Feature map들의 모음
+
 All features have the same receptive field size.
 
 ### 3.5 Fully connected layer as Feature Volume
