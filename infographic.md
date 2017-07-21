@@ -36,12 +36,18 @@ The pattern that a neuron is detecting can be visualized by
 (input region of a feature)
 
 The region of the input image that affects the activation of a feature. 
+    - In other words, it is the region that the feature is looking at.
 
-In other words, it is the region that the feature is looking at.
+> Feature활성화에 영향을 미치는 입력이미지의 특정 영역. 즉, Feature가 살펴보고 있는 영역 (
 
 Generally, a feature in a higher layer has a bigger receptive field, which allows it to learn to capture a more complex/abstract pattern. 
 
 The ConvNet architecture determines how the receptive field change layer by layer.
+
+
+> (Filter Size)
+
+
 
 ### 3.3 Feature Map
 
