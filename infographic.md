@@ -247,4 +247,70 @@ OverFeat introduces exhaustive pooling scheme: Pool5 is applied at every offset 
 
 The windows are now only spaced 12pixels instead of 36pixels
 
+### 5.4 ZFNet 
+ZFNet is the ILSVRC 2013 winner, which is basically AlexNet with a minor modification: use 7x7 kernel instead of 11x11 kernel in the first Conv layer to retain more information
 
+### 5.5 SPPNet (Spatial Pyramid Pooling net) 
+
+![](http://i.imgur.com/QQYxPRQ.png)
+
+SPPNet is essentially an enhanced version of RCNN by introducing two important concepts: adaptively-sized pooling (the SPP layer), and computing feature volume only once. 
+
+In fact, the Fast-RCNN embraced these ideas to fasten RCNN with minor modifications.
+
+SPPNet uses selective search to propose 2000 region proposals per image. 
+
+It then extracts a common global feature volume from the entire image using ZFNet-Conv5. 
+
+For each region proposal, SPPNet uses spatial pyramid pooling (SPP) to pool features in that region from the global feature volume to generate its fixed-length representation. 
+
+This representation is used for training the object classifier and box regressors.
+
+Pooling features from a common global feature volume rather than pushing all image crops through a full CNN like RCNN brings two orders of magnitude speed up. 
+
+Note that although SPP operation is differentiable, the authors did not do that, so the ZFNet was only trained on ImageNet without fine tuning.
+
+### 5.6 MultiBox
+
+![](http://i.imgur.com/aFt1IA4.png)
+
+MultiBox is not an object recognition but a ConvNet-based region proposal solution. 
+
+It popularized the ideas of region proposal network (RPN) and prior box, proving that ConvNet can be trained to propose better region proposals than heuristic approaches. 
+
+Since then, heuristic approaches have been gradually fading out and replaced by RPN.
+
+MultiBox first clusters all ground truth box locations in the whole dataset to find 200 centroids that it uses as prior boxes’ centers. 
+
+Each input image is center cropped and rescaled to 220x220. 
+
+Then it uses AlexNet to extract 4096 features (fc7). 
+
+A 200-sigmoid layer is added to predict the object confidence score, and 4x200-linear layer is added to predict
+center offset and scale of box proposal from each prior box. 
+
+Note that box regressors and confidence scorers look at features extracted from the whole image.
+
+### 5.7 VGGNet
+
+
+
+
+### 5.8 InceptioNet
+
+
+
+### 5.9 Fast RCNN
+
+
+### 5.10 YOLO
+
+
+### 5.11 ResNet
+
+### 5.12 Faster RCNN
+
+### 5.13 SSD
+
+
+### 5.14 MaskRCNN
