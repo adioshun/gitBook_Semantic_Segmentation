@@ -29,12 +29,23 @@
 ![](http://i.imgur.com/btEb1LA.png)
 (input region of a feature)
 
-The region of the input image that affects the activation of a feature. In other words, it is the
-region that the feature is looking at.
+- The region of the input image that affects the activation of a feature. 
 
-Generally, a feature in a higher layer has a bigger receptive field, which allows it to learn to capture
-a more complex/abstract pattern. 
+- In other words, it is the region that the feature is looking at.
 
-The ConvNet architecture determines how the receptive field change layer by layer.
+- Generally, a feature in a higher layer has a bigger receptive field, which allows it to learn to capture a more complex/abstract pattern. 
 
-![](http://i.imgur.com/btEb1LA.png)
+- The ConvNet architecture determines how the receptive field change layer by layer.
+
+### 3.3 Feature Map
+
+![](http://i.imgur.com/wRi3zbP.png)
+
+(a channel of a hidden layer)
+
+- A set of features that created by applying the same feature detector at different locations of an input map in a sliding window fashion (i.e. convolution). 
+
+- Features in the same feature map have the same receptive size and look for the same pattern but at different locations. 
+
+- This creates the spatial invariance properties of a ConvNet.
+
