@@ -8,17 +8,6 @@
 |2016|Faster R-CNN|[논문](https://arxiv.org/abs/1506.01497),[한글](https://curt-park.github.io/2017-03-17/faster-rcnn/)| CNN Feature Map.|A bounding box per anchor|MS, Region Proposal|
 |2017|Mask R-CNN|[논문](https://arxiv.org/abs/1703.06870)|CNN Feature Map.|Matrix with 1s on all locations|Facebook, pixel level|
 
-> 출처 : [A Brief History of CNNs in Image Segmentation: From R-CNN to Mask R-CNN](https://blog.athelas.com/a-brief-history-of-cnns-in-image-segmentation-from-r-cnn-to-mask-r-cnn-34ea83205de4)
-
-
-
-|R-CNN Series|YOLO/SSD|
-|-|-|
-|2-step|1-Step Process|
-|process of region proposal and object recognition|Do region proposal and classification at same time|
-
-> 출처 : [Recent Progress on Object Detection_20170331](https://www.slideshare.net/JihongKang/recent-progress-on-object-detection20170331)
-
 
 # RCNN
 Approaches using RCNN-trained models in multi-stage pipelines (first detecting object boundaries and then performing identification) 
