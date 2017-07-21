@@ -75,3 +75,33 @@ Convolving a $$1 \times 1 \times k$$ filter kernel to a $$1 \times 1 \times d$$ 
 
 Replacing fully connected layers by convolution layers allows us to apply a ConvNet to an image with arbitrary size.
 
+### 3.6 Transposed Convolution
+
+![](http://i.imgur.com/vOEok4u.png)
+
+(fractional strided convolution, deconvolution, upsampling)
+
+The operation that back-propagates the gradient of a convolution operation. 
+- In other words, it is the backward pass of a convolution layer. 
+
+A transposed convolution can be implemented as a normal convolution with zero inserted between the input features. 
+
+A convolution with filter size k, stride s and zero padding p has an associated transposed convolution with filter size k’=k, strides’=1, zero padding p’=k-p-1, and s-1 zeros inserted between each input unit.
+
+On the left, the red input unit contributes to the activation of the 4 top left output units (through the 4 colored squares), therefore it receives gradient from these output units. 
+
+This gradient backpropagation can be implemented by the transposed convolution shown on the right 
+
+### 3.7 End-To-End object recognition pipeline
+(end-to-end learning/system)
+
+
+
+An object recognition pipeline that all stages (pre-processing, region proposal
+generation, proposal classification, post-processing) can be trained altogether
+by optimizing a single objective function, which is a differentiable function of all
+stages’ variables. This end-to-end pipeline is the opposite of the traditional
+object recognition pipeline, which connects stages in a non-differentiable
+fashion. In these systems, we do not know how changing a stage’s variable can
+affect the overall performance, so that each stage must be trained
+independently or alternately, or heuristically programmed.
