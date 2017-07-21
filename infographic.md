@@ -220,13 +220,31 @@ vision.
 
 ![](http://i.imgur.com/7cwjWJU.png)
 
-Region-based ConvNet (RCNN) is a natural combination of
-heuristic region proposal method and ConvNet feature extractor.
-From an input image, ~2000 bounding box proposals are
-generated using selective search. Those proposed regions are
-cropped and warped to a fixed-size 227x227 image. AlexNet is
-then used to extract 4096 features (fc7) for each warped image.
-An SVM model is then trained to classify the object in the warped
-image using its 4096 features. Multiple class-specific bounding
-box regressors are also trained to refine the bounding box
-proposal using the 4096 extracted features.
+Region-based ConvNet (RCNN) is a natural combination of heuristic region proposal method and ConvNet feature extractor.
+
+From an input image, ~2000 bounding box proposals are generated using selective search. Those proposed regions are cropped and warped to a fixed-size 227x227 image. 
+
+AlexNet is then used to extract 4096 features (fc7) for each warped image.
+
+An SVM model is then trained to classify the object in the warped image using its 4096 features. 
+
+Multiple class-specific bounding box regressors are also trained to refine the bounding box proposal using the 4096 extracted features.
+
+### 5.3 OverFeat
+
+![](http://i.imgur.com/kR9Rg7P.png)
+
+OverFeat uses AlexNet to extract features at multiple evenly-spaced square windows in the image over multiple
+scales of an input image. 
+
+An object classifier and a class-agnostic box regressor are trained to classify object and refine bounding box for every 5x5 region in the Pool5 layer (339x339 receptive field window). 
+
+OverFeat replaces fc layers by 1x1xn conv layers to be able to predict for multi-scale images. 
+
+Because receptive field moves 36 pixels when moving one pixel in the Pool5, the windows are usually not well aligned with the objects. 
+
+OverFeat introduces exhaustive pooling scheme: Pool5 is applied at every offset of its input, which results in 9 Pool5 volumes. 
+
+The windows are now only spaced 12pixels instead of 36pixels
+
+
