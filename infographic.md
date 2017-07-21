@@ -30,7 +30,7 @@ The pattern that a neuron is detecting can be visualized by
 > Feature를 탐지 하는 이러한 특정 패턴은 여러 방법으로 시각화 할수 있다. 
     
             
-### 3.2 Receptive Field
+### 3.2 Receptive Field(수용영역)
 
 ![](http://i.imgur.com/btEb1LA.png)
 (input region of a feature)
@@ -45,7 +45,7 @@ Generally, a feature in a higher layer has a bigger receptive field, which allow
 The ConvNet architecture determines how the receptive field change layer by layer.
 
 
-> (Filter Size)
+> Receptive FieldFilter Size와 같으며 
 
 
 
