@@ -97,7 +97,7 @@ Replacing fully connected layers by convolution layers allows us to apply a Conv
 
 ### 3.6 Transposed Convolution
 
-![](http://i.imgur.com/vOEok4u.png)
+![](http://i.imgur.com/TITDJBU.png)
 
 (fractional strided convolution, deconvolution, upsampling)
 
