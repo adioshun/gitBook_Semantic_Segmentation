@@ -293,24 +293,87 @@ Note that box regressors and confidence scorers look at features extracted from 
 
 ### 5.7 VGGNet
 
+Although not an ILSVRC winner, VGG is still one of the most common ConvNet architectures today thanks to its
+simplicity and effectiveness. 
+
+The main idea is to replace large-kernel conv by stacking several small-kernel convs. 
+
+It strictly uses 3x3 conv with stride and padding of 1, along with 2x2 maxpooling layers with stride 2.
 
 
+### 5.8 InceptioNet (GoogLeNet)
+Inception (GoogLeNet) is the winner of ILSVRC 2014.
 
-### 5.8 InceptioNet
+Instead of traditionally stacking up conv and maxpooling layer sequentially, it stacks up Inception modules, which consists of multiple parallel conv and maxpooling layers with different kernel sizes. 
 
+It uses 1x1 conv layer (network in network idea) to reduce the depth of feature volume output.
+
+There currently are 4 InceptionNet versions.
 
 
 ### 5.9 Fast RCNN
 
+![](http://i.imgur.com/PUb4YdY.png)
+
+Fast RCNN is essentially SPPNet with trainable feature extraction network and RoIPooling in replacement of the SPP layer.
+
+RoIPooling (region of interest pooling) is simply a special case of SPP where here only one pyramid level is used. 
+
+RoIPooling generates a fixed 7x7 feature volume for each RoI (region proposal) by dividing the RoI feature volume into a 7x7 grid of sub-windows and then max-pooling the values from each sub-window.
 
 ### 5.10 YOLO
 
+![](http://i.imgur.com/TGYhqXJ.png)
+
+YOLO (You Only Look Once) is a direct development of MultiBox. 
+
+It turns MultiBox from a region proposal solution to an object recognition method by adding a softmax layer, parrallel to the box regressor and box classifier layer, to directly predicts the object class. 
+
+In addition, instead of clustering ground truth box locations to get the prior boxes, YOLO divides the input image into a 7x7 grid where each grid cell is a prior box. 
+
+The grid cell is also used for box matching: if the center of an object falls into a grid cell, that grid cell
+is responsible for detecting that object. 
+
+Like MultiBox, prior box only holds the center location information, not the size, so that box regressor predicts the box size independent with the size of the prior box. 
+
+Like MultiBox, all the box regressor, confidence scorer, and object classifier look at features extracted from the whole image
 
 ### 5.11 ResNet
 
+ResNet won the ILSVRC 2015 competition with an unbelievable 3.6% error rate (human performance is 5-10%). 
+
+Instead of transforming the input representation to output representation, ResNet sequentially stacks residual blocks, each computes the change (residual) it wants to make to its input, and add that to its input to produce its output representation. 
+
+This is slightly related to boosting.
+
 ### 5.12 Faster RCNN
+
+![](http://i.imgur.com/A3B0k0I.png)
+
+Faster RCNN is Fast RCNN with heuristic region proposal replaced by region proposal network (RPN) inspired by MultiBox. 
+
+In Faster RCNN, RPN is a small ConvNet (3x3 conv -> 1x1 conv -> 1x1 conv) looking at the conv5_3 global feature volume in the sliding window fashion. 
+
+Each sliding window has 9 prior boxes that relative to its receptive field (3 scales x 3 aspect ratios). 
+
+RPN does bounding box regression and box confidence scoring for each prior box. 
+
+The whole pipeline is trainable by combining the loss of box regression, box confidence scoring, and object classification into one common global objective function. 
+
+Note that here, RPN only looks at a small input region; and prior boxes hold both the center location and the box size, which are different from the MultiBox and YOLO design.
+
 
 ### 5.13 SSD
 
+![](http://i.imgur.com/uleYNW2.png)
+
+SSD leverages the Faster RCNN’s RPN, using it to directly classify object inside each prior box instead of just scoring the object confidence (similar to YOLO). 
+
+It improves the diversity of prior boxes’ resolutions by running the RPN on multiple conv layers at different depth levels.
+
 
 ### 5.14 MaskRCNN
+
+Mask RCNN extends Faster RCNN for Instance Segmentation by adding a branch for predicting class-specific object mask, in parallel with the existing bounding box regressor and object classifier. 
+
+Since RoIPool is not designed for pixel-to-pixel alignment between network inputs and outputs, MaskRCNN replaces it with RoIAlign, which uses bilinear interpolation to compute the exact values of the input features at each sub-window instead of RoIPooling maxpooling.
