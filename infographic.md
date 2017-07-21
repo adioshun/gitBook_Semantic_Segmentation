@@ -38,14 +38,14 @@ The pattern that a neuron is detecting can be visualized by
 The region of the input image that affects the activation of a feature. 
     - In other words, it is the region that the feature is looking at.
 
-> Feature활성화에 영향을 미치는 입력이미지의 특정 영역. 즉, Feature가 살펴보고 있는 영역 (
+> Feature활성화에 영향을 미치는 입력이미지의 특정 영역. 즉, Feature가 살펴보고 있는 영역 
 
 Generally, a feature in a higher layer has a bigger receptive field, which allows it to learn to capture a more complex/abstract pattern. 
 
 The ConvNet architecture determines how the receptive field change layer by layer.
 
 
-> Receptive FieldFilter Size와 같으며 
+> Receptive Field는 Filter Size와 같으며 뉴런에 변화를 일으키는 국소적인 공간 영역 
 
 
 
@@ -57,9 +57,15 @@ The ConvNet architecture determines how the receptive field change layer by laye
 
 A set of features that created by applying the same feature detector at different locations of an input map in a sliding window fashion (i.e. convolution). 
 
+> 동일한 Feature Detector를 이용해서 이미지의 여러 공간에서 뽑아낸 Feature들의 모음 
+
 Features in the same feature map have the same receptive size and look for the same pattern but at different locations. 
 
+> Feature map에 있는 모든 Feature들은 동일한 receptive size를 가지며 서로 다른 위치에 대한 동일한 패턴을 적용한 결과를 가진다. 
+
 This creates the spatial invariance properties of a ConvNet.
+
+> Feature Map을 통해서 spatial invariance한 특징을 가지게 된다. 
 
 ### 3.4 Feature Volume
 
