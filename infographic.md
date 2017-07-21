@@ -17,9 +17,9 @@
 ![](http://i.imgur.com/xEUlmtH.png)
 (pattern, activation of a neuron, feature detector)
 
-- A hidden neuron that is activated when a particular pattern (feature) is presented in its input region (receptive field).
+A hidden neuron that is activated when a particular pattern (feature) is presented in its input region (receptive field).
 
-- The pattern that a neuron is detecting can be visualized by 
+The pattern that a neuron is detecting can be visualized by 
     - optimizing its input region to maximize the neuron’s activation (deep dream),
     - visualizing the gradient or guided gradient of the neuron activation on its input pixels (back propagation and guided back propagation), 
     - visualizing a set of image regions in the training dataset that activate the neuron the most
@@ -29,13 +29,13 @@
 ![](http://i.imgur.com/btEb1LA.png)
 (input region of a feature)
 
-- The region of the input image that affects the activation of a feature. 
+The region of the input image that affects the activation of a feature. 
 
-- In other words, it is the region that the feature is looking at.
+In other words, it is the region that the feature is looking at.
 
-- Generally, a feature in a higher layer has a bigger receptive field, which allows it to learn to capture a more complex/abstract pattern. 
+Generally, a feature in a higher layer has a bigger receptive field, which allows it to learn to capture a more complex/abstract pattern. 
 
-- The ConvNet architecture determines how the receptive field change layer by layer.
+The ConvNet architecture determines how the receptive field change layer by layer.
 
 ### 3.3 Feature Map
 
@@ -43,26 +43,27 @@
 
 (a channel of a hidden layer)
 
-- A set of features that created by applying the same feature detector at different locations of an input map in a sliding window fashion (i.e. convolution). 
+A set of features that created by applying the same feature detector at different locations of an input map in a sliding window fashion (i.e. convolution). 
 
-- Features in the same feature map have the same receptive size and look for the same pattern but at different locations. 
+Features in the same feature map have the same receptive size and look for the same pattern but at different locations. 
 
-- This creates the spatial invariance properties of a ConvNet.
+This creates the spatial invariance properties of a ConvNet.
 
 ### 3.4 Feature Volume
 
 ![](http://i.imgur.com/8p72KhI.png)
 (a hidden layer in a ConvNet)
 
-- A set of feature maps, each map searches for a particular feature at a fixed set of locations on the input map.
+A set of feature maps, each map searches for a particular feature at a fixed set of locations on the input map.
 
-- All features have the same receptive field size.
+All features have the same receptive field size.
 
 ### 3.5 Fully connected layer as Feature Volume
 
 ![](http://i.imgur.com/oiVYeDH.png)
 
-Fully connected layers (fc layers - usually attached to the end of a ConvNet for classification) with k hidden nodes can be seen as a $$1 \times 1 \times k$$ feature volume. 
+Fully connected layers with k hidden nodes can be seen as a $$1 \times 1 \times k$$ feature volume. 
+- fc layers - usually attached to the end of a ConvNet for classification
 
 This feature volume has one feature in each feature map, and its receptive field covers the whole image. 
 
