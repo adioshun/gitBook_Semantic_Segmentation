@@ -3,7 +3,7 @@
 |저자(소속)|Ross Girshick(MS)|
 |학회/년도|ICCV 2015, [논문](https://arxiv.org/abs/1504.08083)|
 |키워드||
-|참고|[코드_Python](https://github.com/rbgirshick/fast-rcnn), [다이어그램](https://drive.google.com/file/d/0B6Ry8c3OoOuqaWI3NGh2RERILVk/view?usp=sharing), [Caffe](http://tutorial.caffe.berkeleyvision.org/caffe-cvpr15-detection.pdf)|
+|참고|[코드_Python](https://github.com/rbgirshick/fast-rcnn), [다이어그램](https://drive.google.com/file/d/0B6Ry8c3OoOuqaWI3NGh2RERILVk/view?usp=sharing),[정리(한글)](http://judelee19.github.io/machine_learning/fast_rcnn/) [Caffe](http://tutorial.caffe.berkeleyvision.org/caffe-cvpr15-detection.pdf)|
 
 
 
