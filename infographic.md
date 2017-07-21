@@ -6,9 +6,7 @@
 
 ![](http://i.imgur.com/w4D29jQ.png)
 
-## 2. History 
-
-![](http://i.imgur.com/PXoQ353.png)
+## 2.
 
 ## 3. Important CNN Concepts
 
@@ -188,11 +186,47 @@ Possible strategies: (Multibox) matching each ground truth box with one prior bo
 
 ### 4.7 Hard negative example mining
 
-For each prior box, there is a bounding box classifier that estimates the
-likelihood of having an object inside. After box matching, all matched prior
-boxes are positive examples for the classifier. All other prior boxes are
-negatives. If we used all of these hard negative examples, there would be a
-significant imbalance between the positives and negatives. Possible solutions:
-pick randomly negative examples (FasterRCNN), or pick the ones that the
-classifier makes the most serious error (SSD), so that the ratio between the
-negatives and positives is at roughly 3:1.
+For each prior box, there is a bounding box classifier that estimates the likelihood of having an object inside. 
+
+After box matching, all matched prior boxes are positive examples for the classifier. 
+
+All other prior boxes are negatives. 
+
+If we used all of these hard negative examples, there would be a significant imbalance between the positives and negatives. 
+
+Possible solutions: pick randomly negative examples (FasterRCNN), or pick the ones that the classifier makes the most serious error (SSD), so that the ratio between the negatives and positives is at roughly 3:1.
+
+
+## 5. History 
+
+![](http://i.imgur.com/PXoQ353.png)
+
+The modern history of object recognition goes along with the development of ConvNets, which was all started here in 2012 when AlexNet won the ILSVRC 2012 by a large margin. 
+
+> object recognitio의 역사는 ConvNets이 발견된 2012년 부터 시작 되었다. 이때 Alexnet이 ILSVRC 2012 우승하였다. 
+
+Note that all the object recognition approaches are orthogonal to the specific ConvNet designs (any ConvNet can be combined with any object recognition approach).
+
+ConvNets are used as general image feature extractor
+
+
+### 5.1 AlexNet 
+AlexNet bases on the decades-old LeNet, combined with
+data augmentation, ReLU, dropout, and GPU implementation. It proved the effectiveness of ConvNet, kicked off its
+glorious comeback, and opened a new era for computer
+vision.
+
+### 5.2 RCNN
+
+![](http://i.imgur.com/7cwjWJU.png)
+
+Region-based ConvNet (RCNN) is a natural combination of
+heuristic region proposal method and ConvNet feature extractor.
+From an input image, ~2000 bounding box proposals are
+generated using selective search. Those proposed regions are
+cropped and warped to a fixed-size 227x227 image. AlexNet is
+then used to extract 4096 features (fc7) for each warped image.
+An SVM model is then trained to classify the object in the warped
+image using its 4096 features. Multiple class-specific bounding
+box regressors are also trained to refine the bounding box
+proposal using the 4096 extracted features.
