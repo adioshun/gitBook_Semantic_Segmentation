@@ -20,11 +20,16 @@
 
 A hidden neuron that is activated when a particular pattern (feature) is presented in its input region (receptive field).
 
+> 특정 패턴이 투영되면 활성화되는 잠재된(Hidden) 뉴런 
+
 The pattern that a neuron is detecting can be visualized by 
     - optimizing its input region to maximize the neuron’s activation (deep dream),
     - visualizing the gradient or guided gradient of the neuron activation on its input pixels (back propagation and guided back propagation), 
     - visualizing a set of image regions in the training dataset that activate the neuron the most
+
+> Feature를 탐지 하는 이러한 특정 패턴은 여러 방법으로 시각화 할수 있다. 
     
+            
 ### 3.2 Receptive Field
 
 ![](http://i.imgur.com/btEb1LA.png)
