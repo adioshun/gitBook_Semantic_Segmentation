@@ -126,6 +126,48 @@ The size of this dataset yields computational constraints for our selective sear
 > Pascal VOC 데이터셋은 계산상 제약을 가지고 있다. 또한, 평가시 BBox로 평가 방법을 제공한다. ????
 
 ## 2. Related Work
-We confine the related work to the domain of object recognitionand divide it into three categories: Exhaustive search, segmentation,and other sampling strategies that do not fall in either category
+We confine the related work to the domain of object recognition and divide it into three categories: 
+- Exhaustive search, 
+- segmentation,
+- and other sampling strategies that do not fall in either category
+
+> object recognition관련된 부분만 크게 3부분으로 나누어 다룬다. 
+
+### 2.1 Exhaustive Search
+As an object can be located at any position and scale in the image, it is natural to search everywhere [8, 16, 36]. However, the visual search space is huge, making an exhaustive search computationally expensive. This imposes constraints on the evaluation cost per location and/or the number of locations considered.
+
+> 이미지상에 물체는 다양한 크기로 어느 곳에나 위치 할수 있으므로 모든것을 찾아 보는것이 일반적인 방법이다. 그러나 이 방법은 검색공간이 커서 계산 부하가 크다. 
+
+Hence most of these sliding window techniques use a coarse search grid and fixed aspect ratios, using weak classifiers and economic image features such as HOG [8, 16, 36]. 
+
+> 그래서 이러한 슬라이딩 윈도우 기술은 coarse search grid와 fixed aspect ratios을 사용하고, 약한 식별자와 계산 효율이 적은 Feature(=HoG)를 하용한다. 
+
+This method is often used as a pre-selection step in a cascade of classifiers [16, 36].
+
+> 이 방법은 간혹 cascade of classifiers의 사전선택 스텝으로 사용되기도 한다. 
+
+Related to the sliding window technique is the highly successful part-based object localisation method of Felzenszwalb et al. [12].Their method also performs an exhaustive search using a linear SVM and HOG features. However, they search for objects and object parts, whose combination results in an impressive object detection performance. Lampert et al. [17] proposed using the appearance model to guide the search. This both alleviates the constraints of using a regular grid, fixed scales, and fixed aspect ratio, while at the same time reduces the number of locations visited. This is done by directly searching for the optimal window within the image using a branch and bound technique. While they obtain impressive results for linear classifiers, [1] found that for non-linear classifiers the method in practice still visits over a 100,000 windows per image.
+
+> sliding window관련 기술로는 [12]가 좋다. [12]도 Linear SMV/HOG을 이용해서 exhaustive search를 수행한다. 성능도 좋다. [17]은 탐색시 가이드로 appearance model를 이용한다. 위 두 방식은 기존 방식대비 제약을 줄여 주고, 탐색지역 재방문 횟수를 줄여 준다. branch and bound technique을 사용하여서 성능 향상을 가져 왔다. (추가 부가적인 설명들)
+
+Instead of a blind exhaustive search or a branch and bound search, we propose selective search. We use the underlying image structure to generate object locations. 
+
+> selective search는 blind exhaustive search나 branch and bound search대신에 image structure를 이용하여 물체의 위치 정보를 생성한다. 
+
+In contrast to the discussed methods, this yields a completely class-independent set of locations. 
+
+> 기존 방식과 비교 하면 이러한 방법을 사용함으로써 class-independent한 위치 정보들을 생성 할수 있다. 
+
+Furthermore, because we do not use a fixed aspect ratio,our method is not limited to objects but should be able to find stuff like “grass” and “sand” as well (this also holds for [17]). 
+
+> 더구나 제안 방안은 고정된 aspect ratio를 사용하지 않기 때문에 물체에 제약이 없다 또한 “grass” 나 “sand” 같은 탐지가 가능하다. 
+
+Finally,we hope to generate fewer locations, which should make the problem easier as the variability of samples becomes lower. 
+
+> ???
+
+And more importantly, it frees up computational power which can be used for stronger machine learning techniques and more powerful appearance models.
+
+> 계산 부하에 자유롭기 때문에 다른 부분(머신러닝 기술 &appearance model) 에서 계산부하가 큰 것을 써도 된다. 
 
 
