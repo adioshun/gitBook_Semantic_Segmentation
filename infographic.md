@@ -49,3 +49,28 @@
 
 - This creates the spatial invariance properties of a ConvNet.
 
+### 3.4 Feature Volume
+
+![](http://i.imgur.com/8p72KhI.png)
+(a hidden layer in a ConvNet)
+
+- A set of feature maps, each map searches for a particular feature at a fixed set of locations on the input map.
+
+- All features have the same receptive field size.
+
+### 3.5 Fully connected layer as Feature Volume
+
+![](http://i.imgur.com/oiVYeDH.png)
+
+Fully connected layers (fc layers - usually attached to the end of a ConvNet for classification) with k hidden nodes can be seen as a $$1 \times 1 \times k$$ feature volume. 
+
+This feature volume has one feature in each feature map, and its receptive field covers the whole image. 
+
+The weight matrix W in an fc layer can be converted to a CNN kernel.
+
+Convolving a kernel $$w \times h \times k$$ to a CNN feature volume $$w \times h \times d$$ creates a $$1 \times 1 \times k$$ feature volume (=FC layer with k nodes). 
+
+Convolving a $$1 \times 1 \times k$$ filter kernel to a $$1 \times 1 \times d$$ feature volume creates a $$1 \times 1 \times k$$ feature volume. 
+
+Replacing fully connected layers by convolution layers allows us to apply a ConvNet to an image with arbitrary size.
+
