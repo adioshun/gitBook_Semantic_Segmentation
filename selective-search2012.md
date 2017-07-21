@@ -30,7 +30,7 @@ The Selective Search software is made publicly available.
 
 
 
-## 2. 1 Introduction
+## 1 Introduction
 
 For a long time, objects were sought to be delineated before their identification. 
 
@@ -102,7 +102,30 @@ In this paper, we aim to combine the best of the intuitions of segmentation and 
 
 Therefore, instead of using a single sampling technique, we aim to diversify the sampling techniques to account for as many image conditions as possible. 
 
+> 하나의 방법을 쓰는 샘플링 방법보다. 여러 이미지 상태에 따라 대처 가능한 샘플링 방법을 개발하였다. 
+
 Specifically, we use a data-driven grouping based strategy where we increase diversity by using a variety of complementary grouping criteria and a variety of complementary colour spaces with different invariance properties. 
 
-The set of locationsis obtained by combining the locations of these complementarypartitionings. 
-Our goal is to generate a class-independent,data-driven, selective search strategy that generates a small set ofhigh-quality object locations.
+> 특히 data-driven grouping 기반 방식을 사용함으로써 다양성을 증대 시켰다. 
+> - 다양한 complementary grouping criteria
+> - 다양한 complementary colour spaces
+
+The set of locations is obtained by combining the locations of these complementary partitionings. 
+
+> 위치 정보는 이러한 complementary partitionings의 위치 정보를 합쳐서 획득 하였다. 
+
+Our goal is to generate a class-independent,data-driven, selective search strategy that generates a small set of high-quality object locations.
+
+Our application domain of selective search is object recognition. We therefore evaluate on the most commonly used dataset for this purpose, the Pascal VOC detection challenge which consists of 20 object classes. 
+
+> 제안 알고리즘의 목적이 object recognition이므로 Pascal VOC을 이용하여 테스트 하였다. 
+
+
+The size of this dataset yields computational constraints for our selective search. Furthermore, the use of this dataset means that the quality of locations is mainly evaluated in terms of bounding boxes. However, our selective search applies to regions as well and is also applicable to concepts such as “grass”.
+
+> Pascal VOC 데이터셋은 계산상 제약을 가지고 있다. 또한, 평가시 BBox로 평가 방법을 제공한다. ????
+
+## 2. Related Work
+We confine the related work to the domain of object recognitionand divide it into three categories: Exhaustive search, segmentation,and other sampling strategies that do not fall in either category
+
+
