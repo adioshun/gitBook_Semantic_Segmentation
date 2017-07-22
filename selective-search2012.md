@@ -211,11 +211,71 @@ Finally, our selective search paradigm dictates that the most interesting questi
 
 Gu et al. [15] address the problem of carefully segmenting and recognizing objects based on their parts. 
 
+? [15]는 their parts에 기반한 세그멘팅과 물체 탐지 기법의문제점에 대하여 기술 하였다. 
 
-They first generate a setof part hypotheses using a grouping method based on Arbelaez etal. 
-[3]. 
-Each part hypothesis is described by both appearance andshape features. 
-Then, an object is recognized and carefully delineatedby using its parts, achieving good results for shape recognition.In their work, the segmentation is hierarchical and yields segmentsat all scales. 
+They first generate a set of part hypotheses using a grouping method based on Arbelaez etal. [3]. 
+
+Each part hypothesis is described by both appearance and shape features. 
+
+Then, an object is recognized and carefully delineated by using its parts, achieving good results for shape recognition.
+
+In their work, the segmentation is hierarchical and yields segments at all scales. 
+
 However, they use a single grouping strategy  whose power of discovering parts or objects is left unevaluated. 
-Inthis work, we use multiple complementary strategies to deal withas many image conditions as possible. 
-We include the locationsgenerated using [3] in our evaluation.
+
+In this work, we use multiple complementary strategies to deal with as many image conditions as possible. 
+ 
+We include the locations generated using [3] in our evaluation.
+
+### 2.3 Other Sampling Strategies
+
+Alexe et al. [2] address the problem of the large sampling space of an exhaustive search by proposing to search for any object, independent of its class. 
+In their method they train a classifier on the object windows of those objects which have a well-defined shape(as opposed to stuff like “grass” and “sand”). 
+Then instead of a full exhaustive search they randomly sample boxes to which they apply their classifier. 
+The boxes with the highest “objectness” measure serve as a set of object hypotheses. 
+This set is then used to greatly reduce the number of windows evaluated by class-specific object detectors. 
+We compare our method with their work.
+
+> [2]에서는 이미지에서 objectnessr가 높은 영역을 간추리고 나서 식별자를 사용하하였다. 
+
+Another strategy is to use visual words of the Bag-of-Words model to predict the object location. 
+Vedaldi et al. [34] use jumping windows [5], in which the relation between individual visual words and the object location is learned to predict the object location in new images. 
+
+Maji and Malik [23] combine multiple of these relations to predict the object location using a Hough-transform, after which they randomly sample windows close to the Hough maximum.In contrast to learning, we use the image structure to sample a set of class-independent object hypotheses.
+
+> 또다른 방법은 "Bag-of-Words model"를 사용하는 것이다. 
+
+To summarize, our novelty is as follows. 
+Instead of an exhaustive search [8, 12, 16, 36] we use segmentation as selective search yielding a small set of class independent object locations. 
+
+In contrast to the segmentation of [4, 9], instead of focusing on the best segmentation algorithm [3], we use a variety of strategies to deal with as many image conditions as possible, thereby severely reducing computational costs while potentially capturing more objects accurately. 
+
+Instead of learning an objectness measure on randomly sampled boxes [2], we use a bottom-up grouping procedure to generate good object locations
+
+> 우리 제안 방식의 새로운점들은 아래와 같다. 
+> - exhaustive search대신에 segmentation 를 사용하여 분류와 독립적인 물체 위치 정보를 획득 하였다. 
+> - 최고의 하나의 알고리즘에 초점을 두고 있는 [4][9]와는 이미지의 상황을 고려 하기 위하여 많은 전략들을 모두 고려 하였다.  
+> - bottom-up grouping procedure 를 사용하여 물체 위치정보를 생성 하였다. 
+
+## 3. Selective Search
+In this section we detail our selective search algorithm for object recognition and present a variety of diversification strategies to deal with as many image conditions as possible. 
+
+> 본장에서는 제안 방식에 대해 좀더 살펴 보고 이미지 상황을 고려 하기 위한 다양한 전략들을 살펴 보겠다. 
+
+A selective search algorithm is subject to the following design considerations:
+> 제안 알고리즘 설계시 고려 사항은 아래와 같다. 
+
+Capture All Scales. (모든 크기를 커버 할것)
+- Objects can occur at any scale within the image.Furthermore, some objects have less clear boundaries then other objects. 
+- Therefore, in selective search all objectscales have to be taken into account, as illustrated in Figure2. 
+This is most naturally achieved by using an hierarchicalalgorithm.
+
+Diversification. (다양성)
+- There is no single optimal strategy to group regionstogether. 
+As observed earlier in Figure 1, regions mayform an object because of only colour, only texture, or becauseparts are enclosed. 
+Furthermore, lighting conditions such asshading and the colour of the light may influence how regionsform an object. 
+Therefore instead of a single strategy whichworks well in most cases, we want to have a diverse set ofstrategies to deal with all cases.
+
+- Fast to Compute. (빠른 속도)
+The goal of selective search is to yield a set ofpossible object locations for use in a practical object recognitionframework. 
+The creation of this set should not become acomputational bottleneck, hence our algorithm should be reasonablyfast.
