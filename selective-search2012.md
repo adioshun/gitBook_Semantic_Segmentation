@@ -279,6 +279,28 @@ Diversification. (다양성)
 
 > 하나의 전략으로도 잘 되긴 하지만, 다양한 전략을 사용 하도록 설계 
 
-- Fast to Compute. (빠른 속도)
-The goal of selective search is to yield a set ofpossible object locations for use in a practical object recognitionframework. 
-The creation of this set should not become acomputational bottleneck, hence our algorithm should be reasonablyfast.
+Fast to Compute. (빠른 속도)
+- The goal of selective search is to yield a set of possible object locations for use in a practical object recognition framework. 
+- The creation of this set should not become a computational bottleneck, hence our algorithm should be reasonably fast.
+
+### 3.1 Selective Search by Hierarchical Grouping
+We take a hierarchical grouping algorithm to form the basis of our
+selective search. Bottom-up grouping is a popular approach to segmentation
+[6, 13], hence we adapt it for selective search. Because
+the process of grouping itself is hierarchical, we can naturally generate
+locations at all scales by continuing the grouping process until
+the whole image becomes a single region. This satisfies the condition
+of capturing all scales.
+As regions can yield richer information than pixels, we want to
+use region-based features whenever possible. To get a set of small
+starting regions which ideally do not span multiple objects, we use3.1 Selective Search by Hierarchical Grouping
+We take a hierarchical grouping algorithm to form the basis of our
+selective search. Bottom-up grouping is a popular approach to segmentation
+[6, 13], hence we adapt it for selective search. Because
+the process of grouping itself is hierarchical, we can naturally generate
+locations at all scales by continuing the grouping process until
+the whole image becomes a single region. This satisfies the condition
+of capturing all scales.
+As regions can yield richer information than pixels, we want to
+use region-based features whenever possible. To get a set of small
+starting regions which ideally do not span multiple objects, we use
