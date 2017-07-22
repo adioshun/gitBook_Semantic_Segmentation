@@ -405,14 +405,22 @@ Since RoIPool is not designed for pixel-to-pixel alignment between network input
 
 ### 6.1 Region Proposals or Sliding Windows
 
-RCNN and OverFeat represent two early competing ways to do object recognition: either classify regions proposed by another method (RCNN, FastRCNN, SPPNet), or classify a fixed set of evenly spaced square windows (OverFeat). 
+RCNN and OverFeat represent two early competing ways to do object recognition: 
+- either classify regions proposed by another method (RCNN, FastRCNN, SPPNet), 
+- or classify a fixed set of evenly spaced square windows (OverFeat). 
 
+
+#### A. Region proposals
 The first approach has region proposals that fit the objects better than the other grid-like candidate windows but is two orders of magnitude slower. 
 
+#### B. Sliding-windows
 The second approach takes advantage of the convolution operation to quickly regress and classify objects in
 sliding-windows fashion.
 
+#### C. prior boxes 
 Multibox ended this competition by introducing the ideas of prior box and region proposal network. 
+
+> Multibox 제안 이후 경쟁 종료 (prior box + region proposal network방식)
 
 Since then, all state-of-the-art methods now has a set of prior boxes (generated based on a set of sliding
 windows or by clustering ground-truth boxes) from which bounding box regressors are trained to propose regions that better fit the object inside.
@@ -422,8 +430,17 @@ The new competition is between the direct classification (YOLO, SSD) and refined
 ### 6.2 Direct Classification or Refined Classification.
 These are the two competing approaches for now. 
 
-Direct classification simultaneously regresses prior box and classifies object directly from the same input region, while the refined classification approach first regresses the prior box for a refined bounding box, and then pools the features of the refined box from a common feature volume and classify object by these features. 
+#### A. Direct classification 
+Direct classification simultaneously regresses prior box and classifies object directly from the same input region, 
+
+#### B. Refined Classification
+while the refined classification approach 
+- first regresses the prior box for a refined bounding box, 
+- and then pools the features of the refined box from a common feature volume 
+- and classify object by these features. 
 
 The former is faster but less accurate since the features it uses to classify are not extracted exactly from the refined prior box region
+
+> A방식이 더 빠르지만 정확도는 느리다. 
 
 
