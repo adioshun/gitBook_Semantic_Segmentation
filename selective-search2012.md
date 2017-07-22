@@ -170,4 +170,52 @@ And more importantly, it frees up computational power which can be used for stro
 
 > 계산 부하에 자유롭기 때문에 다른 부분(머신러닝 기술 &appearance model) 에서 계산부하가 큰 것을 써도 된다. 
 
+### 2.2 Segmentation
+Both Carreira and Sminchisescu [4] and Endres and Hoiem [9] propose to generate a set of class independent object hypotheses using segmentation. 
 
+> [4][9]에서는 세그멘테이션을 사용하여서 클래스 독립적인 물체 예상 영역을 생성하는 방법을 제안 하였다. 
+
+Both methods generate multiple foreground/background segmentations, learn to predict the likelihood that a foreground segment is a complete object, and use this to rank the segments.
+
+> 두 방식 모두 여러개의 전경/배경 세그멘테이션들을 생성하여서 전경에는 물체가 있을 가능성이 높게 보고 세그멘테이션에 순위를 할당 하였다. 
+
+Both algorithms show a promising ability to accurately delineate(윤곽을 그리다) objects within images, confirmed by [19] who achieve state-of-the-art results on pixel-wise image classification using [4].
+
+> 두 방식 모두 이미지내 물체의 윤곽을 그리는데는 좋은 성과를 보였다. [19]에서는 [4]를 이용하여서 가장 최신의 결과를 보였다. 
+
+As common in segmentation, both methods rely on a single strong algorithm for identifying good regions. 
+
+> 두 방식 모두 강력한 하나의 알고리즘만을 사용하여 영역을 탐지 하고 있다. . 
+
+
+They obtain a variety of locations by using many randomly initialised foreground and background seeds. 
+
+> 두 방식은 무작위로 초기화한  전경/배경 seed정보를 이용하여 많은 위치 정보를 얻은다. 
+
+In contrast, we explicitly deal with a variety of image conditions by using different grouping criteria and different representations.
+
+> 이와 반대로 우리는 different grouping criteria 와를 이용하여서  different representations 다양한 이미지의 상황을 고려 하여 작업을 진행한다. 
+
+This means a lower computational investment as we do not have to invest in the single best segmentation strategy, such as using the excellent yet expensive contour detector of [3]. 
+
+> 이말은 ????
+
+Furthermore,as we deal with different image conditions separately, we expect our locations to have a more consistent quality. 
+
+> 더불어, 우리 장식은 서로 다른 이미지들의 상황을 분리적으로 다룸으로써 위치정보 또한 질이 좋을것으로 생각 한다. 
+
+Finally, our selective search paradigm dictates that the most interesting question is not how our regions compare to [4, 9], but rather how they can complement each other.
+
+> 최종적으로 우리 제안의 목적은 [4][9]와 대비하여 얼마나 좋은가가 아니라 어떻게 상호 보완할수 있는가 이다. 
+
+
+Gu et al. [15] address the problem of carefully segmenting and recognizing objects based on their parts. 
+
+
+They first generate a setof part hypotheses using a grouping method based on Arbelaez etal. 
+[3]. 
+Each part hypothesis is described by both appearance andshape features. 
+Then, an object is recognized and carefully delineatedby using its parts, achieving good results for shape recognition.In their work, the segmentation is hierarchical and yields segmentsat all scales. 
+However, they use a single grouping strategy  whose power of discovering parts or objects is left unevaluated. 
+Inthis work, we use multiple complementary strategies to deal withas many image conditions as possible. 
+We include the locationsgenerated using [3] in our evaluation.
