@@ -267,14 +267,17 @@ A selective search algorithm is subject to the following design considerations:
 
 Capture All Scales. (모든 크기를 커버 할것)
 - Objects can occur at any scale within the image.Furthermore, some objects have less clear boundaries then other objects. 
-- Therefore, in selective search all objectscales have to be taken into account, as illustrated in Figure2. 
-This is most naturally achieved by using an hierarchicalalgorithm.
+- Therefore, in selective search all object scales have to be taken into account, as illustrated in Figure2. This is most naturally achieved by using an hierarchical algorithm.
+
+> hierarchical algorithm을 이용하여 모든 크기의 물체 탐지 가능 
 
 Diversification. (다양성)
-- There is no single optimal strategy to group regionstogether. 
-As observed earlier in Figure 1, regions mayform an object because of only colour, only texture, or becauseparts are enclosed. 
-Furthermore, lighting conditions such asshading and the colour of the light may influence how regionsform an object. 
-Therefore instead of a single strategy whichworks well in most cases, we want to have a diverse set ofstrategies to deal with all cases.
+- There is no single optimal strategy to group regions together. 
+- As observed earlier in Figure 1, regions may form an object because of only colour, only texture, or because parts are enclosed. 
+- Furthermore, lighting conditions such as shading and the colour of the light may influence how regions form an object. 
+- Therefore instead of a single strategy which works well in most cases, we want to have a diverse set of strategies to deal with all cases.
+
+> 하나의 전략으로도 잘 되긴 하지만, 다양한 전략을 사용 하도록 설계 
 
 - Fast to Compute. (빠른 속도)
 The goal of selective search is to yield a set ofpossible object locations for use in a practical object recognitionframework. 
