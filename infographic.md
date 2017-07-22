@@ -231,6 +231,7 @@ Note that all the object recognition approaches are orthogonal to the specific C
 
 ConvNets are used as general image feature extractor
 
+> [CS231n강좌중 네트워크 설명 부분](https://youtu.be/LxfUGhug-iQ?t=45m59s)
 
 ### 5.1 AlexNet 
 AlexNet bases on the decades-old LeNet, combined with
