@@ -205,7 +205,7 @@ exhaustive search 방식 + segmentation 방식 결합
 1. segmentation에 동원이 가능한 다양한 모든 방법을 활용하여 seed를 설정하고, 
 2. 그 seed에 대하여 exhaustive한 방식으로 찾는 것을 목표로 하고 있다. 
 
-논문에서는 이것을 segmentation 방법을 가이드로 사용한 data-driven SS라고 부른다.
+
 ![](http://i.imgur.com/RHvrATC.png)
 
 1. 입력 영상에 대하여 segmentation을 실시하면, 이것을 기반으로 후보 영역을 찾기 위한 seed를 설정한다. 
