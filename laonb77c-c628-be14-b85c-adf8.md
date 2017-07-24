@@ -176,3 +176,7 @@ Segmentation 과정은 bottom-up 방식과 top-down 방식이 있다.
 ![](http://postfiles2.naver.net/MjAxNjExMjlfNTAg/MDAxNDgwMzkwNDc4NjQ3.4JfEae59AIvHBdNVWN-XfHnVS7RCAtW1nkAiTj8aN6Qg.yybBAXG41AWLIZ2GjIH4slsOFcm4xii0xKYVFKM3PPQg.PNG.laonple/%EC%9D%B4%EB%AF%B8%EC%A7%80_4.png?type=w2)
 
 ## 2. Selective Search 
+
+객체 인식시 후보 영역 추천에 사용되는 알고리즘 (eg. R-CNN, SPPNet, Fast R-CNN + Selective Search)
+- 인식과 추천이 두개의 서로 다른 알고리즘으로 분리되어 있어 End-to-End 학습은 어려움 
+- 최근에는 인식 알고리즘이 추천 알고리즘도 포함하고 있음(eg. Faster R-CNN, YOLO, FCN)
