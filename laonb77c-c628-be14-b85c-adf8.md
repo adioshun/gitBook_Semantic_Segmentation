@@ -197,6 +197,7 @@ exhaustive search 방식 + segmentation 방식 결합
 
 “bottom-up” 그룹화 방법 사용
 - 영상에 존재한 객체의 크기가 작은 것부터 큰 것까지 모두 포함이 되도록 작은 영역부터 큰 영역까지 계층 구조를 파악
+- 작은 Seed정보에서 확장하면서 점점 큰 Object화 시키는 것 
 
 ### 2.3 동작 원리 
 
@@ -204,13 +205,6 @@ exhaustive search 방식 + segmentation 방식 결합
 
 1. segmentation에 동원이 가능한 다양한 모든 방법을 활용하여 seed를 설정하고, 
 2. 그 seed에 대하여 exhaustive한 방식으로 찾는 것을 목표로 하고 있다. 
-
-
-![](http://i.imgur.com/RHvrATC.png)
-
-1. 입력 영상에 대하여 segmentation을 실시하면, 이것을 기반으로 후보 영역을 찾기 위한 seed를 설정한다. 
-2. 엄청나게 많은 후보가 만들어지게 되며, 이것을 적절한 기법을 통하여 통합을 해나가면, 
-3. segmentation은 [3]형태로 바뀌게 되며, 결과적으로 그것을 바탕으로 후보 영역이 통합되면서 개수가 줄어들게 된다.
 
 ###### Step 1.  일단 초기 sub-segmentation을 수행한다.
 
@@ -229,7 +223,31 @@ exhaustive search 방식 + segmentation 방식 결합
 
 ###### Step 3. 통합된 영역들을 바탕으로 후보 영역을 만들어 낸다.
 
+![](http://i.imgur.com/RHvrATC.png)
+
+[정리]
+- 입력 영상에 대하여 segmentation을 실시하면, 이것을 기반으로 후보 영역을 찾기 위한 seed를 설정한다.
+- 엄청나게 많은 후보가 만들어지게 되며, 이것을 적절한 기법을 통하여 통합을 해나가면,
+- segmentation은 [3]형태로 바뀌게 되며, 결과적으로 그것을 바탕으로 후보 영역이 통합되면서 개수가 줄어들게 된다.
 
 
 
-###### Step 
+## 3. sub-segmentation 알고리즘 
+
+> 2.3 동작원리의 Step 1에 필요한 알고리즘 
+
+“Efficient Graph-based Image Segmentation”, Felzenszwalb, 2004
+
+### 3.1 Problem Statement 
+
+논문에서는 사람이 인지하는 방식으로의 segmentation을 위해 graph 방식을 사용하였다.  
+
+그래프 이론 G = (V, E)에서 V는 노드(virtex)를 나타내는데, 여기서는 픽셀이 바로 노드가 된다.
+
+기본적으로 이 방식에서는 픽셀들 간의 위치에 기반하여 가중치(w)를 정하기 때문에 “grid graph 가중치” 방식이라고 부르며, 가중치는 아래와 같은 수식으로 결정이 되고 graph는 상하좌우 연결된 픽셀에 대하여 만든다.
+
+![](http://i.imgur.com/dWKd13n.png)
+
+E(edge)는 픽셀과 픽셀의 관계를 나타내며 가중치 w(vi, vj)로 표현이 되는데, 위 식에서 알 수 있듯이 가중치는 픽셀간의 유사도가 떨어질수록 큰 값을 갖게 되며, 결과적으로 w 값이 커지게 되면 영역의 분리가 일어나게 된다.
+
+
