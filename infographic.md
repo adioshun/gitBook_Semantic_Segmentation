@@ -6,6 +6,22 @@
 
 ![](http://i.imgur.com/w4D29jQ.png)
 
+classification
+- 특정 대상이 영상 내에 존재하는지 여부를 판단하는 것을 말하며, 
+- 보통은 5개의 후보를 추정하고 그것을 ground-truth와 비교하여 판단한다. 5개의 후보 중 하나가 ground-truth와 맞는 것이 있으면 맞는 것으로 보며, 
+- 이것을 top-5 에러율로 표현하여 classification의 성능을 비교하는 지표로 삼는다. .
+
+Localization
+- bounding box를 통해 물체의 존재하는 영역까지 파악하는 것을 말하며, 
+- classification과 같은 학습 데이터를 사용하고 최대 5개까지 bounding box를 통해 후보를 내고 ground-truth와 비교하여 50% 이상 영역이 일치하면 맞는 것으로 본다. 
+- 성능 지표: 에러율(error rate)
+
+Detection
+- classification/localization과 달리 200class 학습 데이터를 사용하며, 
+- 영상 내에 존재하는 object를 가능한 많이 추정을 하며, 경우에 따라서 없는 경우는 0이 되어야 하고, 추정이 틀린 false positive에 대해서는 감점을 준다. 
+- 성능 지표: mAP(mean Average Precision).
+
+
 ## 2. 출처 
 
 ![](http://i.imgur.com/LYGCa5W.png)
