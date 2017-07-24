@@ -23,5 +23,13 @@ OverFeat과 다른 알고리즘 비교
 - classification, localization 및 detection에 대한 통합 프레임워크
 - 1-pass로 연산이 가능한 구조를 취하고 있기 때문에, R-CNN 보다 연산량 관점에서 효과적
     - cf. SPPNet 역시 1-pass 구조(Spatial Pyramid Pooling) > OverFeat(dense evaluation)
+- fast와 accurate 2개의 model이 있으며    
     
-    
+## 2. 구조 
+
+![](http://i.imgur.com/BQQynUt.png)
+
+- GGNet의 주장처럼, LRN(Local Response Normalization)은 별 효과가 없다고 하여 사용하지 않고 있으며, 
+
+- AlexNet과 같은 overlapped pooling 대신에 non-overlapped pooling 방식을 사용하고 있다.
+
