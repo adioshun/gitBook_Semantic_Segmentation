@@ -232,7 +232,7 @@ exhaustive search 방식 + segmentation 방식 결합
 
 
 
-## 3. sub-segmentation 알고리즘 
+## 3. sub-segmentation 알고리즘 (Step 1상세설명)
 
 > 2.3 동작원리의 Step 1에 필요한 알고리즘 
 
@@ -256,5 +256,20 @@ exhaustive search 방식 + segmentation 방식 결합
 
 ![](http://i.imgur.com/o01Q0ko.png)
 ![](http://i.imgur.com/zAar8kO.png)
+- Dif(C1, C2)는 두개의 그룹을 연결하는 변의 최소 가중치를 나타내고, 
+- MInt(C1, C2)는 C1과 C2 그룹에서 최대 가중치 중 작은 것을 선택한 것이다. 
+
+즉, 그룹간의 차가 그룹 내의 차보다 큰 경우는 별개의 그룹으로 그대로 있고, 그렇지 않은 경우에는 병합을 하는 방식이다.
+
+### 3.3 Nearest Neighbor graph 가중치 
+
+인접한 픽셀끼리, 즉 공간적 위치 관계를 따지는 방법뿐만 아니라 feature space에서의 인접도를 고려한 방식
+
+적정한 연산 시간을 유지하기 위해 feature space에서 가장 가까운 10개의 픽셀에 한하여 graph를 형성한다.
+- 모든 픽셀을 (x, y, r, g, b)로 정의된 feature space로 투영 : (x, y)는 픽셀의 좌표, (r, g, b)는 픽셀의 컬러 값
+- 가중치에 대한 설정은 5개 성분에 대한 Euclidean distance를 사용하였다. 
+- 그룹화 방식은 동일하다.
+
+## 4. Hierarchical Grouping (Step 2상세설명)
 
 
