@@ -234,13 +234,13 @@ exhaustive search 방식 + segmentation 방식 결합
 
 
 
-## 3. sub-segmentation 알고리즘 (Step 1상세설명)
+#### A. sub-segmentation 알고리즘 (Step 1상세설명)
 
 > 2.3 동작원리의 Step 1에 필요한 알고리즘 
 
 “Efficient Graph-based Image Segmentation”, Felzenszwalb, 2004
 
-### 3.1 개요 
+##### 가.  개요 
 
 논문에서는 사람이 인지하는 방식으로의 segmentation을 위해 graph 방식을 사용하였다.  
 
@@ -254,7 +254,7 @@ exhaustive search 방식 + segmentation 방식 결합
     - 가중치(w)는 픽셀간의 유사도가 떨어질수록 큰 값을 갖게 되며, 
     - 결과적으로 w 값이 커지게 되면 영역의 분리가 일어나게 된다.
 
-### 3.2 분리 or 통합 판단 수식 
+##### 나.  분리 or 통합 판단 수식 
 
 ![](http://i.imgur.com/o01Q0ko.png)
 ![](http://i.imgur.com/zAar8kO.png)
@@ -263,7 +263,7 @@ exhaustive search 방식 + segmentation 방식 결합
 
 즉, 그룹간의 차가 그룹 내의 차보다 큰 경우는 별개의 그룹으로 그대로 있고, 그렇지 않은 경우에는 병합을 하는 방식이다.
 
-### 3.3 Nearest Neighbor graph 가중치 
+##### 다.  Nearest Neighbor graph 가중치 
 
 인접한 픽셀끼리, 즉 공간적 위치 관계를 따지는 방법뿐만 아니라 feature space에서의 인접도를 고려한 방식
 
@@ -272,7 +272,7 @@ exhaustive search 방식 + segmentation 방식 결합
 - 가중치에 대한 설정은 5개 성분에 대한 Euclidean distance를 사용하였다. 
 - 그룹화 방식은 동일하다.
 
-## 4. Hierarchical Grouping (Step 2상세설명)
+#### B. Hierarchical Grouping (Step 2상세설명)
 
 1단계 sub-segmentation에서 만들어진 여러 영역들을 합치는 과정을 거쳐야 한다. 
 
@@ -290,20 +290,20 @@ SS에서는 여기에 **유사도(similarity metric)**를 기반으로 한 **gre
 
 > [13] : Efficient Graph Based Image Segmentation.
 
-## 5. 다양화 전략 (Diversification Strategy)
+### 2.4 성능향상을 위한 다양화 전략 (Diversification Strategy)
 
 후보 영역 추천의 성능 향상을 위해 SS에서는 다음과 같은 다양화 전략을 사용한다.
 - 다양한 컬러 공간을 사용 
 - color, texture, size, fill 등 4가지 척도를 적용하여 유사도를 구하기
 
-### 5.1 다양한 컬러 공간
+#### A. 다양한 컬러 공간
 
 RGB뿐만 아니라, HSV등 8개의 Color공간 사용
 
 ![](http://i.imgur.com/gRF2QZE.png)
 [각가의 컬러 공간이 영향을 받는 수준 ]
 
-### 5.2 다양한 유사도 검사의 척도
+#### B. 다양한 유사도 검사의 척도
 
 SS는 유사도 검사의 척도로 color, texture, size, fill을 사용을 하며, 유사도 결과는 모두 [0, 1] 사이의 값을 갖도록 정규화(normalization) 시킨다.
 
@@ -312,7 +312,7 @@ $$
 
 $$
 
-#### A. 컬러 유사도
+##### 가. 컬러 유사도
 
 - 컬러 유사도 검사에는 히스토그램을 사용한다. 
 - 각각의 컬러 채널에 대하여 bin을 25로 하며, 히스토그램은 정규화 시킨다. 
@@ -323,7 +323,7 @@ S_{colour}(r_i,r_j) = \sum^n_{k=1}min(c^k_i, c^k_j)
 $$
 
 
-#### B. texture 유사도
+##### 나. texture 유사도
 
 - SIFT(Scale Invariant Feature Transform)와 비슷한 방식을 사용하여 히스토그램을 구한다. 
 - 8방향의 가우시안 미분값을 구하고 그것을 bin을 10으로 하여 히스토그램을 만든다. 
@@ -333,7 +333,7 @@ $$
 S_{texture}(r_i,r_j) = \sum^n_{k=1}min(t^k_i, t^k_j)
 $$
 
-#### C. 크기 유사도
+##### 다. 크기 유사도
 
 - 작은 영역들을 합쳐서 큰 영역을 만들 때, 다른 유사도만 따지만 1개 영역이 다른 영역들을 차례로 병합을 하면서 영역들의 크기 차이가 나게 된다. 
 
@@ -349,7 +349,7 @@ $$
 영역의 크기가 작을수록 유사도가 높게 나오기 때문에, 다른 유사도가 모두 비슷한 수준이라면 크기가 작은 비슷한 영역부터 먼저 합병이 된다.
 
 
-#### D. fill 유사도
+##### 라. fill 유사도
 
 - 2개의 영역을 결합할 때 얼마나 잘 결합이 되는지를 나타낸다. 
 
@@ -368,3 +368,9 @@ S_{fill}(r_i,r_j) = 1- \frac{size(BB_{ij})-size(r_i)-size(r_i)}{size(im)}
 $$
 
 Fit이 좋을수록 결과적으로 1에 근접한 값을 얻을 수 있기 때문에 그 방향으로 합병이 일어나게 된다.
+
+### 2.5 SS 의 탐지 알고리즘 
+
+SS는 후보영역 추천 + 탐지 알고리즘으로 이루어져 있지만, 후보영역 추천만 많이 활용되고 있다. 
+
+탐지 알고리즘을 살펴 보려면 ["Selective Search(Part4)"](http://laonple.blog.me/220918802749)참고 
