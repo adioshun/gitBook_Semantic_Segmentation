@@ -1,5 +1,4 @@
 # Summary
-
 * [Introduction](README.md)
 * [Object Detection](object-detection.md)
   * [Fundamental](laonb77c-c628-be14-b85c-adf8.md)
@@ -9,8 +8,6 @@
   * [Faster\_R-CNN\_2015](fasterr-cnn2015.md)
   * [CS231n Lecture 8 - Localization and Detection](cs231n-lecture-8-localization-and-detection.md)
   * [Selective Search\_2012](selective-search2012.md)
-
-
 * [Transfer Learning](transfer-learning.md)
   * [Paper\_2010\_A Survey on Transfer Learning](transfer-learning/paper2010-a-survey-on-transfer-learning.md)
 * [Bayesian Deep Learning](bayesian-deep-learning.md)
