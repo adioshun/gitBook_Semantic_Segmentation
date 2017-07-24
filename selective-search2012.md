@@ -7,6 +7,23 @@
 
 # Selective Search for Object Recognition
 
+주어진 이미지에서 후보 영역을 생성 [[출처]](http://blog.naver.com/sssmate1/220502678103)
+
+###### Step 1. 후보 영역 생성 
+
+- P.F Felzenszwalb and D.P. Huttenlocher
+- Efficient graph-based images segmentation의 제안 방법 사용 
+
+###### Step 2. 의미있는 구간 선정
+- 논문 Algorithm 1 : Hierarchical Grouping algorithm사용
+(Buttom-up approach)
+
+- Simiarity 판단 기준 4가지 
+ - Colour
+ - Texture 
+ - 
+ - 
+
 ## 1. Abstract
 This paper addresses the problem of generating possible object locations for use in object recognition. We introduce Selective Search which combines the strength of both an exhaustive search and segmentation.
 - Like segmentation, we use the image structure to guide our sampling process. 
