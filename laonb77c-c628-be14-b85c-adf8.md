@@ -177,6 +177,59 @@ Segmentation 과정은 bottom-up 방식과 top-down 방식이 있다.
 
 ## 2. Selective Search 
 
+### 2.1 개요 
+
 객체 인식시 후보 영역 추천에 사용되는 알고리즘 (eg. R-CNN, SPPNet, Fast R-CNN + Selective Search)
 - 인식과 추천이 두개의 서로 다른 알고리즘으로 분리되어 있어 End-to-End 학습은 어려움 
 - 최근에는 인식 알고리즘이 추천 알고리즘도 포함하고 있음(eg. Faster R-CNN, YOLO, FCN)
+
+SS의 목표
+- 영상은 계층적 구조를 가지므로 적절한 알고리즘을 사용하여, 크기에 상관없이 대상을 찾아낸다.
+
+- 컬러, 무늬, 명암 등 다양한 그룹화 기준을 고려한다.
+
+- 빨라야 한다.
+
+### 2.2 SS특징
+exhaustive search 방식 + segmentation 방식 결합
+- Exhaustive search : 후보가 될만한 모든 영역을 샅샅이 조사, scale, aspect ratio을 모두 탐색,계산 부하가 크다 
+- segmentation : 영상 데이터의 특성(eg. 색상, 모양, 무늬)에 기반, 모든 경우에 동일하게 적용할 수 있는 특성 찾기 어려움
+
+“bottom-up” 그룹화 방법 사용
+- 영상에 존재한 객체의 크기가 작은 것부터 큰 것까지 모두 포함이 되도록 작은 영역부터 큰 영역까지 계층 구조를 파악
+
+### 2.3 동작 원리 
+
+논문에서는 이것을 segmentation 방법을 가이드로 사용한 data-driven SS라고 부른다.
+
+1. segmentation에 동원이 가능한 다양한 모든 방법을 활용하여 seed를 설정하고, 
+2. 그 seed에 대하여 exhaustive한 방식으로 찾는 것을 목표로 하고 있다. 
+
+논문에서는 이것을 segmentation 방법을 가이드로 사용한 data-driven SS라고 부른다.
+![](http://i.imgur.com/RHvrATC.png)
+
+1. 입력 영상에 대하여 segmentation을 실시하면, 이것을 기반으로 후보 영역을 찾기 위한 seed를 설정한다. 
+2. 엄청나게 많은 후보가 만들어지게 되며, 이것을 적절한 기법을 통하여 통합을 해나가면, 
+3. segmentation은 [3]형태로 바뀌게 되며, 결과적으로 그것을 바탕으로 후보 영역이 통합되면서 개수가 줄어들게 된다.
+
+###### Step 1.  일단 초기 sub-segmentation을 수행한다.
+
+이 과정에서는 Felzenszwalb가 2004년에 발표한 “Efficient graph-based image segmentation” 논문의 방식처럼, 각각의 객체가 1개의 영역에 할당이 될 수 있도록 많은 초기 영역을 생성하며, 아래 그림과 같다.
+
+![](http://i.imgur.com/nrRCavf.png)
+
+###### Step 2. 작은 영역을 반복적으로 큰 영역으로 통합한다.
+
+이 때는 “탐욕(Greedy) 알고리즘을 사용하며, 그 방법은 다음과 같다. 우선 여러 영역으로부터 가장 비슷한 영역을 고르고, 이것들을 좀 더 큰 영역으로 통합을 하며, 이 과정을 1개의 영역이 남을 때까지 반복을 한다.
+
+아래 그림은 그 예를 보여주며, 초기에 작고 복잡했던 영역들이 유사도에 따라 점점 통합이 되는 것을 확인할 수 있다.
+
+![](http://i.imgur.com/SKVJ3C1.png)
+
+
+###### Step 3. 통합된 영역들을 바탕으로 후보 영역을 만들어 낸다.
+
+
+
+
+###### Step 
