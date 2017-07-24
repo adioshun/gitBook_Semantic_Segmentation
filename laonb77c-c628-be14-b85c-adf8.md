@@ -238,7 +238,7 @@ exhaustive search 방식 + segmentation 방식 결합
 
 “Efficient Graph-based Image Segmentation”, Felzenszwalb, 2004
 
-### 3.1 Problem Statement 
+### 3.1 개요 
 
 논문에서는 사람이 인지하는 방식으로의 segmentation을 위해 graph 방식을 사용하였다.  
 
@@ -248,6 +248,13 @@ exhaustive search 방식 + segmentation 방식 결합
 
 ![](http://i.imgur.com/dWKd13n.png)
 
-E(edge)는 픽셀과 픽셀의 관계를 나타내며 가중치 w(vi, vj)로 표현이 되는데, 위 식에서 알 수 있듯이 가중치는 픽셀간의 유사도가 떨어질수록 큰 값을 갖게 되며, 결과적으로 w 값이 커지게 되면 영역의 분리가 일어나게 된다.
+- E(edge)는 픽셀과 픽셀의 관계를 나타내며 가중치 w(vi, vj)로 표현이 되는데, 
+    - 가중치(w)는 픽셀간의 유사도가 떨어질수록 큰 값을 갖게 되며, 
+    - 결과적으로 w 값이 커지게 되면 영역의 분리가 일어나게 된다.
+
+### 3.2 분리 or 통합 판단 수식 
+
+![](http://i.imgur.com/o01Q0ko.png)
+![](http://i.imgur.com/zAar8kO.png)
 
 
