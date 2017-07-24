@@ -371,6 +371,20 @@ Fit이 좋을수록 결과적으로 1에 근접한 값을 얻을 수 있기 때�
 
 ### 2.5 SS 의 탐지 알고리즘 
 
-SS는 후보영역 추천 + 탐지 알고리즘으로 이루어져 있지만, 후보영역 추천만 많이 활용되고 있다. 
+> SS는 후보영역 추천 + 탐지 알고리즘으로 이루어져 있지만, 후보영역 추천만 많이 활용되고 있다. 탐지 알고리즘을 살펴 보려면 ["Selective Search(Part4)"](http://laonple.blog.me/220918802749)참고 
 
-탐지 알고리즘을 살펴 보려면 ["Selective Search(Part4)"](http://laonple.blog.me/220918802749)참고 
+object detection을 위해 사용한 기본적인 접근법은 아래와 같다.
+
+- SIFT 기반의 feature descriptor를 사용한 BoW(Bag of words) 모델
+
+- 4레벨의 spatial pyramid
+
+- 분류기로 SVM을 사용
+
+#### A. Bag of Words 모델
+
+![](http://i.imgur.com/fxs544P.png)
+
+- 영상을 구성하는 특정한 성분(특징=Feature)들의 분포를 이용하여 그림의 오른쪽처럼 히스토그램으로  나타낼 수가 있게 된다. 
+    - 확연히 다른 분포를 보인다면, 성분들의 분포만을 이용해 해당 object 여부를 판별할 수 있게 되는 것이다.
+    - 이런 방식을 BoW(Bag of Words)라고 부른다.     
