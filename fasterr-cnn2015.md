@@ -5,10 +5,20 @@
 |키워드|“attention” mechanisms,fully convolutional network |
 |참고|[PR-012동영상](https://www.youtube.com/watch?v=kcPAGIgBGRs&feature=youtu.be&list=PLlMkM4tgfjnJhhd4wn5aj8fVTYJwIpWkS), [Ardias논문리뷰](https://www.youtube.com/watch?v=c1_g6tw69bU), [코드](https://github.com/rbgirshick/py-faster-rcnn)|
 
-
-
 # Faster R-CNN: Towards Real-Time Object Detection with Region Proposal Networks
 
+---
+# 라온피플 블로그 
+
+## 개요 
+
+
+
+
+
+---
+
+# 논문
 ## 0. Abstract 
 
 Region Proposal Network (RPN) that shares full-image convolutional features with the detection network, thus enabling nearly cost-free region proposals

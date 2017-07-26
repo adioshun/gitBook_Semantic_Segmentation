@@ -7,9 +7,16 @@
 
 # Selective Search for Object Recognition
 ---
+여러 후보 영역 추천 알고리즘 
+
+![](http://i.imgur.com/W3sVgEb.png)
+> 2015년 Jan Hosang 등이 발표한 논문 “What makes for effective detection proposals?
+
+1등 : EdgeBox 
+상위권 : Selective Search 
 
 
-> 출처 : 라온피플 블로그 
+
 
 ## 2. Selective Search 
 
