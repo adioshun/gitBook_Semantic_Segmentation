@@ -60,3 +60,4 @@ patch 단위로 영상을 처리하는 것이 아니라, 전체 영상을 한꺼
 > bilinear interpolation : 두 점사이의 값을 추정 하는것 [[참고]](http://darkpgmr.tistory.com/117)
 
 
+더 자세히 살펴 보기 : [라온피플 블로그](http://laonple.blog.me/220935916241)
