@@ -38,11 +38,16 @@ RPN을 이용하여 object가 있을만한 영역에 대한 proposal을 구하�
 
 > model의 형태 : Fully-convolutional network 형태
 
-
+![](http://i.imgur.com/SH43wOr.png)
   
-  
+- 각각의 sliding window에서는 총 k개의 object 후보를 추천할 수 있으며, 
 
+- 이것들은 sliding window의 중심을 기준으로 scale과 aspect ratio를 달리하는 조합(논문에서는 anchor라고 부름)이 가능하다. 
+  - 논문에서는 scale 3가지와 aspect ratio 3가지를 지원하여, 총 9개의 조합이 가능하다.
 
+- sliding window 방식을 사용하게 되면, anchor와 anchor에 대하여 proposal을 계산하는 함수가 “translation-invariant하게 된다. 
+  - translation-invariant한 성질로 인해 model의 수가 크게 줄어들게 된다. 
+  - k= 9인 경우에 (4 + 2) x 9 차원으로 차원이 줄어들게 되어, 결과적으로 연산량을 크게 절감
 
 
 
