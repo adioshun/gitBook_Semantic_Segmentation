@@ -8,7 +8,7 @@
   * [2012\_Selective Search](selective-search2012.md)
   * [2013\_R-CNN](r-cnn2013.md)
   * [2013\_SPPNets](2013sppnets.md)
-  * [2014\_OverFeat](2014overfeat.md)
+  * [2014\_OverFeat\(미완성\)](2014overfeat.md)
   * [2015\_Fast\_R-CNN](fastr-cnn2015.md)
   * [2015\_Faster\_R-CNN](fasterr-cnn2015.md)
 * [Transfer Learning](transfer-learning.md)

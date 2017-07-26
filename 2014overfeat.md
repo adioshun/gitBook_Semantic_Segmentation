@@ -10,26 +10,31 @@
 # OverFeat
 
 --- 
-> 출처 : 라온피플 블로그
-
 
 Dense evaluation :  CNN의 classifier로 흔히 사용되는 Fully-connected layer를 1x1 convolution 개념으로 사용하게 되면, 고정된 이미지뿐만 아니라 다양한 크기의 이미지를 sliding window 방식으로 처리할 수 있으며, feature extraction 블락의 맨 마지막 단에 오는 max-pooling layer의 전후 처리 방식을 조금만 바꾸면, 기존 CNN 방식보다 보다 조밀하게(dense) feature extraction, localization 및 detection을 수행할 수 있게 된다. 물론 multi-crop 방식보다 연산량 관점에서 매우 효율적이다.
 
-
+> SPPNet의 Spatial Pyramid Pooling이 더 좋은 성능을 보임 
 
 ## 1. 개요 
 
 OverFeat과 다른 알고리즘 비교
 - classification, localization 및 detection에 대한 통합 프레임워크
+
+
 - 1-pass로 연산이 가능한 구조를 취하고 있기 때문에, R-CNN 보다 연산량 관점에서 효과적
     - cf. SPPNet 역시 1-pass 구조(Spatial Pyramid Pooling) > OverFeat(dense evaluation)
-- fast와 accurate 2개의 model이 있으며    
+    
+    
+- fast와 accurate 2개의 model이 있음 
     
 ## 2. 구조 
 
 ![](http://i.imgur.com/BQQynUt.png)
 
-- GGNet의 주장처럼, LRN(Local Response Normalization)은 별 효과가 없다고 하여 사용하지 않고 있으며, 
+- VGGNet의 주장처럼, LRN(Local Response Normalization)은 별 효과가 없다고 하여 사용하지 않고 있으며, 
 
 - AlexNet과 같은 overlapped pooling 대신에 non-overlapped pooling 방식을 사용하고 있다.
 
+
+
+> 추후 다시 살펴 보기 ㅠㅠ  http://laonple.blog.me/220752877630
