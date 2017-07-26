@@ -10,7 +10,40 @@
 ---
 # 라온피플 블로그 
 
-## 개요 
+## 1. 개요 
+
+Fast R-CNN의 기본 구조와 비슷하지만, Region Proposal Network(RPN)이라고 불리는 특수한 망이 추가
+
+RPN을 이용하여 object가 있을만한 영역에 대한 proposal을 구하고 그 결과를 RoI pooling layer에 보낸다. RoI pooling 이후 과정은 Fast R-CNN과 동일하다.
+
+## 2. RPN
+
+### 2.1  입력
+- ConvNet 부분의 최종 feature-map
+
+- 입력의 크기에 제한이 없음(Fast R-CNN에서 사용했던 동일한 ConvNet을 그대로 사용하기 때문)
+
+### 2.2 동작 
+
+- n x n 크기의 sliding window convolution을 수행하여 256 차원 혹은 512차원의 벡터(후보영역??)를 만들어내고
+
+### 2.2 출력
+
+- box classification (cls) layer :  물체인지 물체가 아닌지를 나타내는 
+  - 출력 2k : object인지 혹은 object가 아닌지를 나타내는 2k score
+  
+- box regressor (reg) layer : 후보 영역의 좌표를 만들어 내는 에 연결한다.
+  - 출력 4k : 4개의 좌표(X, Y, W, H) 값
+
+
+> model의 형태 : Fully-convolutional network 형태
+
+
+  
+  
+
+
+
 
 
 
