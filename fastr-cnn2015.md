@@ -78,7 +78,15 @@ SPPNet은 ConvNet 단계는 전체 영상에 대하여 한꺼번에 연산을 �
 
 |학습|테스트|
 |-|-|
-|![](http://i.imgur.com/FF7ais8.png)|![](http://i.imgur.com/dGLAPVd.png)|
+|![](http://i.imgur.com/dGLAPVd.png)|![](http://i.imgur.com/FF7ais8.png)|
+
+## 4. 샘플링 방법 
+R-CNN과 SPPNet : region-wise sampling
+
+Fast R-CNN : hierarchical sampling
+
+> 상세내용은 [라온피플 블로그](http://laonple.blog.me/220752877630) 참고
+
 
 
 ---
