@@ -49,15 +49,28 @@ Fully Convolutional Network $$\ne$$ Fully Connected Network
 patch 단위로 영상을 처리하는 것이 아니라, 전체 영상을 한꺼번에 처리를 할 수 있어서 겹치는 부분에 대한 연산 절감 효과를 얻을 수 있게 되어, 속도가 빨라지게 된다
   - eg.   Fast R-CNN이나 Faster R-CNN에서 이 아이디어 활용 
   
-### 2.4  Upsampling (Decovolution) 사용 
+### 2.4  skip connection
+
+
 
 ![](http://i.imgur.com/3cXXYgr.png)
 
 그런데 여러 단계의 (convolution + pooling)을 거치게 되면, feature-map의 크기가 줄어들게 된다. 
 
-픽셀 단위로 예측(1x1 convolution)을 하려면, 줄어든 feature-map의 결과를 다시 키우는 과정을 거쳐야 한다.
+픽셀 단위로 예측(1x1 convolution)을 하려면, 줄어든 feature-map의 결과를 다시 키우는 과정(skip connection)을 거쳐야 한다.
 
 > bilinear interpolation : 두 점사이의 값을 추정 하는것 [[참고]](http://darkpgmr.tistory.com/117)
 
 
 더 자세히 살펴 보기 : [라온피플 블로그](http://laonple.blog.me/220935916241)
+
+
+![](http://i.imgur.com/jCHUmUv.png)
+
+![](http://i.imgur.com/s7tNztd.png)
+
+FCN-32s : 1/32에서 32배만큼 upsample한 결과
+FCN-16s : pool5의 결과를 2배 upsample한 것과 pool4의 결과를 합치고 다시 그 결과를 16배 upsample하면 되고, 
+FCN-8s : FCN-16s의 중간 결과를 2배 upsample한 결과와 pool3에서의 예측을 합친 것을 8배 upsample 하는 식이다.
+​
+![](http://i.imgur.com/V7VkrKh.png)
