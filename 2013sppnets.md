@@ -35,7 +35,7 @@
 
  ![](http://i.imgur.com/DgqNVr2.png) 
  - R-CNN : AlexNet입력을 위해 224x224 크기로 이미지를 Crop/warp 하여 사용 
- - 제안 : pyramid 연산을 통해 입력 영상의 크기를 대응할 수 있게 되면, 굳이 crop/warp를 사용하지 않아도 된다.
+ - SPPNet : pyramid 연산을 통해 입력 영상의 크기를 대응할 수 있게 되면, 굳이 crop/warp를 사용하지 않아도 된다.
  
 대부분의 넷이 입력크기의 영향을 받는 이유는 fully-connected layer가 입력 영상의 크기에 제한을 받기 때문이다. 
 
@@ -46,7 +46,11 @@
 
 #### B. 연산비용 큼 
 
-- 기존 : R-CNN은 각각의 후보 window에 대해 crop/warp를 한 후 CNN 과정을 전부 거치지만
+- R-CNN : 각각의 후보 window에 대해 crop/warp를 한 후 CNN 과정을 전부 거치지만
+- SPPNet : SPPNet에서는 영상 크기에 영향을 받지 않기 때문에 전체 영상에 대해 딱 1번 convolutional layer를 거친 후 해당 window에 대하여 SPP를 수행 (24 ~ 102 배 정도 빠르다)
 
+## 2. 구조 
 
- 
+![](http://i.imgur.com/hz7Lxbq.png)
+
+AlexNet의 5번째 convolutional layer 다음에 SPP layer가 위치를 하며, 이후에 fully connected layer가 오는 구조를 취한다.
