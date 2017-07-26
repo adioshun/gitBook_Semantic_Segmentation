@@ -13,6 +13,7 @@
   * [2015\_Faster\_R-CNN](fasterr-cnn2015.md)
   * [2016\_Faster\_R-CNN+ResNet](2016faster-r-cnn+rednet.md)
   * [2015\_Fully Convolutional Network\(작성중\)](2015fully-convolutional-network.md)
+  * [2015\_Deconvolutional Network](2015deconvolutional-network.md)
 * [Transfer Learning](transfer-learning.md)
   * [Paper\_2010\_A Survey on Transfer Learning](transfer-learning/paper2010-a-survey-on-transfer-learning.md)
 * [Bayesian Deep Learning](bayesian-deep-learning.md)
