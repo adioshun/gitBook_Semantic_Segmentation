@@ -26,9 +26,6 @@ Fully Convolutional Network $$\ne$$ Fully Connected Network
 
 - 기본 아이디어 : fully connected layer를  1x1 convolution으로 간주(convolutionization) 
 
-
-
-## 2. 특징 
 ![](http://i.imgur.com/Gc07zsQ.png)
 
 
@@ -36,20 +33,26 @@ Fully Convolutional Network $$\ne$$ Fully Connected Network
 
 > 위치는 알수 있는데 그럼 분류를 못하는 것인가??? 
 
-### 2.1 위치 정보 유지 
+### 1.3 장점 
 
-### 2.2 입력 이미지 제약 없음 
+- 위치 정보 유지 
 
-입력 이미지 제약은 fully connected layer에 맞추기 위해서 존재 하였음
+- 입력 이미지 제약 없음 
+  - 입력 이미지 제약은 fully connected layer에 맞추기 위해서 존재 하였음
+  - 모든 network가 convolutional network으로 구성이 되기 때문에 더 이상 입력 이미지의 크기 제한을 받지 않게 된다
 
-모든 network가 convolutional network으로 구성이 되기 때문에 더 이상 입력 이미지의 크기 제한을 받지 않게 된다
-
-### 2.3 속도 증가 
-
-patch 단위로 영상을 처리하는 것이 아니라, 전체 영상을 한꺼번에 처리를 할 수 있어서 겹치는 부분에 대한 연산 절감 효과를 얻을 수 있게 되어, 속도가 빨라지게 된다
+- 속도 증가 
+  - patch 단위로 영상을 처리하는 것이 아니라, 전체 영상을 한꺼번에 처리를 할 수 있어서 겹치는 부분에 대한 연산 절감 효과를 얻을 수 있게 되어, 속도가 빨라지게 된다
   - eg.   Fast R-CNN이나 Faster R-CNN에서 이 아이디어 활용 
   
-### 2.4  skip connection
+
+
+
+## 2. 특징 
+
+
+
+### 2.1  skip connection
 
 
 
