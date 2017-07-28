@@ -6,8 +6,14 @@
 |참고|[코드_Python](https://github.com/rbgirshick/fast-rcnn), [다이어그램](https://drive.google.com/file/d/0B6Ry8c3OoOuqaWI3NGh2RERILVk/view?usp=sharing),[정리(한글)](http://judelee19.github.io/machine_learning/fast_rcnn/) [Caffe](http://tutorial.caffe.berkeleyvision.org/caffe-cvpr15-detection.pdf)|
 
 # Fast Region-based Convolutional Network method (Fast R-CNN)
+
+--- 
+> [텐서플로우 블로그](https://tensorflow.blog/2017/06/05/from-r-cnn-to-mask-r-cnn/)
+
+R-CNN의 문제점은 모든 바운딩 박스마다 CNN을 돌려야 하고 분류를 위한 SVM, 바운딩 박스를 위한 선형 회귀까지 세가지 모델을 모두 훈련시키기 어렵다는 점입니다. Fast R-CNN은 이 문제들을 해결했습니다. 먼저 바운딩 박스들 사이에 겹치는 영역이 많은데 이들을 따로 따로 CNN을 통과시키는 것은 비용 낭비라고 생각했습니다. 여기에서 RoIPoolRegion of Interest Pooling의 개념을 도입하여 셀렉티브 서치에서 찾은 바운딩 박스 정보를 CNN을 통과하면서 유지시키고 최종 CNN 특성 맵으로 부터 해당 영역을 추출하여 풀링pooling합니다. 이렇게 하면 바운딩 박스마다 CNN을 돌리는 시간을 획기적으로 단축할 수 있습니다. 또한 SVM와 선형 회귀 모델을 모두 하나의 네트워크에 포함시켜 훈련을 시킵니다. SVM 대신 CNN 뒤에 소프트맥스softmax를 놓고, 선형 회귀 대신 소프트맥스 레이어와 동일하게 CNN에 뒤에 따로 추가했습니다.
+
 ---
-# 라온피플 블로그 
+> 라온피플 블로그 
 
 |R-CNN|SPPNet|
 |-|-|
