@@ -50,13 +50,17 @@ FCN에서 "conv+pooling"을 거치면서 해상도가 작아지는 문제를 반
 단순한 decovolution이나 upsampling을 사용하는 대신에 coarse-to-fine deconvolution 망을 구성함으로써 보다 정교한 예측이 가능함을 확인할 수 있다. 
 
 
+## 2. 구조
 
-#### 1.4 FCN VS. Deconvolutional network 
+## 3. 특징
+
 
 ![](http://i.imgur.com/pO1Ypie.png)
 
-FCN은 전체적인 형태를 추출하는 것에 적합
-Deconvolutional network은 좀 더 정밀한 segmentation에서 좋은 특징 보임
+FCN VS. Deconvolutional network 
+
+- FCN은 전체적인 형태를 추출하는 것에 적합
+- Deconvolutional network은 좀 더 정밀한 segmentation에서 좋은 특징 보임
 
 
 이 둘을 섞어 사용을 하면 더 좋은 결과를 얻을 수 있다
@@ -65,9 +69,6 @@ Deconvolutional network은 좀 더 정밀한 segmentation에서 좋은 특징 �
 
 - 방법 2 : 결과에 추가적으로 CRF(Conditional Random Field)를 적용
 
-## 2. 구조
-
-## 3. 특징
 
 ## 4. 학습/테스트 
 효율적인 학습을 위해 2단계의 학습법을 사용하였다.
