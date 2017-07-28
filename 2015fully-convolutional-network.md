@@ -16,11 +16,25 @@ Fully Convolutional Network $$\ne$$ Fully Connected Network
     
 ### 1.1 문제 정의 
 
+Classification 기반 망을 semantic segmentation에 적용할 때의 문제점
+
+#### A. conv+pooling 문제 
+
+- Classification 망 : 대상의 존재 여부에 집중, conv+pooling을 통해 강한 Feature들 추출 목적, detail보다는 global한 것에 집중
+    - 강한 Feature : 많은 변화(conv+pooling)에 영향을 받지 않는 `공간적인 불변성(spatial invariance)`
+     
+
+- semantic segmentation 망 : 픽셀 단위의 조밀한 예측이 필요, 분류망은 pooling등을 통해 feature-map의 크기가 줄어들기 때문에 detail 정보를 얻는데 어려움
+
+#### B. fully connected layer 문제 
 - 기존 Classification 네트워크 (AlexNet, VGGNet, GoogLeNet)는 마지막에 분류를 위해  fully connected layer 사용 
 
 - fully connected layer를 사용하면 분류는 되지만 위치 정보가 사라진다. 
 
 - segmentation에서 사용 불가
+
+
+> FCN에서는 `B. fully connected layer 문제`문제에 집중 
 
 ### 1.2 해결책 
 

@@ -22,33 +22,30 @@
 - DeepLab V2 = DCNN + atrous convolution + fully connected CRF + multiple-scale 처리방법 
 
 
+### 1.1 기존 방식의 문제점 
 
-### 1.1 Classification 기반 망을 semantic segmentation에 적용할 때의 문제점
+###### FCN
+- skip layer를 사용하여 1/8, 1/16, 및 1/32 결과를 결합하여 detail이 줄어드는 문제를 보강
+- bilinear interpolation을 이용해 원 영상을 복원
 
-- Classification 망 : 대상의 존재 여부에 집중, conv+pooling을 통해 강한 Feature들 추출 목적, detail보다는 global한 것에 집중
-    - 강한 Feature : 많은 변화(conv+pooling)에 영향을 받지 않는 `공간적인 불변성(spatial invariance)`
-     
+###### Dilated convolution/DeepLab 
+- 망의 뒷 단에 있는 2개의 pooling layer를 제거하여 1/8크기의 feature-map을 얻고 
+- dilated convolution 혹은 atrous convolution을 사용하여 receptive field를 확장시키는 효과를 얻었으며
+    - 이렇게 1/8 크기까지만 줄이는 방법을 사용하여 detail이 사라지는 것을 커버
+- bilinear interpolation을 이용해 원 영상을 복원
 
-- semantic segmentation 망 : 픽셀 단위의 조밀한 예측이 필요, 분류망은 pooling등을 통해 feature-map의 크기가 줄어들기 때문에 detail 정보를 얻는데 어려움
-
-### 1.2 detail 정보를 얻는데 어려운 문제 해결책
-
-- FCN : 
-    - skip layer를 사용하여 1/8, 1/16, 및 1/32 결과를 결합하여 detail이 줄어드는 문제를 보강
-    - bilinear interpolation을 이용해 원 영상을 복원
-
-- dilated convolution/DeepLab : 
-    - 망의 뒷 단에 있는 2개의 pooling layer를 제거하여 1/8크기의 feature-map을 얻고 
-    - dilated convolution 혹은 atrous convolution을 사용하여 receptive field를 확장시키는 효과를 얻었으며
-        - 이렇게 1/8 크기까지만 줄이는 방법을 사용하여 detail이 사라지는 것을 커버
-    - bilinear interpolation을 이용해 원 영상을 복원
-
-### 1.3 1/8까지만 사용 시 문제점
+### 1.2 1/8까지만 사용 시 문제점
 
 - Receptive field가 충분히 크지 않아 다양한 scale에 대응이 어렵다.
 
 - 1/8정보를 bilinear interpolation을 통해서 원 영상의 크기로 키우면, 1/32 크기를 확장한 것보다 detail이 살아 있기는 하지만, 여전히 정교함이 떨어진다.
     - CRF(Conditional Random Field)를 사용한 후처리로 보정 가능 [2.4]에서 자세히 설명 
+
+### 1.3 제안 방안 
+
+- Atrous Convolution
+
+- CRF(Conditional Random Field)
 
 ## 2. 구조
 
