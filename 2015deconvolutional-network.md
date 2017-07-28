@@ -11,7 +11,7 @@
 ## 1. 개요 
 
 FCN에서 "conv+pooling"을 거치면서 해상도가 작아지는 문제를 반복적인 up-convolution(deconvolution)을 통해 해결을 시도하였다
-- classification용 네트워크 + up-sampling 로직 + skip layer 개념 
+- FCN = Classification용 네트워크 + up-sampling 로직 + skip layer 개념 
 
 ### 1.1 FCN의 문제점 
 ![](http://i.imgur.com/0ZhEBwW.png)
@@ -28,9 +28,11 @@ FCN에서 "conv+pooling"을 거치면서 해상도가 작아지는 문제를 반
 
 ![](http://i.imgur.com/i4TYK57.png)
 
-원인 정의 : 픽셀 단위의 조밀한 예측을 위해 upsampling과 여러 개의 후반부 layer의 conv feature를 합치는 방식
+원인 정의 : 픽셀 단위의 조밀한 예측을 위해 upsampling과 여러 개의 후반부 layer의 conv feature를 합치는 방식으로 인하여 위 2가지 문제 발생 
 
 아이디어 : convolutional network에 대칭이 되는 deconvolutional network을 추가
+ - Unpooling : 가장 강한 activation을 보이는 위치를 정확하게 복원함에 따라 특정 개체의 더 특화된(논문의 표현은 exampling-specific) 구조를 얻어낼 수 있고
+ - Deconvolution : 개체의 class에 특화된 (class-specific) 구조를 추출해 낼 수 있게 된다.
 
 효과 : upsampling 해상도의 문제를 해결
 
@@ -47,7 +49,7 @@ FCN에서 "conv+pooling"을 거치면서 해상도가 작아지는 문제를 반
 
 단순한 decovolution이나 upsampling을 사용하는 대신에 coarse-to-fine deconvolution 망을 구성함으로써 보다 정교한 예측이 가능함을 확인할 수 있다. 
 
-Unpooling을 통해 가장 강한 activation을 보이는 위치를 정확하게 복원함에 따라 특정 개체의 더 특화된(논문의 표현은 exampling-specific) 구조를 얻어낼 수 있고, deconvolution을 통해 개체의 class에 특화된 (class-specific) 구조를 추출해 낼 수 있게 된다.
+
 
 #### 1.4 FCN VS. Deconvolutional network 
 
@@ -59,9 +61,9 @@ Deconvolutional network은 좀 더 정밀한 segmentation에서 좋은 특징 �
 
 이 둘을 섞어 사용을 하면 더 좋은 결과를 얻을 수 있다
 
-- FCN과 Deconvolutioal network의 결과의 평균
+- 방법 1 : FCN과 Deconvolutioal network의 결과의 평균
 
-- 결과에 추가적으로 CRF(Conditional Random Field)를 적용
+- 방법 2 : 결과에 추가적으로 CRF(Conditional Random Field)를 적용
 
 ## 2. 구조
 
