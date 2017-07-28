@@ -69,24 +69,56 @@ Fully Convolutional Network $$\ne$$ Fully Connected Network
 
 #### B. 제안 방법 : Skip layer
 
-기본 개념: (convolution + pooling)의 과정을 여러 단계를 거치면서 feature-map의 크기가 너무 작아지면 detail한 부분이 많이 사라지게 되기 때문에 최종 과정보다 앞선 결과를 사용하여 detail을 보강하자는 것이다.
+기본 개념: (convolution + pooling)의 과정을 여러 단계를 거치면서 feature-map의 크기가 너무 작아지면 detail한 부분이 많이 사라지게 되기 때문에 **최종 과정**보다 **앞선 결과**를 사용하여 detail을 보강하자는 것이다.
+
+- 최종 과정 : 1/32크기의 feature(즉 score)
+- 앞선 결과 : 1/16과 1/8크기의 feature(즉 score)
+
+> 논문에서는 이를 `deep jet`라 부름,  이전 layer는 마지막 layer보다 세밀한 feature를 갖고 있기 때문에 이것을 합하면 보다 정교한 예측이 가능
+
+![](http://i.imgur.com/jAPbPDb.png)
 
 
-### C. 기타 방법 
 
-- shift-and-stitch 방식
 
-- ...
 
-더 자세히 살펴 보기 : [라온피플 블로그](http://laonple.blog.me/220935916241)
+
+
+
+앞선 결과(1/16과 1/8크기)를 이용할수 있는 방법 : 이후 작업을 수행 하지 않고 빼놓음
+  -  "skip layer" 혹은 "skip connection라고 부름 
+
+
+
+
+
+
+
+
+
 
 
 ![](http://i.imgur.com/jCHUmUv.png)
 
 ![](http://i.imgur.com/s7tNztd.png)
 
-FCN-32s : 1/32에서 32배만큼 upsample한 결과
-FCN-16s : pool5의 결과를 2배 upsample한 것과 pool4의 결과를 합치고 다시 그 결과를 16배 upsample하면 되고, 
-FCN-8s : FCN-16s의 중간 결과를 2배 upsample한 결과와 pool3에서의 예측을 합친 것을 8배 upsample 하는 식이다.
+- FCN-32s : 1/32에서 32배만큼 upsample한 결과
+- FCN-16s : pool5의 결과를 2배 upsample한 것과 pool4의 결과를 합치고 다시 그 결과를 16배 upsample하면 되고, 
+- FCN-8s : FCN-16s의 중간 결과를 2배 upsample한 결과와 pool3에서의 예측을 합친 것을 8배 upsample 하는 식이다.
 ​
+
+###### FCN-8s 상세 
+  - 실제로 FCN의 결과는 주로 FCN-8s의 결과를 사용
+  
 ![](http://i.imgur.com/V7VkrKh.png)
+
+
+### C. 기타 방법 
+
+- shift-and-stitch 방식
+
+- Dilated convolution
+
+
+
+
