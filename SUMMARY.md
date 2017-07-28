@@ -1,10 +1,13 @@
 # Summary
 
+## 개요 
 * [Introduction](README.md)
 * [Object Detection](object-detection.md)
   * [Fundamental](laonb77c-c628-be14-b85c-adf8.md)
   * [Infographic](infographic.md)
   * [CS231n Lecture 8 - Localization and Detection](cs231n-lecture-8-localization-and-detection.md)
+  
+## Object Detection 
   * [2012\_Selective Search](selective-search2012.md)
   * [2013\_R-CNN](r-cnn2013.md)
   * [2013\_SPPNets](2013sppnets.md)
@@ -12,14 +15,13 @@
   * [2015\_Fast\_R-CNN](fastr-cnn2015.md)
   * [2015\_Faster\_R-CNN](fasterr-cnn2015.md)
   * [2016\_Faster\_R-CNN+ResNet](2016faster-r-cnn+rednet.md)
+  
+## Semantic Segmentation 
   * [2015\_Fully Convolutional Network\(작성중\)](2015fully-convolutional-network.md)
   * [2015\_Deconvolutional Network](2015deconvolutional-network.md)
   * [2016\_Dilated convolution](2015dilated-convolution.md)
   * [2016\_DeepLab v2](2016deeplab.md)
-* [Transfer Learning](transfer-learning.md)
-  * [Paper\_2010\_A Survey on Transfer Learning](transfer-learning/paper2010-a-survey-on-transfer-learning.md)
-* [Bayesian Deep Learning](bayesian-deep-learning.md)
-  * [post\_2017\_Bayesian Deep Learning for Safe AI](bayesian-deep-learning/post2017-bayesian-deep-learning-for-safe-ai.md)
-* [Auto\_ML](automl.md)
+  
+## 참고
 * [ref01\_Evaluation\_mAP](ref01evaluation-map.md)
 
