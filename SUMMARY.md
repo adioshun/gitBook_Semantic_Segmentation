@@ -3,13 +3,13 @@
 ## 개요
 
 * [Introduction](README.md)
-* [Object Detection](object-detection.md)
 * [Fundamental](laonb77c-c628-be14-b85c-adf8.md)
 * [Infographic](infographic.md)
 * [CS231n Lecture 8 - Localization and Detection](cs231n-lecture-8-localization-and-detection.md)
 
 ## Object Detection
 
+* [intro\_Object Detection](object-detection.md)
 * [2012\_Selective Search](selective-search2012.md)
 * [2013\_R-CNN](r-cnn2013.md)
   * [Paper\_2013\_R-CNN](r-cnn2013/paper2013-r-cnn.md)

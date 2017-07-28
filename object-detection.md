@@ -1,3 +1,13 @@
+## Object Detection 
+
+
+- Region 기반 딥러닝 : R-CNN, Fast R-CNN, Faster R-CNN, Mask R-CNN
+
+- Grid 기반 딥러닝 : YOLO, DetectNet
+    -  YOLO는 이미지 내의 bounding box와 class probability를 single regression problem으로 간주하여, 이미지를 한 번 보는 것으로 오브젝트의 종류와 위치를 추측합니다
+    - 아래와 같이 single convolutional network를 통해 multiple bounding box에 대한 class probability를 계산하는 방식을 취합니다.
+
+
 ![](http://i.imgur.com/ZU6afyt.png)
 
 
@@ -8,6 +18,7 @@
 |2016|Faster R-CNN|[논문](https://arxiv.org/abs/1506.01497),[한글](https://curt-park.github.io/2017-03-17/faster-rcnn/)| CNN Feature Map.|A bounding box per anchor|MS, Region Proposal|
 |2017|Mask R-CNN|[논문](https://arxiv.org/abs/1703.06870)|CNN Feature Map.|Matrix with 1s on all locations|Facebook, pixel level|
 
+> 추천 : [R-CNNs Tutorial](https://blog.lunit.io/2017/06/01/r-cnns-tutorial/)
 
 # RCNN
 Approaches using RCNN-trained models in multi-stage pipelines (first detecting object boundaries and then performing identification) 
