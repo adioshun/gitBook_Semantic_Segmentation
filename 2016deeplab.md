@@ -19,7 +19,7 @@
 2016: DeepLab v2[[2]](#2), multiple-scale에 대한 처리 방법 개선, dilated convolution보다 성능 좋음 
 
 - DeepLab V1 = DCNN + atrous convolution + fully connected CRF
-- DeepLab V2 = DCNN + atrous convolution + fully connected CRF + multiple-scale 처리방법 
+- DeepLab V2 = DCNN + atrous convolution + fully connected CRF + ASPP  
 
 
 ### 1.1 기존 방식의 문제점 
@@ -152,7 +152,8 @@ unary term과 pairwise term으로 구성이 된다.
 - Bilinear interpolation을 통해 얻어진 결과는 각 픽셀 위치에서의 label에 대한 확률이 되며 이것은 CRF의 unary term에 해당이 된다. 
 - 최종적으로 모든 픽셀 위치에서 pairwise term까지 고려한 CRF 후보정 작업을 해주면 최종적인 출력 결과를 얻을 수 있다.
 
--- 
+--- 
+
 <a name="1">[1]</a> [Semantic image segmentation with deep convolutional nets and fully connected CRFs](http://arxiv.org/pdf/1412.7062.pdf)  <br/>
 
 <a name="2">[2]</a> [DeepLab: Semantic image segmentation with deep convolutional nets, atrous convolution, and fully connected CRFs](http://arxiv.org/pdf/1606.00915.pdf)  <br/>
