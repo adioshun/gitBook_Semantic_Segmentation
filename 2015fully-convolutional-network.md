@@ -52,18 +52,31 @@ Fully Convolutional Network $$\ne$$ Fully Connected Network
 
 
 
-### 2.1  skip connection
-
-
+### 2.1  Upsampling/Deconvolution
 
 ![](http://i.imgur.com/3cXXYgr.png)
 
 그런데 여러 단계의 (convolution + pooling)을 거치게 되면, feature-map의 크기가 줄어들게 된다. 
 
-픽셀 단위로 예측(1x1 convolution)을 하려면, 줄어든 feature-map의 결과를 다시 키우는 과정(skip connection)을 거쳐야 한다.
+픽셀 단위로 예측(1x1 convolution)을 하려면, 줄어든 feature-map의 결과를 다시 키우는 과정(Upsampling/Deconvolution)을 거쳐야 한다. 
+
+#### A. 가장 간단한 방법 : bilinear interpolation
 
 > bilinear interpolation : 두 점사이의 값을 추정 하는것 [[참고]](http://darkpgmr.tistory.com/117)
 
+하지만 end-to-end 학습의 관점에서는 고정된 값을 사용하는 것이 아니라 학습을 통해서 결정하는 편이 좋다. 논문에서는 backward convolution, 즉 deconvolution을 사용하며, deconvolution에 사용하는 필터의 계수는 학습을 통해서 결정이 되도록 하였다. 이렇게 되면, 경우에 따라서 bilinear 한 필터를 학습할 수도 있고 non-linear upsampling도 가능하게 된다.
+
+
+#### B. 제안 방법 : Skip layer
+
+기본 개념: (convolution + pooling)의 과정을 여러 단계를 거치면서 feature-map의 크기가 너무 작아지면 detail한 부분이 많이 사라지게 되기 때문에 최종 과정보다 앞선 결과를 사용하여 detail을 보강하자는 것이다.
+
+
+### C. 기타 방법 
+
+- shift-and-stitch 방식
+
+- ...
 
 더 자세히 살펴 보기 : [라온피플 블로그](http://laonple.blog.me/220935916241)
 
