@@ -11,8 +11,7 @@
 ## 1. 개요 
 
 FCN에서 "conv+pooling"을 거치면서 해상도가 작아지는 문제를 반복적인 up-convolution(deconvolution)을 통해 해결을 시도하였다
-
-FCN : classification용 네트워크 + up-sampling 로직 + skip layer 개념 = semantic segmentation 적용가능
+- classification용 네트워크 + up-sampling 로직 + skip layer 개념 
 
 ### 1.1 FCN의 문제점 
 ![](http://i.imgur.com/0ZhEBwW.png)
