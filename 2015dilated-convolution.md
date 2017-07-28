@@ -50,7 +50,7 @@ Dilated convolution
 
 하지만 dilated convolution을 사용하면 49개중 빨간점에 해당하는 부분에만 파라미터가 있는 것이나 마찬가지고 나머지 40개는 모두 0으로 채워지기 때문에 연산량 부담이 3x3 filter를 처리하는 것과 같다.
 
-#### B. receptive field의 크기가 커진다
+#### B. receptive field의 크기가 커진다 = 다양한 scale에 대한 대응이 가능
 dilation 계수를 조정하면 다양한 scale에 대한 대응이 가능해진다. 
 
 다양한 scale에서의 정보를 끄집어내려면 넓은 receptive field를 볼 수 있어야 하는데 dilated convolution을 사용하면 별 어려움이 없이 이것이 가능해진다.
