@@ -79,4 +79,6 @@ atrous convolution(dilated convolution)을 사용하면 kernel 크기는 동일�
 5. bilinear interpolation 해결책 : 뒷부분은 CRF(Conditional Random Field)를 이용하여 post-processing을 수행
 
 
-### 2.3 
+### 2.3 ASPP(Atrous Spatial Pyramid Pooling)
+
+
