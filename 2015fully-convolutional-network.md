@@ -118,7 +118,7 @@ Fully Convolutional Network $$\ne$$ Fully Connected Network
 
 - Deconvolutional 방식 : Unpooling + Deconvolution 수행 
 
-- Dilated convolution
+- Dilated convolution 방식 : pool4,5는 제거 + Conv 4,5를 Dilated Convolution으로 변경 
 
 
 
