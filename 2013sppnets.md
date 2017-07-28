@@ -54,3 +54,7 @@
 ![](http://i.imgur.com/hz7Lxbq.png)
 
 AlexNet의 5번째 convolutional layer 다음에 SPP layer가 위치를 하며, 이후에 fully connected layer가 오는 구조를 취한다.
+
+## 3. 특징 (Spatial Pyramid Pooling, RoI Pooling) 
+
+feature map의 다양한 크기의 region으로부터 정보의 손실 없이 일정한 길이의 feature를 추출해 낼 방법이 필요합니다.
