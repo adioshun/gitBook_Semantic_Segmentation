@@ -19,7 +19,9 @@ R-CNN의 문제점은 모든 바운딩 박스마다 CNN을 돌려야 하고 분�
 |-|-|
 |![](http://i.imgur.com/IASEVnA.png)|![](http://i.imgur.com/7FvA0FA.png)|
 
-## 1. R-CNN 문제점
+## 1. 개요 
+
+### 1.1 R-CNN 문제점
 
 - Training이 3 단계로 이루어짐.
   - 우선 약 2000여개의 후보 영역에 대하여 log loss 방식을 사용하여 fine tuning을 한다. 
@@ -41,7 +43,7 @@ R-CNN의 문제점은 모든 바운딩 박스마다 CNN을 돌려야 하고 분�
 |-|-|
 |해결책|Spatial Pyramid Pooling을 사용하여 convolution연산을 공유할 수 있는 방법|
 
-## 2. patial Pyramid Pooling(SPPNet)의 문제점 
+### 1.2 patial Pyramid Pooling(SPPNet)의 문제점 
 
 - Training이 3 단계로 이루어짐.
 
@@ -51,9 +53,9 @@ R-CNN의 문제점은 모든 바운딩 박스마다 CNN을 돌려야 하고 분�
 
 SPPNet은 ConvNet 단계는 전체 영상에 대하여 한꺼번에 연산을 하고 그 결과를 공유하고, SPP layer를 거치면서 region 단위 연산을 수행한다
 
-## 3. Fast R-CNN
+## 2. Fast R-CNN
 
-### 3.1 개요 
+### 2.1 개요 
 
 - 학습 시 multi-stage가 아니라 single-stage로 가능하고, 
   - Softmax / BBox Regressor를 병렬적으로 처리 
@@ -64,7 +66,7 @@ SPPNet은 ConvNet 단계는 전체 영상에 대하여 한꺼번에 연산을 �
 
 - feature caching을 위해 별도의 디스크 공간이 필요 없는 방법
 
-### 3.2 구조 
+### 2.2 구조 
 
 ![](http://i.imgur.com/QSbwE7W.png)
 
@@ -78,9 +80,18 @@ SPPNet은 ConvNet 단계는 전체 영상에 대하여 한꺼번에 연산을 �
 - 추출된 fixed-length feature vector는 Fully-Connected Layer에 인가를 하며, 뒷단 2개의 모듈에 전달 
   - softmax : “object class + background”를 추정
   - bbox(bounding box) regressor : 각각의 object class의 위치를 출력
+  
+### 2.3 특징 (RoI Pooling layer)
+> Fast R-CNN의 RoI Pooling layer와 SPP layer차이점 
+
+- SPPNet에서 제안한 SPP layer는 feature map 상의 특정 영역에 대해 일정한 고정된 개수의 bin으로 영역을 나눈 뒤, 각 bin에 대해 max pooling 또는 average pooling을 취함으로써 고정된 길이의 feature vector를 가져올 수 있습니다. 
+
+- Fast R-CNN에서는 이러한 SPP layer의 single level pyramid만을 사용하며, 이를 RoI Pooling layer라고 명칭하였습니다.
+
+![](http://i.imgur.com/idoUX2g.png)
 
 
-### 3.3 학습과 테스트 
+## 3. 학습과 테스트 
 
 |학습|테스트|
 |-|-|

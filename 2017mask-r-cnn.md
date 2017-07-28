@@ -48,7 +48,17 @@
 -- Learning은 정답 class에 대해서만 한다. (False learning은 하지 않는다)
 --- Target class k에 대한 loss만 전체 loss function에 더해준다
 -- RoIPool 대신 RoIAlign 도입하여 사용
+
 ---
+> https://blog.lunit.io/2017/06/01/r-cnns-tutorial/
+
+## RoIAlign layer
+
+misalignment 문제 
+- Fast R-CNN이나 SPPNet에서 RoI Pooling 또는 SPP를 수행할 때  feature map의 사이즈가 a $$\times$$ a 이고, 이를 n $$\times$$ n개의 bin으로 나눈다고 했을 때, 각 bin의 window size가 정수배가 되지 않을 경우가 있습니다. (예를 들어, 13×13 feature map을 6×6 bins으로 나눌 경우 window size가 2.167이 됩니다) 
+
+- SPPNet의 저자는 이러한 
+
 
 
 

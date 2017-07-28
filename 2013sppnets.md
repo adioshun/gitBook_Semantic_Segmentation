@@ -51,10 +51,18 @@
 
 ## 2. 구조 
 
-![](http://i.imgur.com/hz7Lxbq.png)
+![](http://i.imgur.com/xZde5hv.png)
 
 AlexNet의 5번째 convolutional layer 다음에 SPP layer가 위치를 하며, 이후에 fully connected layer가 오는 구조를 취한다.
 
 ## 3. 특징 (Spatial Pyramid Pooling, RoI Pooling) 
 
-feature map의 다양한 크기의 region으로부터 정보의 손실 없이 일정한 길이의 feature를 추출해 낼 방법이 필요합니다.
+![](http://i.imgur.com/IPbiLQ3.png)
+
+- Bag-of-words (BoW) : 다양한 크기의 입력으로부터 일정한 크기의 feature를 추출해 낼 수 있는 방법
+
+- BoW는 이미지가 지닌 특징들의 위치 정보를 모두 잃어버린다는 단점이 존재
+
+- 이미지를 여러개의 일정 개수의 지역으로 나눈 뒤, 각 지역에 BoW를 적용하여 지역적인 정보를 어느정도 유지
+
+
