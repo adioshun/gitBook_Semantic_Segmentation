@@ -11,13 +11,10 @@
 
 
 
-## PR12: TFKR 논문 읽기
-
-
-## 모두의연구소 
 
 
 
+---
 ## 딥러닝의 본질에 대한 논문
 
 - [An overview of gradient descent optimization algorithms](https://arxiv.org/abs/1609.04747)

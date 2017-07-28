@@ -23,6 +23,7 @@
 
 ## Semantic Segmentation
 
+* [intro\_Semantic Segmentation](introsemantic-segmentation.md)
 * [2015\_Fully Convolutional Network\(작성중\)](2015fully-convolutional-network.md)
 * [2015\_Deconvolutional Network](2015deconvolutional-network.md)
 * [2016\_Dilated convolution](2015dilated-convolution.md)

@@ -3,12 +3,20 @@
 |저자(소속)|Shaoqing Ren, Kaiming He, Ross Girshick, and Jian Sun (MS)|
 |학회/년도|NIPS 2015, [논문](https://arxiv.org/pdf/1506.01497.pdf), [NIPS](https://papers.nips.cc/paper/5638-faster-r-cnn-towards-real-time-object-detection-with-region-proposal-networks.pd) |
 |키워드|“attention” mechanisms,fully convolutional network |
-|참고|[PR-012동영상](https://www.youtube.com/watch?v=kcPAGIgBGRs&feature=youtu.be&list=PLlMkM4tgfjnJhhd4wn5aj8fVTYJwIpWkS), [Ardias논문리뷰](https://www.youtube.com/watch?v=c1_g6tw69bU), [코드](https://github.com/rbgirshick/py-faster-rcnn)|
+|참고|[PR-012동영상](https://www.youtube.com/watch?v=kcPAGIgBGRs&feature=youtu.be&list=PLlMkM4tgfjnJhhd4wn5aj8fVTYJwIpWkS), [Ardias논문리뷰](https://www.youtube.com/watch?v=c1_g6tw69bU), [Caffe](https://github.com/rbgirshick/py-faster-rcnn), [PyTorch](https://github.com/longcw/faster_rcnn_pytorch), [MatLab]( https://github.com/ShaoqingRen/faster_rcnn)|
 
 # Faster R-CNN: Towards Real-Time Object Detection with Region Proposal Networks
 
 ---
-# 라온피플 블로그 
+> [텐서플로우 블로그](https://tensorflow.blog/2017/06/05/from-r-cnn-to-mask-r-cnn/)
+
+Fast R-CNN에서 남은 한가지 성능의 병목은 바운딩 박스를 만드는 리전 프로포잘 단계입니다. Faster R-CNN은 리전 프로포잘 단계를 CNN안에 넣어서 마지막 문제를 해결했습니다. CNN을 통과한 특성 맵에서 슬라이딩 윈도우를 이용해 각 지점anchor마다 가능한 바운딩 박스의 좌표와 이 바운딩 박스의 점수를 계산합니다. 대부분 너무 홀쭉하거나 넓은 물체는 많지 않으므로 2:1, 1:1, 1:2 등의 몇가지 타입으로도 좋다고 합니다. Faster R-CNN은 작년에 마이크로소프트에서 내놓은 대표적인 컴퓨터 비전 연구 결과 중 하나입니다.
+
+
+
+
+---
+> 라온피플 블로그 
 
 ## 1. 개요 
 
