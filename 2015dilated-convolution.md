@@ -70,7 +70,7 @@ dilation 계수를 조정하면 다양한 scale에 대한 대응이 가능해진
 
 ### 2.1 Front-end 모듈
 
-![](http://i.imgur.com/EhHZvpV.png)
+![](http://i.imgur.com/7P8LjmC.png)
 
 - FCN이 VGG-16 classification을 거의 그대로 사용
 - Dilated convolution은 VGG-16 classification을 일부 수정하여 사용 
