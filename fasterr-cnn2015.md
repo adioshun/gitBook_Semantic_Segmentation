@@ -3,7 +3,7 @@
 |저자(소속)|Shaoqing Ren, Kaiming He, Ross Girshick, and Jian Sun (MS)|
 |학회/년도|NIPS 2015, [논문](https://arxiv.org/pdf/1506.01497.pdf), [NIPS](https://papers.nips.cc/paper/5638-faster-r-cnn-towards-real-time-object-detection-with-region-proposal-networks.pd) |
 |키워드|“attention” mechanisms,fully convolutional network |
-|참고|[PR-012동영상](https://www.youtube.com/watch?v=kcPAGIgBGRs&feature=youtu.be&list=PLlMkM4tgfjnJhhd4wn5aj8fVTYJwIpWkS), [Ardias동영상](https://www.youtube.com/watch?v=c1_g6tw69bU), [Jamie Kang](https://jamiekang.github.io/2017/05/28/faster-r-cnn/), [Curt-Park](https://curt-park.github.io/2017-03-17/faster-rcnn/)|
+|참고|[PR-012동영상(K)](https://www.youtube.com/watch?v=kcPAGIgBGRs&feature=youtu.be&list=PLlMkM4tgfjnJhhd4wn5aj8fVTYJwIpWkS), [Ardias동영상(E)](https://www.youtube.com/watch?v=c1_g6tw69bU), [Jamie Kang(K)](https://jamiekang.github.io/2017/05/28/faster-r-cnn/), [Curt-Park(K)](https://curt-park.github.io/2017-03-17/faster-rcnn/), [Krzysztof Grajek(E)](https://softwaremill.com/counting-objects-with-faster-rcnn)|
 |코드|[Caffe](https://github.com/rbgirshick/py-faster-rcnn), [PyTorch](https://github.com/longcw/faster_rcnn_pytorch), [MatLab]( https://github.com/ShaoqingRen/faster_rcnn)|
 
 # Faster R-CNN: Towards Real-Time Object Detection with Region Proposal Networks
