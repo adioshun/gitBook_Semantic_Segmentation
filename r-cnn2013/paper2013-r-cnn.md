@@ -1,4 +1,6 @@
-# 논문
+# R-CNN : Rich feature hierarchies for accurate object detection and semantic segmentation
+
+
 
 Abstract : Our approach combines two key insights
 - (1) one can apply high-capacity convolutional neural networks (CNNs) to bottom-up region proposals in order to localize and segment objects and 
