@@ -1,7 +1,7 @@
 |논문명|Faster R-CNN: Towards Real-Time Object Detection with Region Proposal Networks|
 |-|-|
 |저자(소속)|Shaoqing Ren, Kaiming He, Ross Girshick, and Jian Sun (MS)|
-|학회/년도|NIPS 2015, [논문](https://arxiv.org/pdf/1506.01497.pdf), [NIPS](https://papers.nips.cc/paper/5638-faster-r-cnn-towards-real-time-object-detection-with-region-proposal-networks.pd) |
+|학회/년도|NIPS 2015, [논문](https://arxiv.org/pdf/1506.01497.pdf), [NIPS](https://papers.nips.cc/paper/5638-faster-r-cnn-towards-real-time-object-detection-with-region-proposal-networks.pd), [발표자료_ICCV15](http://kaiminghe.com/iccv15tutorial/iccv2015_tutorial_convolutional_feature_maps_kaiminghe.pdf) |
 |키워드|“attention” mechanisms,fully convolutional network |
 |참고|[PR-012동영상(K)](https://youtu.be/kcPAGIgBGRs), [Ardias동영상(E)](https://www.youtube.com/watch?v=c1_g6tw69bU), [Jamie Kang(K)](https://jamiekang.github.io/2017/05/28/faster-r-cnn/), [Curt-Park(K)](https://curt-park.github.io/2017-03-17/faster-rcnn/), [Krzysztof Grajek(E)](https://softwaremill.com/counting-objects-with-faster-rcnn)|
 |코드|[Caffe](https://github.com/rbgirshick/py-faster-rcnn), [PyTorch](https://github.com/longcw/faster_rcnn_pytorch), [MatLab]( https://github.com/ShaoqingRen/faster_rcnn)|
@@ -48,10 +48,17 @@ Anchor box는 sliding window의 각 위치에서 Bounding Box의 후보로 사�
 - Shared CNN에서 convolutional feature map(14X14X512 for VGG)을 입력받는다. 
   - 여기서는 Shared CNN으로 VGG가 사용되었다고 가정한다. (Figure3는 ZF Net의 예시 - 256d)
 
+> RPN은 sliding window에 3×3 convolution을 적용해 input feature map을 256 (ZF) 또는 512 (VGG) 크기의 feature로 mapping합니다.
+
 ### 2.2 Intermediate Layer
 - 3X3 filter with 1 stride and 1 padding을 512개 적용하여 14X14X512의 아웃풋을 얻는다.
 
 ### 2.3 Output layer
+> classification layer (cls)와 box regression layer (reg)으로 들어갑니다. Box classification layer와 box regression layer는 각각 1×1 convolution으로 구현됩니다.
+
+> Box regression을 위한 초기 값으로 anchor라는 pre-defined reference box를 사용합니다. 이 논문에서는 3개의 크기와 3개의 aspect ratio를 가진 총 9개의 anchor를 각 sliding position마다 적용하고 있습니다.
+
+
 #### A. cls layer
 - 1X1 filter with 1 stride and 0 padding을 9*2(=18)개 적용하여 14X14X9X2의 이웃풋을 얻는다. 
 - filter의 개수 : anchor box의 개수(9개) * score의 개수(2개: object? / non-object?)로 결정된다.
