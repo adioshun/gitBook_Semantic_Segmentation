@@ -22,6 +22,105 @@ CNN을 통과한 특성 맵에서 슬라이딩 윈도우를 이용해 각 지점
 Faster R-CNN은 작년에 마이크로소프트에서 내놓은 대표적인 컴퓨터 비전 연구 결과 중 하나입니다.
 
 ---
+> [curt-park](https://curt-park.github.io/2017-03-17/faster-rcnn/)
+
+
+## 1. Region Proposal Networks
+입력 : image를 입력
+출력 : 사각형 형태의 Object Proposal + Objectness Score
+형태 : Fully convolutional network
+
+
+### 1.1 Anchor Box
+Anchor box는 sliding window의 각 위치에서 Bounding Box의 후보로 사용되는 상자
+
+![](http://i.imgur.com/AeQXiE8.png)
+
+동일한 크기의 sliding window를 이동시키며 window의 위치를 중심으로 사전에 정의된 다양한 비율/크기의 anchor box들을 적용하여 feature를 추출하는 것이다. 
+
+장점 : 계산효율이 높은 방식이라 할 수 있다. 
+- image/feature pyramids처럼 image 크기를 조정할 필요가 없으며, 
+- multiple-scaled sliding window처럼 filter 크기를 변경할 필요도 없으므로 
+
+## 2. Computation Process
+
+### 2.1 입력 
+- Shared CNN에서 convolutional feature map(14X14X512 for VGG)을 입력받는다. 
+  - 여기서는 Shared CNN으로 VGG가 사용되었다고 가정한다. (Figure3는 ZF Net의 예시 - 256d)
+
+### 2.2 Intermediate Layer
+- 3X3 filter with 1 stride and 1 padding을 512개 적용하여 14X14X512의 아웃풋을 얻는다.
+
+### 2.3 Output layer
+#### A. cls layer
+- 1X1 filter with 1 stride and 0 padding을 9*2(=18)개 적용하여 14X14X9X2의 이웃풋을 얻는다. 
+- filter의 개수 : anchor box의 개수(9개) * score의 개수(2개: object? / non-object?)로 결정된다.
+
+특정 anchor에 positive label이 할당되는 데에는 다음과 같은 기준이 있다.
+
+1. 가장 높은 Intersection-over-Union(IoU)을 가지고 있는 anchor.
+2. IoU > 0.7 을 만족하는 anchor.
+  - IoU < 0.3 : non-positive anchor
+
+
+
+#### B. reg layer
+- 1X1 filter with 1 stride and 0 padding을 9*4(=36)개 적용하여 14X14X9X4의 아웃풋을 얻는다. 
+- 여기서 filter의 개수는, anchor box의 개수(9개) * 각 box의 좌표 표시를 위한 데이터의 개수(4개: x, y, w, h)로 결정된다.
+
+
+###### [참고] output layer에서 사용되는 파라미터의 개수 (VGG-16을 기준)
+- 약 2.8 X 10^4개의 파라미터를 갖게 되는데(512 X (4+2) X 9), 
+- 다른 모델(eg.GoogleNet:6.1 X 10^6-)보다 적다  
+  - 이를 통해 small dataset에 대한 overfitting의 위험도가 상대적으로 낮으리라 예상할 수 있다.
+
+
+## 3. Loss Function 
+> 첫 논문에는 없다가 추후 [ICCV 2015 튜토리얼](https://www.dropbox.com/s/xtr4yd4i5e0vw8g/iccv15_tutorial_training_rbg.pdf)에서 추가 발표 
+
+### 3.1 전체 Loss Function
+
+![](http://i.imgur.com/NJnrGcR.png)
+- pi: Predicted probability of anchor
+- pi*: Ground-truth label (1: anchor is positive, 0: anchor is negative)
+- lambda: Balancing parameter. Ncls와 Nreg 차이로 발생하는 불균형을 방지하기 위해 사용된다.
+  -  cls에 대한 mini-batch의 크기가 256(=Ncls)이고, 이미지 내부에서 사용된 모든 anchor의 location이 약 2,400(=Nreg)라 하면 lamda 값은 10 정도로 설정한다.
+- ti: Predicted Bounding box
+- ti*: Ground-truth box
+
+### 3.2 $$L_{reg}$$ 부분 
+Bounding box regression 과정(Lreg)에서는 4개의 coordinate들에 대해 다음과 같은 연산을 취한 후,
+
+![](http://i.imgur.com/yJRNbc2.png)
+
+- x,y,w,h : 박스의 중앙 위치와 넓이, 높이 
+- $$x$$ : 예측된 박스 
+- $$x_a$$ : Achor 박스
+- $$x^*$$ : Ground-truth 박스 
+
+### 3.3 $$L_{loc}$$ 부분 
+Smooth L1 loss function(아래)을 통해 Loss를 계산한다.
+
+![](http://i.imgur.com/qupSFeb.png)
+
+R-CNN / Fast R-CNN에서는 모든 Region of Interest가 그 크기와 비율에 상관없이 weight를 공유했던 것에 비해, 이 anchor 방식에서는 k개의 anchor에 상응하는 k개의 regressor를 갖게된다.
+
+## 4. Training RPNs시 사용한 파라미터 
+- end-to-end로 back-propagation 사용.
+- Stochastic gradient descent
+- 한 이미지당 랜덤하게 256개의 sample anchor들을 사용. 
+  - 이때, Sample은 positive anchor:negative anchor = 1:1 비율로 섞는다. 
+  - 혹시 positive anchor의 개수가 128개보다 낮을 경우, 빈 자리는 negative sample로 채운다. 
+  - 이미지 내에 negative sample이 positive sample보다 훨씬 많으므로 이런 작업이 필요하다.
+- 모든 weight는 랜덤하게 초기화.
+  - from a zero-mean Gaussian distribution with standard deviation 0.01
+- ImageNet classification으로 fine-tuning 
+  - (ZF는 모든 layer들, VGG는 conv3_1포함 그 위의 layer들만. Fast R-CNN 논문 4.5절 참고.)
+- Learning Rate: 0.001 (처음 60k의 mini-batches), 0.0001 (다음 20k의 mini-batches)
+- Momentum: 0.9
+- Weight decay: 0.0005
+
+---
 > [라온피플 블로그](http://laonple.blog.me/220782324594)
 
 ## 1. 개요 
@@ -53,7 +152,9 @@ RPN을 이용하여 object가 있을만한 영역에 대한 proposal을 구하�
 > model의 형태 : Fully-convolutional network 형태
 
 ![](http://i.imgur.com/SH43wOr.png)
-  
+
+> convolutional feature map을 입력 받는다 . ZF Net의 예시 - 256d
+
 - 각각의 sliding window에서는 총 k개의 object 후보를 추천할 수 있으며, 
 
 - 이것들은 sliding window의 중심을 기준으로 scale과 aspect ratio를 달리하는 조합(논문에서는 anchor라고 부름)이 가능하다. 
@@ -113,7 +214,16 @@ ImageNet 데이터로 미리 학습된 CNN M0를 준비합니다.
 - RPN 모델 M3의 conv feature를 고정시킨 상태에서 Fast R-CNN 모델 M4를 학습합니다.
 
 
-### B. 추후 제안 방법 (ICCV 2015 튜토리얼)
+```
+4-step alternating training
+
+1. Train RPNs
+2. Train Fast R-CNN using the proposals from RPNs
+3. Fix the shared convolutional layers and fine-tune unique layers to RPN
+4. Fine-tune unique layers to Fast R-CNN
+```
+
+### B. 추후 제안 방법 ([ICCV 2015 튜토리얼](https://www.dropbox.com/s/xtr4yd4i5e0vw8g/iccv15_tutorial_training_rbg.pdf))
 
 ![](http://i.imgur.com/d7RwSeh.png)
 
