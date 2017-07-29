@@ -3,7 +3,7 @@
 |저자(소속)|Shaoqing Ren, Kaiming He, Ross Girshick, and Jian Sun (MS)|
 |학회/년도|NIPS 2015, [논문](https://arxiv.org/pdf/1506.01497.pdf), [NIPS](https://papers.nips.cc/paper/5638-faster-r-cnn-towards-real-time-object-detection-with-region-proposal-networks.pd) |
 |키워드|“attention” mechanisms,fully convolutional network |
-|참고|[PR-012동영상(K)](https://www.youtube.com/watch?v=kcPAGIgBGRs&feature=youtu.be&list=PLlMkM4tgfjnJhhd4wn5aj8fVTYJwIpWkS), [Ardias동영상(E)](https://www.youtube.com/watch?v=c1_g6tw69bU), [Jamie Kang(K)](https://jamiekang.github.io/2017/05/28/faster-r-cnn/), [Curt-Park(K)](https://curt-park.github.io/2017-03-17/faster-rcnn/), [Krzysztof Grajek(E)](https://softwaremill.com/counting-objects-with-faster-rcnn)|
+|참고|[PR-012동영상(K)](https://youtu.be/kcPAGIgBGRs), [Ardias동영상(E)](https://www.youtube.com/watch?v=c1_g6tw69bU), [Jamie Kang(K)](https://jamiekang.github.io/2017/05/28/faster-r-cnn/), [Curt-Park(K)](https://curt-park.github.io/2017-03-17/faster-rcnn/), [Krzysztof Grajek(E)](https://softwaremill.com/counting-objects-with-faster-rcnn)|
 |코드|[Caffe](https://github.com/rbgirshick/py-faster-rcnn), [PyTorch](https://github.com/longcw/faster_rcnn_pytorch), [MatLab]( https://github.com/ShaoqingRen/faster_rcnn)|
 
 # Faster R-CNN: Towards Real-Time Object Detection with Region Proposal Networks
@@ -228,3 +228,29 @@ ImageNet 데이터로 미리 학습된 CNN M0를 준비합니다.
 ![](http://i.imgur.com/d7RwSeh.png)
 
 RPN의 loss function과 Fast R-CNN의 loss function을 모두 합쳐 multi-task loss로 정의 하여 해결 
+--
+
+> [jamiekang](https://jamiekang.github.io/2017/05/28/faster-r-cnn/)
+
+## 1. 관련 용어들 
+
+### 1.1 [Hard Negative Mining](https://www.reddit.com/r/computervision/comments/2ggc5l/what_is_hard_negative_mining_and_how_is_it/)
+
+Hard Negative Mining은 positive example과 negative example을 균형적으로 학습하기 위한 방법입니다.
+
+단순히 random하게 뽑은 것이 아니라 confidence score가 가장 높은 순으로 뽑은 negative example을 (random하게 뽑은 positive example과 함께) training set에 넣어 training합니다.
+
+![](http://i.imgur.com/jDCslgl.png)
+
+### 1.2 Non Maximum Suppression
+Non Maximum Suppression은 edge thinning 기법으로, 여러 box가 겹치게 되면 가장 확실한 것만 고르는 방법입니다. 
+
+![](http://i.imgur.com/kbuSYIw.png)
+
+### 1.3 Bounding Box Regression
+Bound box의 parameter를 찾는 regression을 의미합니다. 
+
+초기의 region proposal이 CNN이 예측한 결과와 맞지 않을 수 있기 때문입니다. 
+
+Bounding box regressor는 CNN의 마지막 pooling layer에서 얻은 feature 정보를 사용해 region proposal의 regression을 계산합니다. 
+
