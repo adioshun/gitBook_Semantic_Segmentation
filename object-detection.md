@@ -13,10 +13,11 @@
 |-|-|-|-|-|-|
 |2014|R-CNN|[논문](https://arxiv.org/abs/1311.2524)|Image|Bounding boxes + labels for each object in the image.|AlexNet, 'Selective Search'사용 |
 |2015|Fast R-CNN|[논문](https://arxiv.org/abs/1504.08083)|Images with region proposals.|Object classifications |Speeding up and Simplifying R-CNN, RoI Pooling|
-|2016|Faster R-CNN|[논문](https://arxiv.org/abs/1506.01497),[한글](https://curt-park.github.io/2017-03-17/faster-rcnn/)| CNN Feature Map.|A bounding box per anchor|MS, Region Proposal|
-|2017|Mask R-CNN|[논문](https://arxiv.org/abs/1703.06870)|CNN Feature Map.|Matrix with 1s on all locations|Facebook, pixel level|
+|2016|Faster R-CNN|[논문](https://arxiv.org/abs/1506.01497)| CNN Feature Map.|A bounding box per anchor|MS, Region Proposal|
+||YOLO|||||
+||SSD||||Faster R-CNN + YOLO|
 
-> 추천 : [R-CNNs Tutorial](https://blog.lunit.io/2017/06/01/r-cnns-tutorial/)
+> 2017년 [Mask R-CNN](https://arxiv.org/abs/1703.06870)이 발표 되었지만 Segmentation 분야여서 포함 안함 
 
 # RCNN
 Approaches using RCNN-trained models in multi-stage pipelines (first detecting object boundaries and then performing identification) 
