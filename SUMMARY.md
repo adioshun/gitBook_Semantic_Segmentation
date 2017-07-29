@@ -19,6 +19,7 @@
   * [Paper\_2015\_Fast\_R-CNN](fastr-cnn2015/paper2015-fast-r-cnn.md)
 * [2015\_Faster\_R-CNN](fasterr-cnn2015.md)
   * [Paper\_2015\_Faster\_R-CNN](fasterr-cnn2015/paper2015-faster-r-cnn.md)
+* [2015\_YOLO](2015yolo.md)
 * [2016\_Faster\_R-CNN+ResNet](2016faster-r-cnn+rednet.md)
 
 ## Semantic Segmentation
