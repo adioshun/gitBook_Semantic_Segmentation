@@ -10,10 +10,15 @@
 ---
 > [텐서플로우 블로그](https://tensorflow.blog/2017/06/05/from-r-cnn-to-mask-r-cnn/)
 
-Fast R-CNN에서 남은 한가지 성능의 병목은 바운딩 박스를 만드는 리전 프로포잘 단계입니다. Faster R-CNN은 리전 프로포잘 단계를 CNN안에 넣어서 마지막 문제를 해결했습니다. CNN을 통과한 특성 맵에서 슬라이딩 윈도우를 이용해 각 지점anchor마다 가능한 바운딩 박스의 좌표와 이 바운딩 박스의 점수를 계산합니다. 대부분 너무 홀쭉하거나 넓은 물체는 많지 않으므로 2:1, 1:1, 1:2 등의 몇가지 타입으로도 좋다고 합니다. Faster R-CNN은 작년에 마이크로소프트에서 내놓은 대표적인 컴퓨터 비전 연구 결과 중 하나입니다.
+Fast R-CNN에서 남은 한가지 성능의 병목은 바운딩 박스를 만드는 리전 프로포잘 단계입니다. 
 
+Faster R-CNN은 리전 프로포잘 단계를 CNN안에 넣어서 마지막 문제를 해결했습니다. 
 
+CNN을 통과한 특성 맵에서 슬라이딩 윈도우를 이용해 각 지점anchor마다 가능한 바운딩 박스의 좌표와 이 바운딩 박스의 점수를 계산합니다. 
 
+대부분 너무 홀쭉하거나 넓은 물체는 많지 않으므로 2:1, 1:1, 1:2 등의 몇가지 타입으로도 좋다고 합니다. 
+
+Faster R-CNN은 작년에 마이크로소프트에서 내놓은 대표적인 컴퓨터 비전 연구 결과 중 하나입니다.
 
 ---
 > 라온피플 블로그 
@@ -57,10 +62,37 @@ RPN을 이용하여 object가 있을만한 영역에 대한 proposal을 구하�
   - translation-invariant한 성질로 인해 model의 수가 크게 줄어들게 된다. 
   - k= 9인 경우에 (4 + 2) x 9 차원으로 차원이 줄어들게 되어, 결과적으로 연산량을 크게 절감
 
-
-
-
-
-
 ---
 
+
+> [R-CNNs Tutorial](https://blog.lunit.io/2017/06/01/r-cnns-tutorial/)
+
+## 1. RPN: Region Proposal Network
+
+### 1.1 동작 과정 
+
+![](http://i.imgur.com/Vd93ngo.png)
+
+- Feature map 위의 N $$\times$$ N 크기의 작은 window 영역을 입력으로 받고,  
+  - 하나의 feature map에서 모든 영역에 대해 물체의 존재 여부를 확인하기 위해서는 앞서 설계한 작은 N $$\times$$ N 영역을 sliding window 방식으로 탐색하면 될 것입니다. 
+  
+
+- 해당 영역에 물체가 존재하는지/존재하지 않는지에 대한 binary classification을 수행하는 작은 classification network를 만들어 볼 수 있습니다.  
+
+- R-CNN, Fast R-CNN에서 사용되었던 bounding-box regression 또한 위치를 보정해주기 위해 추가로 사용됩니다. 
+
+- 이러한 작동 방식은 N $$\times$$ N 크기의 convolution filter, 그리고 classification과 regression을 위한 1 $$\times$$ 1 convolution filter를 학습하는 것으로 간단하게 구현할 수 있습니다.
+
+### 1.2 Anchor
+
+문제점 : 다양한 후보영역 크기로 인해 고정된 N $$\times$$ N 크기의 입력만 처리 어려움 
+
+미리 정의된 여러 크기와 비율의 reference box _k_를 정해놓고 각각의 sliding-window 위치마다 k개의 box를 출력하도록 설계하고 이러한 방식을 anchor라고 명칭
+  - 하나의 feature map에 총 W $$\times$$ H $$\times$$ k개의 anchor가 존재하게 됩니다. 
+  - eg. anchor k = 3가지의 크기(128, 256, 512), 3가지의 비율(2:1, 1:1, 1:2)   =9
+
+RPN의 출력값은, 모든 anchor 위치에 대해 
+- 각각 물체/배경을 판단하는 2k개의 classification 출력과, 
+- x,y,w,h 위치 보정값을 위한 4k개의 regression 출력을 지니게 됩니다.
+
+## 1.3 Alternating optimization : RPN 학습 과정

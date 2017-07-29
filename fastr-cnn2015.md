@@ -27,9 +27,18 @@ Fast R-CNN은 이 문제들을 해결했습니다.
 |-|-|
 |![](http://i.imgur.com/IASEVnA.png)|![](http://i.imgur.com/7FvA0FA.png)|
 
+
+
+
+![](http://i.imgur.com/JpoSiUp.png)
+
+
+
 ## 1. 개요 
 
 ### 1.1 R-CNN 문제점
+
+
 
 - Training이 3 단계로 이루어짐.
   - 우선 약 2000여개의 후보 영역에 대하여 log loss 방식을 사용하여 fine tuning을 한다. 
@@ -111,6 +120,19 @@ R-CNN과 SPPNet : region-wise sampling
 Fast R-CNN : hierarchical sampling
 
 > 상세내용은 [라온피플 블로그](http://laonple.blog.me/220752877630) 참고
+
+---
+
+![](http://i.imgur.com/jnHoUPP.png)
+
+> [R-CNNs Tutorial](https://blog.lunit.io/2017/06/01/r-cnns-tutorial/)
+
+- R-CNN에서는 Softmax classifier와 linear bounding-box regressor를 따로 학습했습니다.
+  - 반면, Fast R-CNN에서는 두 함수의 loss를 더한 multi-task loss를 기반으로 동시에 두 가지 task를 학습합니다.
+
+- R-CNN에서는 여러 장의 이미지에서 랜덤하게 N개의 영역을 샘플링한 mini-batch를 구성하여 학습을 진행하였습니다. 이러한 방식을 Fast R-CNN에 적용할 경우, 샘플링한 N개의 영역이 K개의 이미지로부터 오게 되고, K가 N에 가까울 확률이 높습니다. 각 영역의 feature를 얻기 위해서는 K번의 CNN 연산이 필요합니다. (region-wise sampling)
+  - Fast R-CNN에서는 이를 개선하기 위해 R-CNN의 RoI 샘플링 방식 대신, 1장 또는 2장 이내의 이미지에서 N개의 영역을 샘플링한 mini-batch를 사용함으로써 Fast R-CNN 학습에 필요한 CNN 연산량을 효율적으로 줄일 수 있었습니다. (image-centric sampling)
+
 
 
 
