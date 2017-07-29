@@ -3,7 +3,7 @@
 |저자(소속)|Kaiming He, Georgia Gkioxari, Piotr Dollár, Ross Girshick (Facebook)|
 |학회/년도|2017 [논문](https://arxiv.org/abs/1703.06870)|
 |키워드| |
-|참고| [딥러닝강사](http://blog.naver.com/sogangori/221012300995), [Faster R-CNN to Mask R-CNN](http://www.yuthon.com/2017/04/27/Notes-From-Faster-R-CNN-to-Mask-R-CNN/) |
+|참고| [sogangori(K)](http://blog.naver.com/sogangori/221012300995), [Yuthon(E)](http://www.yuthon.com/2017/04/27/Notes-From-Faster-R-CNN-to-Mask-R-CNN/) |
 |구현 코드|[PyTorch](https://github.com/felixgwu/mask_rcnn_pytorch), [TensorFlow](https://github.com/CharlesShang/FastMaskRCNN)|
 
 
