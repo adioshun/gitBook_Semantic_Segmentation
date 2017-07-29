@@ -23,12 +23,9 @@ $$
 ## 2. 다양한 Pooling Layer
 
 ### 2.1 Spatial Pyramid Pooling
+> SPPNet에 적용된 Pooling Layer
 
 ![](http://i.imgur.com/IPbiLQ3.png)
-
-
-
-- SPPNet에 적용된 Pooling Layer
 
 - Object Detection 네트워크의 후보영역(다양한크기)에 대한 처리 
     - 다양한 입력 크기 처리
@@ -55,6 +52,29 @@ $$
 
 > 출처 : [R-CNNs Tutorial](https://blog.lunit.io/2017/06/01/r-cnns-tutorial/)
 
-### 2.2 RoI Pooling
+### 2.2 Region of Interest(RoI) Pooling
+>Fast R-CNN에 적용된 Pooling Layer
 
-- Fast R-CNN에 적용된 Pooling Layer
+![](http://i.imgur.com/idoUX2g.png)
+
+- SPP layer[2.1]의 single level pyramid만을 사용
+
+- RoI Pooling layer에서 다양한 후보 영역들에 대하여 FC layer로 들어갈 수 있도록 크기를 조정하는 역할 수행
+
+#### A. 동작 과정 
+
+목표 : 입력 feature map의 사이즈가 a $$\times$$ a 이고, 출력 bin이  n $$\times$$ n개로 함 
+
+방법 : bin의 window size를 올림하고( $$win = \lceil a/n \rceil $$), 각 bin을 pooling하기 위한 stride를 내림 ($$ str = \lfloor a/n \rfloor$$ ) 
+
+장점 : bin의 window size가 정수배가 되지 않는 misalignment문제 해결 (eg.  13×13 feature map을 6×6 bins으로 나눌 경우 window size가 2.167)
+
+단점 : 올림/내림 과정에서 좌표값의 미묘한 차이 발생 
+    - Fast R-CNN 같은 Object Detection에는 큰 문제 아님 
+    - Mask R-CNN 같은 Fixel단위 Detection에는 큰 문제, [2.3]으로 해결
+    
+### 2.3 RoIAlign layer
+
+> Mask R-CNN에 적용된 Pooling Layer
+
+- Fast R-CNN에서 사용하는 RoI Pooling layer의 단점 해결 
