@@ -95,4 +95,25 @@ RPN의 출력값은, 모든 anchor 위치에 대해
 - 각각 물체/배경을 판단하는 2k개의 classification 출력과, 
 - x,y,w,h 위치 보정값을 위한 4k개의 regression 출력을 지니게 됩니다.
 
-## 1.3 Alternating optimization : RPN 학습 과정
+## 1.3 RPN 학습 과정
+
+### A. Alternating optimization (임시, 논문에 기술된 방법)
+
+RPN과 Fast R-CNN이 서로 convolution feature를 공유한 상태에서 번갈아가며 학습을 진행하는 복잡한 형태
+- (NIPS 논문 제출로 인하여 급히 만든 임시 버젼이라고 밝힘)
+
+ImageNet 데이터로 미리 학습된 CNN M0를 준비합니다.
+
+- M0 conv feature map을 기반으로 RPN M1를 학습합니다.
+- RPN M1을 사용하여 이미지들로부터 region proposal P1을 추출합니다.
+- 추출된 region proposal P1을 사용해 M0를 기반으로 Fast R-CNN을 학습하여 모델 M2를 얻습니다.
+- Fast R-CNN 모델 M2의 conv feature를 모두 고정시킨 상태에서 RPN을 학습해 RPN 모델 M3을 얻습니다.
+- RPN 모델 M3을 사용하여 이미지들로부터 region proposal P2을 추출합니다.
+- RPN 모델 M3의 conv feature를 고정시킨 상태에서 Fast R-CNN 모델 M4를 학습합니다.
+
+
+### B. 추후 제안 방법 (ICCV 2015 튜토리얼)
+
+![](http://i.imgur.com/d7RwSeh.png)
+
+RPN의 loss function과 Fast R-CNN의 loss function을 모두 합쳐 multi-task loss로 정의 하여 해결 
