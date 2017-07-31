@@ -23,6 +23,7 @@
   * [Paper\_2015\_Faster\_R-CNN](fasterr-cnn2015/paper2015-faster-r-cnn.md)
 * [2015\_YOLO](2015yolo.md)
 * [2015\_SSD](2015ssd.md)
+  * [Paper\_2015\_SSD](2015ssd/paper2015-ssd.md)
 * [2016\_Faster\_R-CNN+ResNet](2016faster-r-cnn+rednet.md)
 * [2016\_YOLO2\_YOLO9000](2016yolo2-yolo9000.md)
 
