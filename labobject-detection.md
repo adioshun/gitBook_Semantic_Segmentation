@@ -12,7 +12,7 @@
 
 > [Tensorflow Object Detection API (SSD, Faster-R-CNN)](http://goodtogreate.tistory.com/entry/Tensorflow-Object-Detection-API-SSD-FasterRCNN)
 
-
+> [How to train your own Object Detector with TensorFlow’s Object Detector API](https://medium.com/towards-data-science/how-to-train-your-own-object-detector-with-tensorflows-object-detector-api-bec72ecfe1d9)
 
 ---
 
