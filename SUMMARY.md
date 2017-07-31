@@ -25,7 +25,8 @@
   * [Paper\_2015\_SSD](2015ssd/paper2015-ssd.md)
 * [2016\_Faster\_R-CNN+ResNet](2016faster-r-cnn+rednet.md)
 * [2016\_YOLO2\_YOLO9000](2016yolo2-yolo9000.md)
-* [2016\_R-FCN](2016r-fcn.md)
+* [2016\_R-FCN\(작성중\_0%\)](2016r-fcn.md)
+* [2017\_Deconvolutional SSD](2017deconvolutional-ssd.md)
 * [Lab\_Object\_Detection](labobject-detection.md)
 
 ## Semantic Segmentation
