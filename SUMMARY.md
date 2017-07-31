@@ -11,6 +11,7 @@
 
 * [intro\_Object Detection](object-detection.md)
 * [2012\_Selective Search](selective-search2012.md)
+  * [Paper\_2012\_SelectiveSearch](selective-search2012/paper2012-selectivesearch.md)
 * [2013\_R-CNN](r-cnn2013.md)
   * [Paper\_2013\_R-CNN](r-cnn2013/paper2013-r-cnn.md)
 * [2013\_SPPNets](2013sppnets.md)
@@ -33,7 +34,7 @@
 
 ## 참고
 
-* [ref01\_Evaluation\_mAP](ref01evaluation-map.md)
+* [ref01\_Evaluation\_mAP\_IoU](ref01evaluation-map.md)
 * [ref02\_Pooling에 대한 고찰](ref02pooling-c5d0-b300-d55c-ace0-cc30.md)
 * [ref03\_FCN에 대한 고찰\(작성중\)](ref03fcn-c5d0-b300-d55c-ace0-cc3028-c791-c131-c91129.md)
 

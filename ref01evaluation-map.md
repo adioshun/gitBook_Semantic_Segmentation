@@ -23,3 +23,4 @@
 |![](http://i.imgur.com/HXXb6WX.png)|![](http://i.imgur.com/LjtA6h8.png)|
 |-|-|
 
+> 출처 : [Intersection over Union (IoU) for object detection](http://www.pyimagesearch.com/2016/11/07/intersection-over-union-iou-for-object-detection/)
