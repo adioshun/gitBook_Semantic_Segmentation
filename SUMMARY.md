@@ -3,7 +3,6 @@
 ## 개요
 
 * [Introduction](README.md)
-* [Fundamental](laonb77c-c628-be14-b85c-adf8.md)
 * [Infographic](infographic.md)
 * [CS231n Lecture 8 - Localization and Detection](cs231n-lecture-8-localization-and-detection.md)
 * [CS231n Lecture 13 - Segmentation\(작성중\_0%\)](cs231n-lecture-13-segmentation.md)
@@ -30,6 +29,7 @@
 ## Semantic Segmentation
 
 * [intro\_Semantic Segmentation](introsemantic-segmentation.md)
+* [Fundamental\_Segmentation](laonb77c-c628-be14-b85c-adf8.md)
 * [2015\_Fully Convolutional Network\(작성중\_80%\)](2015fully-convolutional-network.md)
 * [2015\_Deconvolutional Network](2015deconvolutional-network.md)
 * [2016\_Dilated convolution](2015dilated-convolution.md)
@@ -41,4 +41,5 @@
 * [ref01\_Evaluation\_mAP\_IoU](ref01evaluation-map.md)
 * [ref02\_Pooling에 대한 고찰](ref02pooling-c5d0-b300-d55c-ace0-cc30.md)
 * [ref03\_FCN에 대한 고찰\(작성중\_0%\)](ref03fcn-c5d0-b300-d55c-ace0-cc3028-c791-c131-c91129.md)
+* [ref04\_Datasets](ref04datasets.md)
 
