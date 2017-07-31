@@ -19,4 +19,4 @@
 
 ## Material 
 
-- [히치하이커를 위한 Deep Object Detectors (https://www.slideshare.net/IldooKim/deep-object-detectors-1-20166): 추천, Selective Search에서 YOLO까지 
+- [히치하이커를 위한 Deep Object Detectors](https://www.slideshare.net/IldooKim/deep-object-detectors-1-20166): 추천, Selective Search에서 YOLO까지 
