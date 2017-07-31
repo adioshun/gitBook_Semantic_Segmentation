@@ -76,3 +76,11 @@ Faster R-CNN introduces a Region Proposal Network (RPN) that shares full-image c
 
 - K. He, X. Zhang, S. Ren, J. Sun, Deep Residual Learning for Image Recognition,
 CVPR 2016. (R-CNNs are based on ResNets)
+
+
+--- 
+
+# 성능향상 기법 
+
+- Hard negative mining을 이용한 2~3% 성능 향상 방법들에 대한 서베이 논문 
+    - [Training Region-based Object Detectors with Online Hard Example Mining](https://arxiv.org/abs/1604.03540)
