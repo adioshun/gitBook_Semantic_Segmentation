@@ -6,6 +6,14 @@
 * [Infographic](infographic.md)
 * [CS231n Lecture 8 - Localization and Detection](cs231n-lecture-8-localization-and-detection.md)
 * [CS231n Lecture 13 - Segmentation\(작성중\_0%\)](cs231n-lecture-13-segmentation.md)
+* [CS231n Lecture 7 - ConvNetworks](cs231n-lecture-7-convnetworks.md)
+* [1990\_LeNet](1990lenet.md)
+* [2012\_AlexNet](2012alexnet.md)
+* [2013\_ZFNet](2013zfnet.md)
+* [2014\_GoogLeNet](2014googlenet.md)
+* [2014\_VGGNet](2014vggnet.md)
+* [2015\_ResNet](2015resnet.md)
+* 2016\_ResNet\_Inception-V4
 
 ## Object Detection
 
