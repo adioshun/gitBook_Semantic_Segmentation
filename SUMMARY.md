@@ -1,6 +1,6 @@
 # Summary
 
-## 개요
+## Classification
 
 * [Introduction](README.md)
 * [Infographic](infographic.md)
