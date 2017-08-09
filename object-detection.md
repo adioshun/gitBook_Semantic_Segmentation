@@ -2,6 +2,8 @@
 
 ![](http://i.imgur.com/9xApnEN.png)
 
+![](http://i.imgur.com/8V91Ouw.png)
+
 - Region 기반 딥러닝 : R-CNN, Fast R-CNN, Faster R-CNN, Mask R-CNN
 
 - Grid 기반 딥러닝 : YOLO, DetectNet
