@@ -59,7 +59,7 @@ CVPR 2016. (R-CNNs are based on ResNets)
 |R-FCN (ResNet-101),multi sc train|83.6%|-|82.0%|-|31.5%(@[0.5-0.95]), 53.2%(@0.5)|-|
 |PVANet 9.0|81.8%|-|82.5%|-|-|750ms(CPU), 46ms(TitianX)|
 
-> [출처](https://github.com/Smorodov/Deep-learning-object-detection-links./blob/master/readme.md) : 추후 살펴 보기 
+> [출처](https://github.com/Smorodov/Deep-learning-object-detection-links./blob/master/readme.md) : 추후 살펴 보기, [블로그](https://handong1587.github.io/deep_learning/2015/10/09/object-detection.html)
 
 --- 
 
