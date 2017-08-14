@@ -21,50 +21,6 @@
 
 > 2017년 [Mask R-CNN](https://arxiv.org/abs/1703.06870)이 발표 되었지만 Segmentation 분야여서 포함 안함 
 
-# RCNN
-Approaches using RCNN-trained models in multi-stage pipelines (first detecting object boundaries and then performing identification) 
- - rather slow and not suited for real time processing. 
-
-The drawback of this approach is mainly its __speed__, both during the training and during the actual testing while object detection was performed. 
-    - eg. VGG16, the training process for a standard RCNN takes 2.5 GPU-days for the 5k images and requires hundreds of GB of storage. Detecting objects at test-time takes 47s/image using a GPU. This is mainly caused by performing a forward pass on the convolutional network for each object proposal, without sharing the computation.
-
-# Fast R-CNN
-
-Fast R-CNN improved RCNN by introducing a single-stage training algorithm which classifies objects and their spatial locations in a single processing stage. The improvements introduced in Fast R-CNN are:
-- Higher detection quality
-- Training in a single stage using multi-task loss
-- Training can update all network layers
-- No disk storage is required for feature caching
-
-# Faster R-CNN
-
-Faster R-CNN introduces a Region Proposal Network (RPN) that shares full-image convolutional features with the detection network, enabling nearly cost-free region proposals. The RPN component of this solution tells the unified network where to look. For the same VGG-16 model, Faster R-CNN has a frame rate of 5 fps on a GPU while achieving state-of-the-art object detection accuracy. The RPN is a kind of a fully convolutional network and can be trained end-to-end specifically for the task of generating detection proposals and is designed to efficiently predict region proposals with a wide range of scales and aspect ratios. [[Code]](https://github.com/softberries/keras-frcnn)
-
-
-> 출처 : [Counting Objects with Faster R-CNN](https://softwaremill.com/counting-objects-with-faster-rcnn/)
-
-# YOLO
-
-- Super fast detector (21~155 fps)
-
-- Finding objects at each grid __in parallel__
-
-- 성능 : Fast R-CNN < YOLO < Faster R-CNN 
-
-
-
-
-# SSD 
-
-- Faster R-CNN + YOLO
-
-- Multi-scale feature map detection 
-    - Detect small objects on lower level, large objects on higher level
-    
-- End-to-End training/testing 
-
-
-
 
 # 참고 자료 
 
@@ -79,6 +35,31 @@ Faster R-CNN introduces a Region Proposal Network (RPN) that shares full-image c
 - K. He, X. Zhang, S. Ren, J. Sun, Deep Residual Learning for Image Recognition,
 CVPR 2016. (R-CNNs are based on ResNets)
 
+
+
+|Method|VOC2007|VOC2010|VOC2012|ILSVRC 2013|MSCOCO 2015|Speed|
+|--- |--- |--- |--- |--- |--- |--- |
+|OverFeat|-|-|-|24.3%|-|-|
+|R-CNN (AlexNet)|58.5%|53.7%|53.3%|31.4%|-|-|
+|R-CNN (VGG16)|66.0%|-|-|-|-|-|
+|SPP_net(ZF-5)|54.2%(1-model), 60.9%(2-model)|-|-|31.84%(1-model), 35.11%(6-model)|-|-|
+|DeepID-Net|64.1%|-|-|50.3%|-|-|
+|NoC|73.3%|-|68.8%|-|-|-|
+|Fast-RCNN (VGG16)|70.0%|68.8%|68.4%|-|19.7%(@[0.5-0.95]), 35.9%(@0.5)|-|
+|MR-CNN|78.2%|-|73.9%|-|-|-|
+|Faster-RCNN (VGG16)|78.8%|-|75.9%|-|21.9%(@[0.5-0.95]), 42.7%(@0.5)|198ms|
+|Faster-RCNN (ResNet-101)|85.6%|-|83.8%|-|37.4%(@[0.5-0.95]), 59.0%(@0.5)|-|
+|SSD300 (VGG16)|72.1%|-|-|-|-|58 fps|
+|SSD500 (VGG16)|75.1%|-|-|-|-|23 fps|
+|ION|79.2%|-|76.4%|-|-|-|
+|CRAFT|75.7%|-|71.3%|48.5%|-|-|
+|OHEM|78.9%|-|76.3%|-|25.5%(@[0.5-0.95]), 45.9%(@0.5)|-|
+|R-FCN (ResNet-50)|77.4%|-|-|-|-|0.12sec(K40), 0.09sec(TitianX)|
+|R-FCN (ResNet-101)|79.5%|-|-|-|-|0.17sec(K40), 0.12sec(TitianX)|
+|R-FCN (ResNet-101),multi sc train|83.6%|-|82.0%|-|31.5%(@[0.5-0.95]), 53.2%(@0.5)|-|
+|PVANet 9.0|81.8%|-|82.5%|-|-|750ms(CPU), 46ms(TitianX)|
+
+> [출처](https://github.com/Smorodov/Deep-learning-object-detection-links./blob/master/readme.md) : 추후 살펴 보기 
 
 --- 
 
