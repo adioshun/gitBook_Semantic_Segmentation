@@ -47,6 +47,7 @@
 * [2015\_Deconvolutional Network](2015deconvolutional-network.md)
 * [2016\_Dilated convolution](2015dilated-convolution.md)
 * [2016\_DeepLab v2](2016deeplab.md)
+* [2016\_MultiNet\_Semantic](2016multinet-semantic.md)
 * [2017\_Mask R-CNN\(작성중\_20%\)](2017mask-r-cnn.md)
 
 ## 참고
