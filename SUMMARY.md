@@ -35,6 +35,7 @@
 * [2016\_YOLO2\_YOLO9000](2016yolo2-yolo9000.md)
 * [2016\_R-FCN\(작성중\_0%\)](2016r-fcn.md)
 * [2016\_DenseNet](2016densenet.md)
+* [2016\_SqueezeDet](2016squeezedet.md)
 * [2017\_Deconvolutional SSD\(작성중\_0%\)](2017deconvolutional-ssd.md)
 * [Lab\_Object\_Detection](labobject-detection.md)
 
