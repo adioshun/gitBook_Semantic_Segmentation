@@ -26,3 +26,8 @@
 - [A 2017 Guide to Semantic Segmentation with Deep Learning](http://blog.qure.ai/notes/semantic-segmentation-deep-learning-review) : 하기 논문 8편에 대한 분석(FCN,SegNet,Dilated Convolutions,DeepLab (v1 & v2),RefineNet,PSPNet,Large Kernel Matters,DeepLab v3)
 
 - [Case study of Convolutional Neural Network](http://nmhkahn.github.io/Casestudy-CNN): 하기 논문 6편에 대한 **한글** 분석(AlexNet, VGGNet, Network In Network, GoogLeNet, PReLU-net, ResNet)
+
+---
+
+![](https://i.imgur.com/FJoFhaH.png)
+[ 라온피플 머신러닝 아카데미](http://laonple.blog.me/220918802749)
