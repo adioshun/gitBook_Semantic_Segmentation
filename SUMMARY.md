@@ -52,7 +52,7 @@
 
 ## Video Segmentation 
 
-* [Intor](intro_Video_segmentation.md)
+* [Intro](intro_Video_segmentation.md)
 
 ## 참고
 
