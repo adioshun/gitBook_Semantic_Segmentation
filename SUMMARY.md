@@ -15,6 +15,7 @@
 * [2015\_ResNet](2015resnet.md)
 * [2016\_ResNet\_Inception-V4](2016resnet-inception-v4.md)
 * [2017\_ SqueezeNET](2017squeezenet.md)
+* [2016\_PAVNet](2016pavnet.md)
 
 ## Object Detection
 
