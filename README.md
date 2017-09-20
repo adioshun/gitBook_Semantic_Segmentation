@@ -24,3 +24,5 @@
 - [히치하이커를 위한 Deep Object Detectors](https://www.slideshare.net/IldooKim/deep-object-detectors-1-20166): 추천, Selective Search에서 YOLO까지 
 
 - [A 2017 Guide to Semantic Segmentation with Deep Learning](http://blog.qure.ai/notes/semantic-segmentation-deep-learning-review) : 하기 논문 8편에 대한 분석(FCN,SegNet,Dilated Convolutions,DeepLab (v1 & v2),RefineNet,PSPNet,Large Kernel Matters,DeepLab v3)
+
+- [Case study of Convolutional Neural Network](http://nmhkahn.github.io/Casestudy-CNN): 하기 논문 6편에 대한 **한글** 분석(AlexNet, VGGNet, Network In Network, GoogLeNet, PReLU-net, ResNet)
