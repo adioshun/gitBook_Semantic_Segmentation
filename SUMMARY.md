@@ -15,6 +15,7 @@
 * [2015\_ResNet](2015resnet.md)
 * [2016\_ResNet\_Inception-V4](2016resnet-inception-v4.md)
 
+
 ## Object Detection
 
 * [intro\_Object Detection](object-detection.md)
@@ -50,9 +51,13 @@
 * [2016\_MultiNet\_Semantic](2016multinet-semantic.md)
 * [2017\_Mask R-CNN\(작성중\_20%\)](2017mask-r-cnn.md)
 
-## Video Segmentation 
+## Video Segmentation
 
-* [Intro](intro_Video_segmentation.md)
+* [intro\_Video\_segmentation](introvideo-segmentation.md)
+* [2017\_OSVOS](2017osvos.md)
+* [2017\_MaskTrack](2017masktrack.md)
+
+
 
 ## 참고
 
