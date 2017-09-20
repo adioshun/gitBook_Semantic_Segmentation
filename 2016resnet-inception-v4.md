@@ -8,7 +8,7 @@ Inception-ResNet
 
 > 추후 다시 살펴 보기 : 라온피플 블로그[Class49](http://laonple.blog.me/220752877630), [Class50](http://laonple.blog.me/220752877630) 
 
-
+- 코드(Keras) : https://github.com/myutwo150/keras-inception-resnet-v2
 
 # Inception-V4
 
