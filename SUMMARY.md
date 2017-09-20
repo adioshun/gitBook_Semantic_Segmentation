@@ -50,6 +50,10 @@
 * [2016\_MultiNet\_Semantic](2016multinet-semantic.md)
 * [2017\_Mask R-CNN\(작성중\_20%\)](2017mask-r-cnn.md)
 
+## Video Segmentation 
+
+* [Intor](intro_Video_segmentation.md)
+
 ## 참고
 
 * [ref01\_Evaluation\_mAP\_IoU](ref01evaluation-map.md)
