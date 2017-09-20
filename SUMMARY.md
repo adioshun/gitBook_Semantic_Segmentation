@@ -14,7 +14,7 @@
 * [2014\_VGGNet](2014vggnet.md)
 * [2015\_ResNet](2015resnet.md)
 * [2016\_ResNet\_Inception-V4](2016resnet-inception-v4.md)
-
+* [2017\_ SqueezeNET](2017squeezenet.md)
 
 ## Object Detection
 
@@ -57,12 +57,10 @@
 * [2017\_OSVOS](2017osvos.md)
 * [2017\_MaskTrack](2017masktrack.md)
 
-
-
 ## 참고
 
 * [ref01\_Evaluation\_mAP\_IoU](ref01evaluation-map.md)
 * [ref02\_Pooling에 대한 고찰](ref02pooling-c5d0-b300-d55c-ace0-cc30.md)
 * [ref03\_FCN에 대한 고찰\(작성중\_0%\)](ref03fcn-c5d0-b300-d55c-ace0-cc3028-c791-c131-c91129.md)
-* [ref04\_Datasets](ref04datasets.md)
+* [ref04\_Challenges\_Datasets](ref04datasets.md)
 
