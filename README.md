@@ -13,8 +13,10 @@
 ## 논문 트렌드 분석
 
 - [Awesome - Most Cited Deep Learning Papers](https://github.com/terryum/awesome-deep-learning-papers): TerryUm
+
 - [카카오AI리포트] 딥러닝 연구의 현재와 미래 (1/2) ](https://brunch.co.kr/@kakao-it/65)
 
+- [Speed/accuracy trade-offs for modern convolutional object detectors](https://arxiv.org/pdf/1611.10012v1.pdf): RFCN, SSD, YOLO 분석
 
 
 ## Material 
