@@ -14,8 +14,7 @@
 * [2014\_VGGNet](2014vggnet.md)
 * [2015\_ResNet](2015resnet.md)
 * [2016\_ResNet\_Inception-V4](2016resnet-inception-v4.md)
-* [2017\_ SqueezeNET](2017squeezenet.md)
-* [2016\_PAVNet](2016pavnet.md)
+
 
 ## Object Detection
 
@@ -36,8 +35,10 @@
 * [2016\_Faster\_R-CNN+ResNet](2016faster-r-cnn+rednet.md)
 * [2016\_YOLO2\_YOLO9000](2016yolo2-yolo9000.md)
 * [2016\_R-FCN\(작성중\_0%\)](2016r-fcn.md)
+* [2016\_PAVNet](2016pavnet.md)
 * [2016\_DenseNet](2016densenet.md)
 * [2016\_SqueezeDet](2016squeezedet.md)
+* [2017\_ SqueezeNET](2017squeezenet.md)
 * [2017\_Deconvolutional SSD\(작성중\_0%\)](2017deconvolutional-ssd.md)
 * [Lab\_Object\_Detection](labobject-detection.md)
 
