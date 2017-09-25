@@ -5,7 +5,9 @@
 
 ## List
 
-- [List of Object Detection](https://github.com/Smorodov/Deep-learning-object-detection-links.)
+- [List of Object Detection #1](https://github.com/Smorodov/Deep-learning-object-detection-links.)
+
+- [List of Object Detection #2](https://handong1587.github.io/deep_learning/2015/10/09/object-detection.html)
 
 
 ## Paper
