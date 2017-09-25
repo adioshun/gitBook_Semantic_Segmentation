@@ -4,7 +4,7 @@
 
 ## Paper
 
-[A Review on Deep Learning Techniques Applied to Semantic Segmentation](https://arxiv.org/abs/1704.06857v1): 2017
+- [A Review on Deep Learning Techniques Applied to Semantic Segmentation](https://arxiv.org/abs/1704.06857v1): 2017
 
 
 
