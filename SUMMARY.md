@@ -37,7 +37,7 @@
 * [2016\_R-FCN\(작성중\_0%\)](2016r-fcn.md)
 * [2016\_PAVNet](2016pavnet.md)
 * [2016\_DenseNet](2016densenet.md)
-* [2016\_SqueezeDet](2016squeezedet.md)
+* [2016\_SqueezeDet](https://www.gitbook.com/book/adioshun/deep_drive/edit#/edit/master/paper2016-squeezedet.md)
 * [2017\_ SqueezeNET](2017squeezenet.md)
 * [2017\_Deconvolutional SSD\(작성중\_0%\)](2017deconvolutional-ssd.md)
 * [Lab\_Object\_Detection](labobject-detection.md)
