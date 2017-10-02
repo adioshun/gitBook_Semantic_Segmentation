@@ -15,7 +15,6 @@
 * [2015\_ResNet](2015resnet.md)
 * [2016\_ResNet\_Inception-V4](2016resnet-inception-v4.md)
 
-
 ## Object Detection
 
 * [intro\_Object Detection](object-detection.md)
@@ -29,11 +28,11 @@
   * [Paper\_2015\_Fast\_R-CNN](fastr-cnn2015/paper2015-fast-r-cnn.md)
 * [2015\_Faster\_R-CNN](fasterr-cnn2015.md)
   * [Paper\_2015\_Faster\_R-CNN](fasterr-cnn2015/paper2015-faster-r-cnn.md)
-* [2015\_YOLO](2015yolo.md)
+* [2016\_YOLO](2015yolo.md)
 * [2015\_SSD](2015ssd.md)
   * [Paper\_2015\_SSD](2015ssd/paper2015-ssd.md)
 * [2016\_Faster\_R-CNN+ResNet](2016faster-r-cnn+rednet.md)
-* [2016\_YOLO2\_YOLO9000](2016yolo2-yolo9000.md)
+* [2017\_YOLO2\_YOLO9000](2016yolo2-yolo9000.md)
 * [2016\_R-FCN\(작성중\_0%\)](2016r-fcn.md)
 * [2016\_PAVNet](2016pavnet.md)
 * [2016\_DenseNet](2016densenet.md)
