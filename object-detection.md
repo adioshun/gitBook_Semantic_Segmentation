@@ -11,6 +11,8 @@
     - 아래와 같이 single convolutional network를 통해 multiple bounding box에 대한 class probability를 계산하는 방식을 취합니다.
 
 
+![](https://i.imgur.com/ZFg9tdp.png)
+
 |년도|알고리즘|링크|입력|출력|특징|
 |-|-|-|-|-|-|
 |2014|R-CNN|[논문](https://arxiv.org/abs/1311.2524)|Image|Bounding boxes + labels for each object in the image.|AlexNet, 'Selective Search'사용 |
