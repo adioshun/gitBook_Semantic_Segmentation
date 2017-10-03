@@ -26,6 +26,10 @@
 
 # 참고 자료 
 
+- [[추천] 딥러닝 참고 논문 요약 - Segmentation 등](http://blog.naver.com/sogangori/221092445500): sogangori 블로그
+
+
+
 - [Selective Search for Object Recognition](https://www.koen.me/research/pub/uijlings-ijcv2013-draft.pdf)
 
 - Recognition using Regions
