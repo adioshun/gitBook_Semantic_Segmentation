@@ -1,5 +1,11 @@
 # Image Segmentation
 
+- Pixel Level Segmentation 
+    - DeepLap V3
+- Instance level Segmentation 
+    - Mask R-CNN
+    - SegNet
+
 ## 1. CNNs
 
 ### 1.1 Fully Convolution Network

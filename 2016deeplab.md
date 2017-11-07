@@ -3,12 +3,12 @@
 |저자(소속)|Liang-Chieh Chen (구글)|
 |학회/년도|2016 [논문](https://arxiv.org/pdf/1606.00915.pdf)|
 |키워드| |
-|참고|[라온피플](http://laonple.blog.me/221000648527)|
+|참고|[라온피플](http://laonple.blog.me/221000648527), [PR100](https://www.youtube.com/watch?v=JiC78rUF4iI&feature=share)|
 
 
 # DeepLab v2
 
-
+![](https://i.imgur.com/h8SOkWp.png)
 
 
 
