@@ -45,11 +45,10 @@
 
 * [intro\_Semantic Segmentation](introsemantic-segmentation.md)
 * [Fundamental\_Segmentation](laonb77c-c628-be14-b85c-adf8.md)
-* [2015\_Fully Convolutional Network\(작성중\_80%\)](2015fully-convolutional-network.md)
+* [2015\_Fully Convolutional Network\(80%\)](2015fully-convolutional-network.md)
 * [2015\_Deconvolutional Network](2015deconvolutional-network.md)
 * [2016\_Dilated convolution](2015dilated-convolution.md)
 * [2016\_DeepLab v2](2016deeplab.md)
-* [2016\_MultiNet\_Semantic](2016multinet-semantic.md)
 * [2017\_Mask R-CNN\(작성중\_20%\)](2017mask-r-cnn.md)
 
 ## Video Segmentation
