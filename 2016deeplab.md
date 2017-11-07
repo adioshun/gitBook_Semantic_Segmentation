@@ -8,7 +8,7 @@
 
 # DeepLab v2
 
-![](https://i.imgur.com/h8SOkWp.png)
+
 
 
 
