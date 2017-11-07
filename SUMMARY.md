@@ -14,6 +14,7 @@
 * [2014\_VGGNet](2014vggnet.md)
 * [2015\_ResNet](2015resnet.md)
 * [2016\_ResNet\_Inception-V4](2016resnet-inception-v4.md)
+* [ref05\_CRF](ref05crf.md)
 
 ## Object Detection
 
