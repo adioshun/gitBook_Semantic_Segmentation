@@ -5,6 +5,14 @@
 |키워드||
 |참고|[발표자료#1](http://vision.stanford.edu/teaching/cs231b_spring1415/slides/ssearch_schuyler.pdf),[발표자료#2](http://www.cs.cornell.edu/courses/cs7670/2014sp/slides/VisionSeminar14.pdf)|
 
+
+
+
+
+
+
+
+
 # Selective Search for Object Recognition
 ---
 여러 후보 영역 추천 알고리즘 

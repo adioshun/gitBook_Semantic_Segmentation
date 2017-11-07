@@ -1,3 +1,17 @@
+|논문명 | |
+| --- | --- |
+| 저자\(소속\) | \(\) |
+| 학회/년도 | IROS 2015, [논문]() |
+| 키워드 | |
+| 데이터셋(센서)/모델 | |
+| 관련연구||
+| 참고 | |
+| 코드 | |
+
+
+
+
+
 > Deep residual learning for image recognition, https://arxiv.org/abs/1512.03385
 
 ILSVRC 2015년 대회에서 우승을 한 구조로 마이크로소프트의 Kaiming He 등에 의해서 개발이 되었다.
