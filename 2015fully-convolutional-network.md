@@ -3,7 +3,7 @@
 |저자(소속)|Jonathan Long, Evan Shelhamer*, and Trevor Darrell(버클리)|
 |학회/년도|CVPR 2015, [논문](https://arxiv.org/pdf/1605.06211.pdf)|
 |키워드| |
-|참고|[모연](http://www.whydsp.org/317), [리뷰](http://warmspringwinds.github.io/tensorflow/tf-slim/2017/01/23/fully-convolutional-networks-(fcns)-for-image-segmentation/)|
+|참고|[모연](http://www.whydsp.org/317), [리뷰](http://warmspringwinds.github.io/tensorflow/tf-slim/2017/01/23/fully-convolutional-networks-(fcns)-for-image-segmentation/), [PR100](https://youtu.be/JiC78rUF4iI?t=5m57s)|
 |코드|[caffe](https://github.com/shelhamer/fcn.berkeleyvision.org), [pyTorch](https://github.com/wkentaro/pytorch-fcn)|
 
 

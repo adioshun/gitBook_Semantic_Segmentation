@@ -2,7 +2,7 @@
 
 - Pixel Level Segmentation 
     - DeepLap V3
-- Instance level Segmentation 
+- Instance level Segmentation (Object Detection쪽에 가까움)
     - Mask R-CNN
     - SegNet
 
