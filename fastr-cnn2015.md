@@ -2,8 +2,9 @@
 |-|-|
 |저자(소속)|Ross Girshick(MS)|
 |학회/년도|ICCV 2015, [논문](https://arxiv.org/abs/1504.08083)|
-|키워드||
+|키워드|Ross2015|
 |참고|[다이어그램](https://drive.google.com/file/d/0B6Ry8c3OoOuqaWI3NGh2RERILVk/view?usp=sharing),[judelee19(K)](http://judelee19.github.io/machine_learning/fast_rcnn/)|
+|데이터셋/모델||
 |코드|[Python_caffe](https://github.com/rbgirshick/fast-rcnn), [Caffe](http://tutorial.caffe.berkeleyvision.org/caffe-cvpr15-detection.pdf)|
 
 # Fast Region-based Convolutional Network method (Fast R-CNN)

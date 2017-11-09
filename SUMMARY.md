@@ -5,7 +5,6 @@
 * [Cover](README.md)
 * [Infographic](infographic.md)
 
-
 ## Classification
 
 * [List\_Classification](listclassification.md)
@@ -25,8 +24,7 @@
 * [CS231n Lecture 8 - Localization and Detection](cs231n-lecture-8-localization-and-detection.md)
 * [2012\_Selective Search](selective-search2012.md)
   * [Paper\_2012\_SelectiveSearch](selective-search2012/paper2012-selectivesearch.md)
-* [2013\_R-CNN](r-cnn2013.md)
-  * [Paper\_2013\_R-CNN](r-cnn2013/paper2013-r-cnn.md)
+* [Paper\_2013\_R-CNN](r-cnn2013.md)
 * [2013\_SPPNets](2013sppnets.md)
 * [2014\_OverFeat\(작성중\_50%\)](2014overfeat.md)
 * [2015\_Fast\_R-CNN](fastr-cnn2015.md)
