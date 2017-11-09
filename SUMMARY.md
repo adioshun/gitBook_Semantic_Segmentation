@@ -29,7 +29,6 @@
 * [2014\_OverFeat\(작성중\_50%\)](2014overfeat.md)
 * [2015\_Fast\_R-CNN](fastr-cnn2015.md)
 * [2015\_Faster\_R-CNN](fasterr-cnn2015.md)
-  * [Paper\_2015\_Faster\_R-CNN](fasterr-cnn2015/paper2015-faster-r-cnn.md)
 * [2016\_YOLO](2015yolo.md)
 * [2016\_SSD](2015ssd.md)
   * [Paper\_2015\_SSD](2015ssd/paper2015-ssd.md)
