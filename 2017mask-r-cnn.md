@@ -3,7 +3,7 @@
 |저자(소속)|Kaiming He, Georgia Gkioxari, Piotr Dollár, Ross Girshick (Facebook)|
 |학회/년도|2017 [논문](https://arxiv.org/abs/1703.06870)|
 |키워드| |
-|참고| [sogangori(K)](http://blog.naver.com/sogangori/221012300995), [Yuthon(E)](http://www.yuthon.com/2017/04/27/Notes-From-Faster-R-CNN-to-Mask-R-CNN/) |
+|참고| [리뷰-딥러닝강사](http://blog.naver.com/sogangori/221012300995), [Yuthon](http://www.yuthon.com/2017/04/27/Notes-From-Faster-R-CNN-to-Mask-R-CNN/) |
 |데이터셋/모델|COCO 2016 Detection, COCO 2016 keypoint detection(pose), Cityscapes|
 |구현 코드|[PyTorch](https://github.com/felixgwu/mask_rcnn_pytorch), [TensorFlow](https://github.com/CharlesShang/FastMaskRCNN)|
 
@@ -12,28 +12,24 @@
 
 # Mask R-CNN
 ---
-[Faster R-CNN to Mask R-CNN](http://www.yuthon.com/2017/04/27/Notes-From-Faster-R-CNN-to-Mask-R-CNN/)
 
-
----
-[딥러닝강사](http://blog.naver.com/sogangori/221012300995)
 
 
 ---
-> [텐서플로우 블로그](https://tensorflow.blog/2017/06/05/from-r-cnn-to-mask-r-cnn/)
+
 
 ![](http://i.imgur.com/OBXTpkJ.png)
 
-페이스북 AI 팀이 분할된 이미지를 마스킹하는 Mask R-CNN을 내놓았습니다. 
+- Binary mask : Faster R-CNN에 각 픽셀이 오브젝트에 해당하는 것인지 아닌지를 마스킹하는 네트워크(CNN)
 
-바이너리 마스크binary mask : Faster R-CNN에 각 픽셀이 오브젝트에 해당하는 것인지 아닌지를 마스킹하는 네트워크(CNN)
+- RoIAlign : 정확한 픽셀 위치를 추출하기 위해 CNN을 통과하면서 RoIPool 영역의 위치에 생기는 소숫점 오차를 2D 선형보간법`(bilinear interpolation)`을 통해 감소 다. 
 
-페이스북 팀은 정확한 픽셀 위치를 추출하기 위해 CNN을 통과하면서 RoIPool 영역의 위치에 생기는 소숫점 오차를 2D 선형보간법bilinear interpolation을 통해 감소시켰다고 합니다. 이를 RoIAlign이라고 합니다. 
+> 참고 : [텐서플로우 블로그](https://tensorflow.blog/2017/06/05/from-r-cnn-to-mask-r-cnn/)
 
 
 
 ---
-> 출처 : [Donghyun 블로그](http://blog.naver.com/kangdonghyun/221006015797)
+
 
 ![](http://i.imgur.com/Lec4AlE.png)
 
@@ -52,15 +48,17 @@
 --- Target class k에 대한 loss만 전체 loss function에 더해준다
 -- RoIPool 대신 RoIAlign 도입하여 사용
 
+> 출처 : [Donghyun 블로그](http://blog.naver.com/kangdonghyun/221006015797)
+
 ---
-> https://blog.lunit.io/2017/06/01/r-cnns-tutorial/
+
 
 ## RoIAlign layer
 
 misalignment 문제 
 - Fast R-CNN이나 SPPNet에서 RoI Pooling 또는 SPP를 수행할 때  feature map의 사이즈가 a $$\times$$ a 이고, 이를 n $$\times$$ n개의 bin으로 나눈다고 했을 때, 각 bin의 window size가 정수배가 되지 않을 경우가 있습니다. (예를 들어, 13×13 feature map을 6×6 bins으로 나눌 경우 window size가 2.167이 됩니다) 
 
-- SPPNet의 저자는 이러한 
+
 
 
 
