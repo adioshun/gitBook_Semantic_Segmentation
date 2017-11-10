@@ -101,7 +101,7 @@ SPPNet은 ConvNet 단계는 전체 영상에 대하여 한꺼번에 연산을 �
   - bbox(bounding box) regressor : 각각의 object class의 위치를 출력
   
 ### 2.3 특징 (RoI Pooling layer)
-> 다양한 크기의 Feature map 후보영역을 고정된 크기로 pooling하여 이후 FCL에 입력 할수 있도록 작업 하는 Layer
+> 다양한 크기의 Feature map 후보영역을 고정된 크기로 pooling하여 이후 FCL에 입력 할수 있도록 작업 하는 Layer ` For each BBox, get a fixed-length feature vector form RoI pooling layer`
 
 - SPPNet에서 제안한 SPP layer는 feature map 상의 특정 영역에 대해 일정한 고정된 개수의 bin으로 영역을 나눈 뒤, 각 bin에 대해 max pooling 또는 average pooling을 취함으로써 고정된 길이의 feature vector를 가져올 수 있습니다. 
 
