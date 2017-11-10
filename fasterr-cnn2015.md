@@ -52,7 +52,11 @@ Anchor box는 sliding window의 각 위치에서 Bounding Box의 후보로 사�
 > RPN은 sliding window에 3×3 convolution을 적용해 input feature map을 256 (ZF) 또는 512 (VGG) 크기의 feature로 mapping합니다.
 
 ### 2.2 Intermediate Layer
-- 3X3 filter with 1 stride and 1 padding을 512개 적용하여 14X14X512의 아웃풋을 얻는다.
+- 3X3 filter with 1 stride and 1 padding을 512개 적용하여 14X14X512의 아웃풋을 얻는다. (VGG의 경우) 
+
+- 입력 이미지(Anchor)의 크기라 7x7이라면, 7x7x512 Feature map 생성됨 
+
+
 
 ### 2.3 Output layer
 > classification layer (cls)와 box regression layer (reg)으로 들어갑니다. Box classification layer와 box regression layer는 각각 1×1 convolution으로 구현됩니다.
@@ -160,7 +164,8 @@ RPN을 이용하여 object가 있을만한 영역에 대한 proposal을 구하�
 > model의 형태 : Fully-convolutional network 형태
 
 ![](http://i.imgur.com/SH43wOr.png)
-
+```
+3x3 conv
 > convolutional feature map을 입력 받는다 . ZF Net의 예시 - 256d
 
 - 각각의 sliding window에서는 총 k개의 object 후보를 추천할 수 있으며, 
