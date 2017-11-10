@@ -4,6 +4,7 @@
 |학회/년도|2017 [논문](https://arxiv.org/abs/1703.06870)|
 |키워드| |
 |참고| [sogangori(K)](http://blog.naver.com/sogangori/221012300995), [Yuthon(E)](http://www.yuthon.com/2017/04/27/Notes-From-Faster-R-CNN-to-Mask-R-CNN/) |
+|데이터셋/모델|COCO 2016 Detection, COCO 2016 keypoint detection(pose), Cityscapes|
 |구현 코드|[PyTorch](https://github.com/felixgwu/mask_rcnn_pytorch), [TensorFlow](https://github.com/CharlesShang/FastMaskRCNN)|
 
 
