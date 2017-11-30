@@ -34,5 +34,6 @@
 
 ## 7. Implementation (Project)
 
+- [Awesome Semantic Segmentation](https://github.com/mrgloom/awesome-semantic-segmentation/blob/master/README.md)
 
 ## 8. Research Group / Conference 
