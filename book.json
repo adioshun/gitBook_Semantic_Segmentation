@@ -1,11 +1,5 @@
 {
-    "plugins": ["latex-codecogs"], ["page-toc-button"],
-    "pluginsConfig": {
-        "page-toc-button": {
-            "maxTocDepth": 2,
-            "minTocSize": 2
-           }
-    }
+    "plugins": ["latex-codecogs"]
 }
 
 
