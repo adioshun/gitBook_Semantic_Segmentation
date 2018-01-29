@@ -4,6 +4,7 @@
 
 * [Cover](README.md)
 * [Infographic](infographic.md)
+* [Paper\_2017\_RetinaNet](paper2017-retinanet.md)
 
 ## Classification
 
