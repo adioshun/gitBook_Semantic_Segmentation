@@ -5,7 +5,6 @@
 * [Cover](README.md)
 * [Infographic](infographic.md)
 
-
 ## Classification
 
 * [List\_Classification](listclassification.md)
