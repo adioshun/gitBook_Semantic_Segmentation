@@ -37,7 +37,8 @@ $$
 
 IoU를 로스로 사용해서 학습했을 때 CrossEntropy 를 사용한 것보다 mAP가 3.42% 향상되었다
 
-$$L_{IoU} = 1- IoU = 1- \frac{TP}{FP+TP+FN}
+$$
+L_{IoU} = 1- IoU = 1- \frac{TP}{FP+TP+FN}
 $$
 
 
@@ -87,3 +88,29 @@ def get_iou(a, b, epsilon=1e-5):
     iou = area_overlap / (area_combined+epsilon)
     return iou
 ```
+
+
+## 4. 3D IOU
+
+[IoU설명](https://www.pyimagesearch.com/2016/11/07/intersection-over-union-iou-for-object-detection/)
+
+
+```python 
+
+
+def IoU(box0, box1):
+  # box0: [x, y, z, d]
+  r0 = box0[3] / 2
+  s0 = box0[:3] - r0
+  e0 = box0[:3] + r0
+  r1 = box1[3] / 2
+  s1 = box1[:3] - r1
+  e1 = box1[:3] + r1
+  
+  overlap = [max(0, min(e0[i], e1[i]) - max(s0[i], s1[i])) for i in range(3)]
+  intersection = reduce(lambda x,y:x*y, overlap)
+  union = pow(box0[3], 3) + pow(box1[3], 3) - intersection
+  return intersection / union
+```
+
+> https://gist.github.com/daisenryaku/91e6f6d78f49f67602d21dc57d494c60
