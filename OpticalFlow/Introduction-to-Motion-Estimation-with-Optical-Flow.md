@@ -10,3 +10,43 @@
     
 Optical flow is the motion of objects between consecutive frames of sequence, caused by the relative movement between the object and camera.
 
+
+## 2. 분류
+
+![](https://blog.nanonets.com/content/images/2019/04/sparse-vs-dense.gif)
+
+### 2.1 Sparse Optical Flow
+
+
+
+### 2.2 Dense Optical Flow
+
+
+
+## 3. Implementation
+
+### 3.1 Sparse Optical Flow
+
+
+
+### 3.2 Dense Optical Flow
+
+
+
+## 4. Optical Flow using Deep Learning
+
+
+
+
+
+## 5. Application 
+
+### 5.1 Semantic Segmentation
+
+
+### 5.2 Object Detection & Tracking
+
+
+
+## 6. Conclusion
+
